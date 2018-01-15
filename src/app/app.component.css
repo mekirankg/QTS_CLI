@@ -1,0 +1,10 @@
+.headerStyle{
+    align-content: center;
+    vertical-align: -webkit-baseline-middle;
+}
+.logoimg{
+    width: 50px;
+}
+.headerText{
+    font-size: 30px;
+}
