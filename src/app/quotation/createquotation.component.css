@@ -167,6 +167,6 @@ a.article, a.article:hover {
     }
 }
 
-.sidebarstyle{
-    margin-top: 50px;
+.createcontent{
+    padding-top: 0px !important;
 }
