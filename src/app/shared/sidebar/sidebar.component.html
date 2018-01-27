@@ -1,8 +1,11 @@
 <nav id="sidebar" class="sidebarstyle">
         
     <ul class="list-unstyled components">
-       
+            <li>
+                <a href="#">Reports UI</a>
+            </li>
         <li class="active">
+                
             <a href="#quotationsSubmenu" data-toggle="collapse" aria-expanded="false">Quotations</a>
             <ul class="collapse list-unstyled" id="quotationsSubmenu">
                 <li><a [routerLink]="['/listquotation']">List Quotation</a></li>
@@ -21,11 +24,17 @@
           
                 <a href="#paymentsSubmenu" data-toggle="collapse" aria-expanded="false">Payments</a>
                 <ul class="collapse list-unstyled" id="paymentsSubmenu">
-                    <li><a href="#">List Purchase Orders</a></li>
+                    <li><a href="#">List Payment Orders</a></li>
                 </ul>
             </li>
-
+            <li>
+                    <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false">Customers</a>
+                    <ul class="collapse list-unstyled" id="customerSubmenu">
+                        <li><a href="#">Add Customer</a></li>                                                  
+                    </ul>
+                </li>
         <li>
+
           
             <a href="#SettingsSubmenu" data-toggle="collapse" aria-expanded="false">Settings</a>
             <ul class="collapse list-unstyled" id="SettingsSubmenu">

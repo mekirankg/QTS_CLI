@@ -23,9 +23,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             // authenticate
             if (request.url.endsWith('/api/authenticate') && request.method === 'POST') {
                 // find if any user matches login credentials
-                let filteredUsers = users.filter(user => {
+                let filteredUsers: { id: number, username: string, firstName,lastName,password }[] = [
+                    { "id": 0, "username": "Available", "firstName":"admin","lastName":"LM", "password":"admin" }
+                ];
+
+
+               /*  let filteredUsers = users.filter(user => {
                     return user.username === request.body.username && user.password === request.body.password;
-                });
+                }); */
 
                 if (filteredUsers.length) {
                     // if login details are valid return 200 OK with user details and fake jwt token

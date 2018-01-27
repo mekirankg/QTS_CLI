@@ -40,11 +40,11 @@ import { RegisterComponent } from './register/index';
     HttpClientModule,
     RouterModule.forRoot(
       [
-        { path:'createquotation',component:CreatequotationComponent },
-        { path:'listquotation',component:ListquotationComponent },
+        { path:'createquotation',component:CreatequotationComponent , canActivate: [AuthGuard] },
+        { path:'listquotation',component:ListquotationComponent , canActivate: [AuthGuard] },
         { path:'welcome',component:WelcomeComponent },
         {path:'login',component:LoginComponent},
-        { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+        { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },
         { path:'',component:WelcomeComponent,pathMatch:'full' },
         { path:'**',component:WelcomeComponent ,pathMatch:'full'}
