@@ -16,7 +16,7 @@ export class ListquotationComponent implements OnInit {
     {
 "customerName":"Name1",
 "customerContact":"123456789",
-"quotationName":"qname2",
+//"quotationName":"qname2",
 "salesmanName":"salesman1",
 "totalvalue":"12345",
 "status":"status1",
@@ -26,7 +26,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name2",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -35,7 +35,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name3",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+  //    "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -45,7 +45,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name4",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -54,7 +54,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name5",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -64,7 +64,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name6",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -73,7 +73,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name7",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+  ///    "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -83,7 +83,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name8",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+  //    "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -93,7 +93,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name9",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -102,7 +102,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name10",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+  //    "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -112,7 +112,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name11",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -122,7 +122,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name12",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -131,7 +131,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name13",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",
@@ -141,7 +141,7 @@ export class ListquotationComponent implements OnInit {
     {
       "customerName":"Name14",
       "customerContact":"123456789",
-      "quotationName":"qname1",
+   //   "quotationName":"qname1",
       "salesmanName":"salesman1",
       "totalvalue":"12345",
       "status":"status1",

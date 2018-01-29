@@ -21,6 +21,7 @@ import { JwtInterceptor } from './_helpers/index';
 import { AlertService, AuthenticationService, UserService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { RegisterComponent } from './register/index';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RegisterComponent } from './register/index';
     AlertComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -40,13 +42,13 @@ import { RegisterComponent } from './register/index';
     HttpClientModule,
     RouterModule.forRoot(
       [
-        { path:'createquotation',component:CreatequotationComponent , canActivate: [AuthGuard] },
-        { path:'listquotation',component:ListquotationComponent , canActivate: [AuthGuard] },
+        { path:'createquotation',component:CreatequotationComponent /* , canActivate: [AuthGuard] */ },
+        { path:'listquotation',component:ListquotationComponent/*  , canActivate: [AuthGuard] */ },
         { path:'welcome',component:WelcomeComponent },
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },
-        { path:'',component:WelcomeComponent,pathMatch:'full' },
+        { path:'',component:DashboardComponent,pathMatch:'full' },
         { path:'**',component:WelcomeComponent ,pathMatch:'full'}
       ]
     )

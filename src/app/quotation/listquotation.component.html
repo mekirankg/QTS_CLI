@@ -6,13 +6,13 @@
 <div id="content" class="listcontent listcontenttable">
       <h2>List Quotation</h2>
       <div style="height:20px"></div>
-      <div class="table-responsive">
-<table class="table table-hover table-bordered" *ngIf='quotations && quotations.length'>
-    <thead class="thead-inverse">
+      <div>
+<table class="table table-hover table-responsive table-bordered" *ngIf='quotations && quotations.length'>
+    <thead class="thead-dark">
 <tr>
     <th>Customer Name</th>
-    <th>Contact</th>
-    <th>Quotation Name</th>
+    <th>Contact</th><!-- 
+    <th>Quotation Name</th> -->
     <th>Salesman Name</th>
     <th>Total Value</th>
     <th>Status</th>
@@ -28,7 +28,7 @@
             </a>
         </td>
             <td>{{ quotation.customerContact}}</td>
-            <td>{{ quotation.quotationName}}</td>
+           <!--  <td>{{ quotation.quotationName}}</td> -->
             <td>{{ quotation.salesmanName }}</td>
             <td>{{ quotation.totalvalue }}</td>
             <td>{{ quotation.status }}</td>
