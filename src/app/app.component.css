@@ -1,6 +1,7 @@
 .headerStyle{
     align-content: center;
     vertical-align: -webkit-baseline-middle;
+
 }
 .logoimg{
   width: 60%;
@@ -10,10 +11,21 @@
   font-size: 2em; 
 /* padding-top: 1em;  */
 } 
+.navstyle{
+  min-width: 400px;
+}
 .titlestyle
 {
     vertical-align: -webkit-baseline-middle;
+    min-width: 400px;
 }
+
+@media screen and (min-width: 768px) {
+  #sidebarCollapse {display: none;}  
+}
+
+
+
 
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
