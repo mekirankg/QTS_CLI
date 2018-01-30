@@ -1,64 +1,88 @@
 <nav id="sidebar" class="sidebarstyle">
-        
+
     <ul class="list-unstyled components">
-            <li>
-                <a href="#">Reports UI</a>
-            </li>
+        <li>
+            <a href="#">Dashboard</a>
+        </li>
         <li class="active">
-                
+
             <a href="#quotationsSubmenu" data-toggle="collapse" aria-expanded="false">Quotations</a>
             <ul class="collapse list-unstyled" id="quotationsSubmenu">
-                <li><a [routerLink]="['/listquotation']">List Quotation</a></li>
-                <li><a [routerLink]="['/createquotation']">Create Quotation</a></li>                           
+                <li>
+                    <a [routerLink]="['/listquotation']">List Quotation</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/createquotation']">Create Quotation</a>
+                </li>
             </ul>
         </li>
         <li>
-          
+
             <a href="#PurchaseSubmenu" data-toggle="collapse" aria-expanded="false">Purchase Orders</a>
             <ul class="collapse list-unstyled" id="PurchaseSubmenu">
-                <li><a href="#">List Purchase Orders</a></li>
-            </ul>
-        </li>
-       
-         <li>
-          
-                <a href="#paymentsSubmenu" data-toggle="collapse" aria-expanded="false">Payments</a>
-                <ul class="collapse list-unstyled" id="paymentsSubmenu">
-                    <li><a href="#">List Payment Orders</a></li>
-                </ul>
-            </li>
-            <li>
-                    <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false">Customers</a>
-                    <ul class="collapse list-unstyled" id="customerSubmenu">
-                        <li><a href="#">Add Customer</a></li>                                                  
-                    </ul>
+                <li>
+                    <a [routerLink]="['/initialpolist']">New PO's</a>
                 </li>
+                <li>
+                    <a [routerLink]="['/listpo']">Confirmed PO's</a>
+                </li>
+
+            </ul>
+
+        </li>
+
         <li>
 
-          
+            <a href="#paymentsSubmenu" data-toggle="collapse" aria-expanded="false">Payments</a>
+            <ul class="collapse list-unstyled" id="paymentsSubmenu">
+                <li>
+                    <a href="#">List Payment Orders</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#customerSubmenu" data-toggle="collapse" aria-expanded="false">Customers</a>
+            <ul class="collapse list-unstyled" id="customerSubmenu">
+                <li>
+                    <a href="#">Add Customer</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+
+
             <a href="#SettingsSubmenu" data-toggle="collapse" aria-expanded="false">Settings</a>
             <ul class="collapse list-unstyled" id="SettingsSubmenu">
-                 <li><a href="#CountrySubmenu">Country</a>
+                <li>
+                    <a href="#CountrySubmenu">Country</a>
                     <ul class="collapse list-unstyled" id="CountrySubmenu">
-                            <li><a href="#">List Countries</a></li>
-                            <li><a href="#">Add Countries</a></li>
-                        </ul>
-                </li> 
-                <li><a href="#">List Products</a></li>
-                <li><a href="#">Create Products</a></li>
+                        <li>
+                            <a href="#">List Countries</a>
+                        </li>
+                        <li>
+                            <a href="#">Add Countries</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">List Products</a>
+                </li>
+                <li>
+                    <a href="#">Create Products</a>
+                </li>
             </ul>
         </li>
         <li>
-                <a href="#">Manage Accounts</a> 
-               <a href="#AccountsSubmenu" data-toggle="collapse" aria-expanded="false">Accounts</a>
-                <ul class="collapse list-unstyled" id="AccountsSubmenu">
-                    <li><a href="#">List Users</a></li>
-                    
-                </ul> 
-            </li>
+            <a href="#">Manage Accounts</a>
+            <a href="#AccountsSubmenu" data-toggle="collapse" aria-expanded="false">Accounts</a>
+            <ul class="collapse list-unstyled" id="AccountsSubmenu">
+                <li>
+                    <a href="#">List Users</a>
+                </li>
+
+            </ul>
+        </li>
     </ul>
 
-   
+
 </nav>
-
-

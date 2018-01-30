@@ -22,6 +22,9 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { HomeComponent } from './home/index';
 import { RegisterComponent } from './register/index';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PurchaseorderlistComponent } from './purchaseorder/purchaseorderlist/purchaseorderlist.component';
+import { NewpurchaseorderComponent } from './purchaseorder/newpurchaseorder/newpurchaseorder.component';
+import { InitialpolistComponent } from './purchaseorder/initialpolist/initialpolist.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    PurchaseorderlistComponent,
+    NewpurchaseorderComponent,
+    InitialpolistComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +51,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         { path:'createquotation',component:CreatequotationComponent /* , canActivate: [AuthGuard] */ },
         { path:'listquotation',component:ListquotationComponent/*  , canActivate: [AuthGuard] */ },
         { path:'welcome',component:WelcomeComponent },
+        { path:'listpo',component:PurchaseorderlistComponent },
+        { path:'newpo/:id',component:NewpurchaseorderComponent },
+        { path:'initialpolist',component:InitialpolistComponent },        
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },
