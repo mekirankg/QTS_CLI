@@ -1,0 +1,118 @@
+<div class="wrapper ">
+    <div>
+        <app-sidebar></app-sidebar>
+    </div>
+    <!-- Page Content Holder -->
+    <div id="content" class="createcontent">
+        <form>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <h2>Confirm Purchase Order</h2>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputName">Quotation Id</label>
+                    <input type="text" class="form-control" id="Qid" placeholder={{id}} readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="quotationreference">Quotation Reference</label>
+                    <input type="text" class="form-control" id="quotationreference" placeholder="Quotation Reference No:" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="TotalValue">Supplier</label>
+                    <input type="text" class="form-control" id="Suppliername" placeholder="Supplier">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputName">Supplier Ref No</label>
+                    <input type="text" class="form-control" id="SupplierRefNo" placeholder="Supplier Ref No">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="SalesPersonName">Sales Person</label>
+                    <select class="form-control" name="color">
+                        <option value="">Choose a Sales Person</option>
+                        <option value="black">Sales Person 1</option>
+                        <option value="green">Sales Person 2</option>
+                        <option value="red">Sales Person 3</option>
+                        <option value="yellow">Sales Person4</option>
+                        <option value="white">Sales Person 5</option>
+                    </select>
+
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Currency"> Currency</label>
+                    <input type="text" class="form-control" id="Currency" placeholder="Currency">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" rows="2" id="description" placeholder="Description"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for=" SalesValue"> Sales Value</label>
+                    <input type="text" class="form-control" id=" SalesValue" placeholder=" Sales Value">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Amount">Amount</label>
+                    <input type="text" class="form-control" id="Amount" placeholder="Amount">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="Milestone">Milestone</label>
+                    <input type="text" class="form-control" id="Milestone" placeholder="Milestone">
+                </div>
+            </div>
+
+
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="MilestoneCompDate">Milestone Comp.Date</label>
+                    <input type="date" class="form-control" id="MilestoneCompDate" placeholder="Milestone Comp.Date">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Expirydate">Expiry Date</label>
+                    <input type="date" class="form-control" id="Expirydate" placeholder="Expiry Date">
+                </div>
+                <div class="form-group col-md-4">
+                <label for="Status">Status</label>
+                <select id="Status" class="form-control">
+                    <option selected>Choose...</option>                    
+                    <option>On Going</option>                    
+                    <option>PO</option>
+                    <option>Cancelled</option>
+                    <option>Lost</option>
+                </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="remarks">Remarks</label>
+                    <textarea class="form-control" rows="2" id="remarks" placeholder="Remarks"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>

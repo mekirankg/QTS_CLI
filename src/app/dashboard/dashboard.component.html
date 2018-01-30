@@ -1,0 +1,38 @@
+<script >
+
+</script>
+<div class="wrapper ">
+<div>
+  <app-sidebar></app-sidebar>
+</div>
+<div id="content" class="createcontent">
+  <h2>Dashboard</h2>
+  <table class="table table-responsive">
+     
+    <tbody>
+      <tr>        
+        <td><h4>New Quotations :</h4></td>
+        <td class="text-left"><h4>14</h4></td>
+        <td> <button type="button" class="btn btn-link"><a [routerLink]="['/listquotation']" ><h4>View</h4></a></button>
+        </td>
+      </tr>
+      <tr>
+       
+        <td><h4>Initial Purchase Orders:</h4></td>
+        <td class="text-left"><h4>4</h4></td>
+        <td> <button type="button" class="btn btn-link"><a [routerLink]="['/initialpolist']" ><h4>View</h4></a></button>
+        </td>
+      </tr>
+      <tr>
+       
+          <td><h4>Confirmed Purchase Orders:</h4></td>
+          <td class="text-left"><h4>4</h4></td>
+          <td> <button type="button" class="btn btn-link"><a [routerLink]="['/listpo']" ><h4>View</h4></a></button>
+          </td>
+        </tr>
+     
+    </tbody>
+  </table>
+  <div id="piechart"></div>
+</div>
+</div>

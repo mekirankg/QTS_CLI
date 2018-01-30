@@ -7,12 +7,52 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 </head>
 <body>
   <app-root>Loading........</app-root>
 </body>
+<script type="text/javascript">
+
+  $(document).ready(function () {
+   
+      $('#sidebarCollapse').on('click', function () {
+          
+          $('#sidebar').toggleClass('active');
+      });
+      
+      if($(window).width() > 770)
+      {
+        var elem  = document.getElementById("sidebarCollapse");
+        elem.setAttribute("style", "display:none");
+      }
+    });
+     
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Quotations', 'Count'],
+  ['New Quotations',14],
+  ['Initial PO', 4],
+  ['Confirmed PO', 4] 
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Quotations Summary', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+
+
+</script>
 </html>
