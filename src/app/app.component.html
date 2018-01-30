@@ -1,180 +1,24 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid" style="height:150px;">
-         <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header headerStyle">
-     <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>-->
-      <img class="logoimg"  alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-     
-    </div>
+  <div class="container-fluid" >
+   <!--  <div class="navbar-header headerStyle">     
+      <img class="logoimg"  alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">     
+    </div> -->
     <div class="titlestyle">
     <a class="navbar-brand headerText" href="#">{{ title }}</a>
   </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a [routerLink]="['/welcome']">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Adds</a></li>
-        <li><a href="#">External Links</a></li>
-       <!-- <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>-->
-      </ul>
-     <!--  <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form> -->
-      <ul class="nav navbar-nav navbar-right">
-       <!--  <li><a href="#">Sign in</a></li> -->
-       <li>
-        <a href="#" [routerLink]="['/login']">Sign in</a>
-       </li>
-     <!--    <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li> -->
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+     
+  </div>
 </nav>
 <div>
-  <router-outlet></router-outlet>
-
-  <!-- <a href="#" data-toggle="modal" data-target="#login-modal">Login</a> -->
-
-<!-- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-				<div class="loginmodal-container">
-					<h1>Login to Your Account</h1><br>
-				  <form>
-					<input type="text" name="user" placeholder="Username">
-					<input type="password" name="pass" placeholder="Password">
-					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
-				  </form>
-					
-				  <div class="login-help">
-					<a href="#">Forgot Password</a>
-				  </div>
-				</div>
-			</div>
-		  </div>
-</div> -->
-
-
-
-<!-- BEGIN # MODAL LOGIN -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header" align="center">
-      <img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      </button>
+    <div class="navbar-header">
+        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+            <i class="glyphicon glyphicon-align-left"></i>
+           
+        </button>
     </div>
-            
-            <!-- Begin # DIV Form -->
-            <div id="div-forms">
-            
-                <!-- Begin # Login Form -->
-                <form id="login-form">
-                <div class="modal-body">
-            <div id="div-login-msg">
-                            <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                            <span id="text-login-msg">Type your username and password.</span>
-                        </div>
-            <input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
-            <input id="login_password" class="form-control" type="password" placeholder="Password" required>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember me
-                            </label>
-                        </div>
-              </div>
-            <div class="modal-footer">
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-                        </div>
-              <div>
-                            <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
-                            <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
-                        </div>
-            </div>
-                </form>
-                <!-- End # Login Form -->
-                
-                <!-- Begin | Lost Password Form -->
-                <form id="lost-form" style="display:none;">
-              <div class="modal-body">
-            <div id="div-lost-msg">
-                            <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
-                            <span id="text-lost-msg">Type your e-mail.</span>
-                        </div>
-            <input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
-              </div>
-            <div class="modal-footer">
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
-                        </div>
-                        <div>
-                            <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
-                            <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
-                        </div>
-            </div>
-                </form>
-                <!-- End | Lost Password Form -->
-                
-                <!-- Begin | Register Form -->
-                <form id="register-form" style="display:none;">
-                <div class="modal-body">
-            <div id="div-register-msg">
-                            <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
-                            <span id="text-register-msg">Register an account.</span>
-                        </div>
-            <input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
-                        <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
-                        <input id="register_password" class="form-control" type="password" placeholder="Password" required>
-              </div>
-            <div class="modal-footer">
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
-                        </div>
-                        <div>
-                            <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
-                            <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
-                        </div>
-            </div>
-                </form>
-                <!-- End | Register Form -->
-                
-            </div>
-            <!-- End # DIV Form -->
-            
-  </div>
+  <router-outlet></router-outlet>
 </div>
-</div>
-<!-- END # MODAL LOGIN -->
+ 
 
 
 

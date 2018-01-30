@@ -23,9 +23,8 @@
 <tbody>
         <tr *ngFor='let quotation of quotations'>            
             
-            <td><a [routerLink]="['/quotation', quotation.customerName]">
-                {{ quotation.customerName }}
-            </a>
+            <td>
+            <button type="button" class="btn btn-link"><a [routerLink]="['/quotationdetails', quotation.customerName]">{{ quotation.customerName }}</a></button>
         </td>
             <td>{{ quotation.customerContact}}</td>
            <!--  <td>{{ quotation.quotationName}}</td> -->
@@ -41,12 +40,5 @@
       </div>  
 </div>
 
-<script type="text/javascript">
-   $(document).ready(function () {
-       $('#sidebarCollapse').on('click', function () {
-           $('#sidebar').toggleClass('active');
-       });
-   });
-</script>
 
 

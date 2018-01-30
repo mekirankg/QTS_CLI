@@ -3,12 +3,13 @@
     vertical-align: -webkit-baseline-middle;
 }
 .logoimg{
-    width: 150px;
+  width: 60%;
+  height: auto;
 }
-.headerText{
-    font-size: 50px;
-   padding-top: 50px;
-}
+ .headerText{
+  font-size: 2em; 
+/* padding-top: 1em;  */
+} 
 .titlestyle
 {
     vertical-align: -webkit-baseline-middle;

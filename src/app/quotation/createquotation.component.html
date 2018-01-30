@@ -66,18 +66,28 @@
             </div>
         </nav> -->
 
-        <h2>Create Quotation</h2>
-        <div style="height:20px"></div>
+        
         <form>
+           
             <div class="form-row">
-              <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
+                    <h2>Create Quotation</h2>
+                </div>               
+            </div>
+          
+            <div class="form-row">
+              <div class="form-group col-md-4">
                 <label for="inputName">Customer Name</label>
                 <input type="text" class="form-control" id="inputName" placeholder="Name">
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-4">
                 <label for="keycontact">Customer Key Contact</label>
                 <input type="text" class="form-control" id="keycontact" placeholder="Contact">
               </div>
+              <div class="form-group col-md-4">
+                  <label for="NextFollowup">Next Follow Up</label>
+                  <input type="date" class="form-control" id="NextFollowup" placeholder="Follow Up date">
+                </div>
             </div>
 
             <div class="form-row">
@@ -85,14 +95,29 @@
                   <label for="quotationName">Quotation Name</label>
                   <input type="text" class="form-control" id="quotationName" placeholder="Quotation Name">
                 </div> -->
-                <div class="form-group col-md-6">
-                    <label for="NextFollowup">Next Follow Up</label>
-                    <input type="date" class="form-control" id="NextFollowup" placeholder="Follow Up date">
-                  </div>
-                <div class="form-group col-md-6">
+               
+                <div class="form-group col-md-4">
                   <label for="quotationreference">Quotation Reference</label>
                   <input type="text" class="form-control" id="quotationreference" placeholder="Quotation Reference">
                 </div>
+                <div class="form-group col-md-4">
+                    <label for="SalesmanName">Salesman Name</label>
+                   <!--  <input type="text" class="form-control" id="SalesmanName" placeholder="Salesman Name">
+                    --> 
+                        <select class="form-control" name="color">
+                            <option value="">Choose a Salesman</option>
+                            <option value="black">Salesman1</option>
+                            <option value="green">Salesman2</option>
+                            <option value="red">Salesman3</option>
+                            <option value="yellow">Salesman4</option>
+                            <option value="white">Salesman5</option>
+                        </select>
+                    
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="TotalValue">Total Value</label>
+                    <input type="text" class="form-control" id="TotalValue" placeholder="Quotation total Value">
+                  </div>
               </div>
 
             <div class="form-row">
@@ -103,28 +128,11 @@
           </div>
 
           <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="SalesmanName">Salesman Name</label>
-               <!--  <input type="text" class="form-control" id="SalesmanName" placeholder="Salesman Name">
-                --> 
-                    <select class="form-control" name="color">
-                        <option value="">Choose a Salesman</option>
-                        <option value="black">Salesman1</option>
-                        <option value="green">Salesman2</option>
-                        <option value="red">Salesman3</option>
-                        <option value="yellow">Salesman4</option>
-                        <option value="white">Salesman5</option>
-                    </select>
-                
-              </div>
-              <div class="form-group col-md-6">
-                <label for="TotalValue">Total Value</label>
-                <input type="text" class="form-control" id="TotalValue" placeholder="Quotation total Value">
-              </div>
+             
           </div>
 
           <div class="form-row">
-             <div class="form-group col-md-6">
+             <div class="form-group col-md-4">
                 <label for="Status">Status</label>
                 <select id="Status" class="form-control">
                   <option selected>Choose...</option>
@@ -137,59 +145,24 @@
                   <option>Lost</option>
                 </select>
               </div>
-              <div class="form-group col-md-6">
-                <label for="TotalValue">Total Value</label>
-                <input type="text" class="form-control" id="TotalValue" placeholder="Quotation total Value">
-              </div>
-          </div>
-
-          <div class="form-row">
-             <!--  <div class="form-group col-md-6">
-                <label for="NextFollowup">Next Follow Up</label>
-                <input type="date" class="form-control" id="NextFollowup" placeholder="Follow Up date">
-              </div> -->
-              <div class="form-group col-md-12">
-                <label for="TotalValueSplit">Value Split</label>
-                <input type="text" class="form-control" id="TotalValueSplit" placeholder="Quotation Value Split">
-              </div>
-          </div>
-
-          <div class="form-row">
-              <div class="form-group col-md-12">
-                <label for="Remarks">Remarks</label>
-                <textarea class="form-control" rows="1" id="Remarks" placeholder="Remarks"></textarea>         
-              </div>
-          </div>
-            <!-- <div class="form-group">
-              <label for="inputAddress2">Address 2</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
+             
               <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-              </div>
+                  <label for="TotalValueSplit">Value Split</label>
+                  <input type="text" class="form-control" id="TotalValueSplit" placeholder="Quotation Value Split">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Remarks">Remarks</label>
+                    <textarea class="form-control" rows="1" id="Remarks" placeholder="Remarks"></textarea>         
+                  </div>
+          </div>
+
+         
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>               
             </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Check me out
-                </label>
-              </div>
-            </div> -->
-            <button type="submit" class="btn btn-primary">Create</button>
+           
           </form>
 
                </div>
