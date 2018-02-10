@@ -41,7 +41,7 @@ export class PurchaseorderlistComponent implements OnInit {
       "SalesValue": "5000$",
       "Milestone": "Milestone 2",
       "MilestoneCompDate": "08/02/2018",
-      "Status": "On Going",
+      "Status": "Completed",
       "Expiry": "30/04/2018",
       "Remark": "Remarks about this PO",
       "AmountPaid":"3000"
@@ -57,7 +57,7 @@ export class PurchaseorderlistComponent implements OnInit {
       "SalesValue": "34000rs",
       "Milestone": "Milestone 3",
       "MilestoneCompDate": "02/05/2018",
-      "Status": "Completed",
+      "Status": "On Going",
       "Expiry": "20/08/2018",
       "Remark": "Remarks about this PO",
       "AmountPaid":"34000"
