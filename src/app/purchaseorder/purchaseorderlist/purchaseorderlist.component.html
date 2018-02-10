@@ -12,13 +12,14 @@
                     <tr>
                         <th>PO ID</th>
                         <th>Supplier</th>
-                        <th>SupplierRefNo</th>
+                        <!-- <th>SupplierRefNo</th> -->
                         <th>SalesPerson</th>
                         <th>Currency</th>
                         <th>Total Amount</th>
                         <th>Status</th>
                         <th>Expiry</th>
                         <th>Remarks</th>
+                        <th>Amount Paid</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,16 +28,22 @@
                             <button type="button" class="btn btn-link">
                                 <a [routerLink]="['/quotationdetails', purchaseorder.Id]">{{ purchaseorder.Id}}</a>
                             </button>
-
+                            <button disabled *ngIf='purchaseorder.Amount == purchaseorder.AmountPaid' type="button" class="btn btn-primary">
+                                <a [routerLink]="['/makepayment', purchaseorder.Id]">Completed</a>
+                            </button>
+                            <button   *ngIf='purchaseorder.Amount != purchaseorder.AmountPaid' type="button" class="btn btn-primary">
+                                <a [routerLink]="['/makepayment', purchaseorder.Id]">Add Payment</a>
+                            </button>
                         </td>
                         <td>{{ purchaseorder.Supplier}}</td>
-                        <td>{{ purchaseorder.SupplierRefNo}}</td>
+                       <!--  <td>{{ purchaseorder.SupplierRefNo}}</td> -->
                         <td>{{ purchaseorder.SalesPerson }}</td>                       
                         <td>{{ purchaseorder.Currency }}</td>
                         <td>{{ purchaseorder.Amount }}</td>
                         <td>{{ purchaseorder.Status }}</td>
                         <td>{{ purchaseorder.Expiry }}</td>
                         <td>{{ purchaseorder.Remark }}</td>
+                        <td>{{ purchaseorder.AmountPaid }}</td>
                     </tr>
                 </tbody>
             </table>

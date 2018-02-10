@@ -1,0 +1,42 @@
+<div class="wrapper ">
+  <div>
+      <app-sidebar></app-sidebar>
+  </div>
+  <!-- Page Content Holder -->
+  <div id="content" class="listcontent listcontenttable">
+      <h2>Payments Till Date</h2>
+      <div style="height:20px"></div>
+      <div>
+          <table class="table table-hover table-responsive table-bordered" *ngIf='payments && payments.length'>
+              <thead class="thead-dark">
+                  <tr>
+                      <th>Payment ID</th>
+                      <th>Quotation ID</th>
+                      <th>Quotation Reference</th>
+                      <th>Payment type</th>
+                      <th>Sales Value</th>                      
+                      <th>Payment Amount</th>
+                      <th>Remarks</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor='let payment of payments'>
+                      <td>
+                          <div style="min-width:209px">
+                              <button type="button" class="btn btn-link">
+                                  <a [routerLink]="['/quotationdetails', payment.Id]">{{ payment.Id}}</a>
+                              </button>
+                              
+                          </div>
+                      </td>
+                      <td>{{ payment.QuotationId}}</td>
+                      <td>{{ payment.QuotationReference}}</td> 
+                      <td>{{ payment.Paymenttype }}</td>
+                      <td>{{ payment.SalesValue }}</td>                     
+                      <td>{{ payment.PaymentAmount }}</td>
+                      <td>{{ payment.remarks }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
