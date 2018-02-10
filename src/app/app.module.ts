@@ -25,6 +25,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PurchaseorderlistComponent } from './purchaseorder/purchaseorderlist/purchaseorderlist.component';
 import { NewpurchaseorderComponent } from './purchaseorder/newpurchaseorder/newpurchaseorder.component';
 import { InitialpolistComponent } from './purchaseorder/initialpolist/initialpolist.component';
+import { MakepaymentComponent } from './payments/makepayment/makepayment.component';
+import { ListpaymentComponent } from './payments/listpayment/listpayment.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { InitialpolistComponent } from './purchaseorder/initialpolist/initialpol
     DashboardComponent,
     PurchaseorderlistComponent,
     NewpurchaseorderComponent,
-    InitialpolistComponent
+    InitialpolistComponent,
+    MakepaymentComponent,
+    ListpaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,10 @@ import { InitialpolistComponent } from './purchaseorder/initialpolist/initialpol
         { path:'welcome',component:WelcomeComponent },
         { path:'listpo',component:PurchaseorderlistComponent },
         { path:'newpo/:id',component:NewpurchaseorderComponent },
-        { path:'initialpolist',component:InitialpolistComponent },        
+        { path:'initialpolist',component:InitialpolistComponent },   
+        { path:'makepayment/:id',component:MakepaymentComponent },   
+        { path:'listpayments',component:ListpaymentComponent },   
+        
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },

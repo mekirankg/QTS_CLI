@@ -1,0 +1,82 @@
+<div class="wrapper ">
+  <div>
+    <app-sidebar></app-sidebar>
+  </div>
+  <!-- Page Content Holder -->
+  <div id="content" class="createcontent">
+    <form>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <h2>Make Payment</h2>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputName">Quotation Id</label>
+          <input type="text" class="form-control" id="Qid" placeholder={{id}} readonly>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="quotationreference">Quotation Reference</label>
+          <input type="text" class="form-control" id="quotationreference" placeholder="Quotation Reference No:" readonly>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="Amount">Payment ID</label>
+          <input type="text" class="form-control" id="Amount" placeholder="payment_unique_id" readonly>
+        </div>
+        
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-4">
+          <label for="Currency"> Currency</label>
+          <input type="text" class="form-control" id="Currency" placeholder="INR" readonly>
+        </div>
+        <div class="form-group col-md-4">
+          <label for=" SalesValue"> Sales Value</label>
+          <input type="text" class="form-control" id=" SalesValue" placeholder="100000" readonly>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="TotalValue">Supplier</label>
+          <input readonly type="text" class="form-control" id="Suppliername" placeholder="Supplier">
+        </div>
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-4">
+          <label for="Expirydate">Expiry Date</label>
+          <input type="date" class="form-control" id="Expirydate" value="2018-02-25" readonly>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="Status">Payment Type</label>
+          <select id="Status" class="form-control">
+            <option selected>Choose...</option>
+            <option>Advance Payment</option>
+            <option>Balance Payment</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="Amount">Payment Amount</label>
+          <input type="text" class="form-control" id="Amount" placeholder="Payment amount" >
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="remarks">Remarks</label>
+          <textarea class="form-control" rows="2" id="remarks" placeholder="Remarks"></textarea>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-primary">Confirm Payment</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>
