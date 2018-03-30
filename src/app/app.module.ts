@@ -27,6 +27,9 @@ import { NewpurchaseorderComponent } from './purchaseorder/newpurchaseorder/newp
 import { InitialpolistComponent } from './purchaseorder/initialpolist/initialpolist.component';
 import { MakepaymentComponent } from './payments/makepayment/makepayment.component';
 import { ListpaymentComponent } from './payments/listpayment/listpayment.component';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,8 @@ import { ListpaymentComponent } from './payments/listpayment/listpayment.compone
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     RouterModule.forRoot(
       [
         { path:'createquotation',component:CreatequotationComponent /* , canActivate: [AuthGuard] */ },

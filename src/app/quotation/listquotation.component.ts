@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AngularFireDatabase } from 'angularfire2/database';
 @Component({
   /* selector: 'app-listquotation', */
   templateUrl: './listquotation.component.html',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListquotationComponent implements OnInit {
 
-  constructor() { }
+  constructor(public db: AngularFireDatabase) {
+
+   // this.db.list('/items').push({ content: "new added content" });
+   }
 
   ngOnInit() {
   }
