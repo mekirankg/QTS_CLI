@@ -1,73 +1,8 @@
 <div class="wrapper ">
-    <!-- Sidebar Holder -->
-    <!--     <nav id="sidebar" class="sidebarstyle">
-        
-        <ul class="list-uynstyled components">
-           
-            <li class="active">
-                <a href="#quotationsSubmenu" data-toggle="collapse" aria-expanded="false">Quotations</a>
-                <ul class="collapse list-unstyled" id="quotationsSubmenu">
-                    <li><a [routerLink]="['/listquotation']">List Quotation</a></li>
-                    <li><a [routerLink]="['/createquotation']">Create Quotation</a></li>                           
-                </ul>
-            </li>
-            <li>
-              
-                <a href="#PurchaseSubmenu" data-toggle="collapse" aria-expanded="false">Purchase Orders</a>
-                <ul class="collapse list-unstyled" id="PurchaseSubmenu">
-                    <li><a href="#">List Purchase Orders</a></li>
-                </ul>
-            </li>
-           
-             <li>
-              
-                    <a href="#paymentsSubmenu" data-toggle="collapse" aria-expanded="false">Payments</a>
-                    <ul class="collapse list-unstyled" id="paymentsSubmenu">
-                        <li><a href="#">List Purchase Orders</a></li>
-                    </ul>
-                </li>
 
-            <li>
-              
-                <a href="#SettingsSubmenu" data-toggle="collapse" aria-expanded="false">Settings</a>
-                <ul class="collapse list-unstyled" id="SettingsSubmenu">
-                     <li><a href="#CountrySubmenu">Country</a>
-                        <ul class="collapse list-unstyled" id="CountrySubmenu">
-                                <li><a href="#">List Countries</a></li>
-                                <li><a href="#">Add Countries</a></li>
-                            </ul>
-                    </li> 
-                    <li><a href="#">List Products</a></li>
-                    <li><a href="#">Create Products</a></li>
-                </ul>
-            </li>
-            <li>
-                    <a href="#">Manage Accounts</a> 
-                   <a href="#AccountsSubmenu" data-toggle="collapse" aria-expanded="false">Accounts</a>
-                    <ul class="collapse list-unstyled" id="AccountsSubmenu">
-                        <li><a href="#">List Users</a></li>
-                        
-                    </ul> 
-                </li>
-        </ul>
-
-       
-    </nav> -->
-  <!--   <div>
-        <app-sidebar></app-sidebar>
-    </div> -->
     <!-- Page Content Holder -->
     <div id="content" class="createcontent">
-
-        <!-- <nav class="navbar navbar-default">
-            <div class="container-fluid">
-
-                
-            </div>
-        </nav> -->
-
-
-        <form>
+        <form name="form" (ngSubmit)="register()" #f="ngForm" novalidate>
 
             <div class="form-row">
                 <div class="form-group col-md-12">
@@ -78,15 +13,16 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputName">Customer Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Name">
+                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="keycontact">Customer Key Contact</label>
-                    <input type="text" class="form-control" id="keycontact" placeholder="Contact">
+                    <input type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newQuotation.customerContact"
+                        placeholder="Contact">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="NextFollowup">Next Follow Up</label>
-                    <input type="date" class="form-control" id="NextFollowup" placeholder="Follow Up date">
+                    <input type="date" name="NextFollowup" [(ngModel)]="newQuotation.nextFollowupdate" class="form-control" id="NextFollowup" placeholder="Follow Up date">
                 </div>
             </div>
 
@@ -98,13 +34,13 @@
 
                 <div class="form-group col-md-4">
                     <label for="quotationreference">Quotation Reference</label>
-                    <input type="text" class="form-control" id="quotationreference" placeholder="Quotation Reference">
+                    <input type="text" name="quotationreference" class="form-control" [(ngModel)]="newQuotation.quotationReference" id="quotationreference" placeholder="Quotation Reference">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="SalesmanName">Salesman Name</label>
                     <!--  <input type="text" class="form-control" id="SalesmanName" placeholder="Salesman Name">
                     -->
-                    <select class="form-control" name="color">
+                    <select name="SalesmanName" [(ngModel)]="newQuotation.salesmanName" class="form-control">
                         <option value="">Choose a Salesman</option>
                         <option value="black">Salesman1</option>
                         <option value="green">Salesman2</option>
@@ -116,14 +52,14 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="TotalValue">Total Value</label>
-                    <input type="text" class="form-control" id="TotalValue" placeholder="Quotation total Value">
+                    <input type="text" [(ngModel)]="newQuotation.valueSplit" name="TotalValue" class="form-control" id="TotalValue" placeholder="Quotation total Value">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="description">Material Description</label>
-                    <textarea class="form-control" rows="2" id="description" placeholder="Description"></textarea>
+                    <textarea name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description" placeholder="Description"></textarea>
                 </div>
             </div>
 
@@ -134,7 +70,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="Status">Status</label>
-                    <select id="Status" class="form-control">
+                    <select id="Status" name="Status"  [(ngModel)]="newQuotation.status" class="form-control">
                         <option selected>Choose...</option>
                         <option>Dropbox</option>
                         <option>Bidding</option>
@@ -148,11 +84,11 @@
 
                 <div class="form-group col-md-4">
                     <label for="TotalValueSplit">Value Split</label>
-                    <input type="text" class="form-control" id="TotalValueSplit" placeholder="Quotation Value Split">
+                    <input type="text" name="TotalValueSplit"  [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit" placeholder="Quotation Value Split">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="Remarks">Remarks</label>
-                    <textarea class="form-control" rows="1" id="Remarks" placeholder="Remarks"></textarea>
+                    <textarea  [(ngModel)]="newQuotation.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
                 </div>
             </div>
 
