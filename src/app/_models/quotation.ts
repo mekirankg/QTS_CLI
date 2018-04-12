@@ -10,5 +10,5 @@ export class Quotation {
     quotationReference: string;
     materialDescription: string;
     valueSplit: string;
-    totalValueSplit:string;
+    totalValueSplit: string;
 }

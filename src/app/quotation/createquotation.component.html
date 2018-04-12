@@ -22,7 +22,8 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="NextFollowup">Next Follow Up</label>
-                    <input type="date" name="NextFollowup" [(ngModel)]="newQuotation.nextFollowupdate" class="form-control" id="NextFollowup" placeholder="Follow Up date">
+                    <input type="date" name="NextFollowup" [(ngModel)]="newQuotation.nextFollowupdate" class="form-control" id="NextFollowup"
+                        placeholder="Follow Up date">
                 </div>
             </div>
 
@@ -34,7 +35,8 @@
 
                 <div class="form-group col-md-4">
                     <label for="quotationreference">Quotation Reference</label>
-                    <input type="text" name="quotationreference" class="form-control" [(ngModel)]="newQuotation.quotationReference" id="quotationreference" placeholder="Quotation Reference">
+                    <input type="text" name="quotationreference" class="form-control" [(ngModel)]="newQuotation.quotationReference" id="quotationreference"
+                        placeholder="Quotation Reference">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="SalesmanName">Salesman Name</label>
@@ -42,24 +44,25 @@
                     -->
                     <select name="SalesmanName" [(ngModel)]="newQuotation.salesmanName" class="form-control">
                         <option value="">Choose a Salesman</option>
-                        <option value="black">Salesman1</option>
-                        <option value="green">Salesman2</option>
-                        <option value="red">Salesman3</option>
-                        <option value="yellow">Salesman4</option>
-                        <option value="white">Salesman5</option>
+                        <option value="Salesman1">Salesman1</option>
+                        <option value="Salesman2">Salesman2</option>
+                        <option value="Salesman3">Salesman3</option>
+                        <option value="Salesman4">Salesman4</option>
+                        <option value="Salesman5">Salesman5</option>
                     </select>
 
                 </div>
                 <div class="form-group col-md-4">
                     <label for="TotalValue">Total Value</label>
-                    <input type="text" [(ngModel)]="newQuotation.valueSplit" name="TotalValue" class="form-control" id="TotalValue" placeholder="Quotation total Value">
+                    <input type="text" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue" placeholder="Quotation total Value">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="description">Material Description</label>
-                    <textarea name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description" placeholder="Description"></textarea>
+                    <textarea name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description"
+                        placeholder="Description"></textarea>
                 </div>
             </div>
 
@@ -70,7 +73,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="Status">Status</label>
-                    <select id="Status" name="Status"  [(ngModel)]="newQuotation.status" class="form-control">
+                    <select id="Status" name="Status" [(ngModel)]="newQuotation.status" class="form-control">
                         <option selected>Choose...</option>
                         <option>Dropbox</option>
                         <option>Bidding</option>
@@ -84,11 +87,12 @@
 
                 <div class="form-group col-md-4">
                     <label for="TotalValueSplit">Value Split</label>
-                    <input type="text" name="TotalValueSplit"  [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit" placeholder="Quotation Value Split">
+                    <input type="text" name="TotalValueSplit" [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit"
+                        placeholder="Quotation Value Split">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="Remarks">Remarks</label>
-                    <textarea  [(ngModel)]="newQuotation.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
+                    <textarea [(ngModel)]="newQuotation.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
                 </div>
             </div>
 
