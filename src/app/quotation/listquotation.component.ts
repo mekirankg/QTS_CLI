@@ -29,6 +29,10 @@ export class ListquotationComponent implements OnInit {
 
         let obj: Quotation = JSON.parse(element);
         console.log("****" + element);
+        if(obj.qid != undefined)
+        {
+          obj.qid = obj.qid.replace("/","");
+        }
         this.quotations.push(obj);
 
       });

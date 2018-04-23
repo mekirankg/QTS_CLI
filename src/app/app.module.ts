@@ -30,6 +30,7 @@ import { ListpaymentComponent } from './payments/listpayment/listpayment.compone
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { QuotationdetailsComponent } from './quotation/quotationdetails.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     NewpurchaseorderComponent,
     InitialpolistComponent,
     MakepaymentComponent,
-    ListpaymentComponent
+    ListpaymentComponent,
+    QuotationdetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     RouterModule.forRoot(
       [
         { path:'createquotation',component:CreatequotationComponent /* , canActivate: [AuthGuard] */ },
+        { path:'createquotation/:qid',component:CreatequotationComponent },
         { path:'listquotation',component:ListquotationComponent/*  , canActivate: [AuthGuard] */ },
         { path:'welcome',component:WelcomeComponent },
         { path:'listpo',component:PurchaseorderlistComponent },
@@ -65,7 +68,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
         { path:'initialpolist',component:InitialpolistComponent },   
         { path:'makepayment/:id',component:MakepaymentComponent },   
         { path:'listpayments',component:ListpaymentComponent },   
-        
+        { path:'quotationdetails/:qid',component:QuotationdetailsComponent }, 
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },

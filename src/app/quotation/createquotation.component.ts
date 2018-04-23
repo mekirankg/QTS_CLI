@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quotation } from '../_models/quotation';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 
@@ -12,18 +12,30 @@ import { Router } from '@angular/router';
 export class CreatequotationComponent implements OnInit {
   newQuotation: Quotation = new Quotation();
   dbOperator: any;
-  constructor(public db: AngularFireDatabase, private router: Router) {
+  isEditMode: boolean = false;
+  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
     this.dbOperator = db;
+    let id = this.route.snapshot.paramMap.get('qid');
+    if (id != undefined) {
+      this.isEditMode = true;
+    }
   }
 
   ngOnInit() {
     // this.newQuotation.customerContact="9877";
   }
   register() {
-    let newQuotationJson = JSON.stringify(this.newQuotation);
-    console.log(newQuotationJson);
+    if(this.isEditMode)
+    {
+      alert('editmode');
+      return;
+    }
     let uniqueId = "/Q" + this.newGuid();;
     console.log("****" + uniqueId);
+    this.newQuotation.qid = uniqueId;
+    let newQuotationJson = JSON.stringify(this.newQuotation);
+    console.log(newQuotationJson);
+
     //this.db.list('/quotations').push({ content: newQuotationJson });
     try {
       this.db.database.ref('quotations').child(uniqueId).set(newQuotationJson);
