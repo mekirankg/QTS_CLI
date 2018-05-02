@@ -31,6 +31,8 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { QuotationdetailsComponent } from './quotation/quotationdetails.component';
+import { NewsupplierComponent } from './supplier/newsupplier.component';
+import { ListsupplierComponent } from './supplier/listsupplier.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { QuotationdetailsComponent } from './quotation/quotationdetails.componen
     InitialpolistComponent,
     MakepaymentComponent,
     ListpaymentComponent,
-    QuotationdetailsComponent
+    QuotationdetailsComponent,
+    NewsupplierComponent,
+    ListsupplierComponent
   ],
   imports: [
     BrowserModule,
@@ -63,17 +67,20 @@ import { QuotationdetailsComponent } from './quotation/quotationdetails.componen
         { path:'createquotation/:qid',component:CreatequotationComponent },
         { path:'listquotation',component:ListquotationComponent/*  , canActivate: [AuthGuard] */ },
         { path:'welcome',component:WelcomeComponent },
+        {path:'createsupplier',component:NewsupplierComponent},
         { path:'listpo',component:PurchaseorderlistComponent },
         { path:'newpo/:id',component:NewpurchaseorderComponent },
         { path:'initialpolist',component:InitialpolistComponent },   
         { path:'makepayment/:id',component:MakepaymentComponent },   
-        { path:'listpayments',component:ListpaymentComponent },   
+        { path:'listpayments',component:ListpaymentComponent },  
+        { path:'listsupplier',component:ListsupplierComponent },  
         { path:'quotationdetails/:qid',component:QuotationdetailsComponent }, 
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },
         { path:'',component:DashboardComponent,pathMatch:'full' },
         { path:'**',component:WelcomeComponent ,pathMatch:'full'}
+       
       ]
     )
   ],

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Quotation } from '../_models/quotation';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Common } from '../_helpers/common';
 
 @Component({
   selector: 'app-quotationdetails',
@@ -11,9 +12,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class QuotationdetailsComponent implements OnInit {
   quotations: Quotation[] = [];
   newQuotation: Quotation = new Quotation();
-  constructor( private route: ActivatedRoute, public db: AngularFireDatabase) { 
-    let id= this.route.snapshot.paramMap.get('qid');
-    console.log("***"+id);
+  constructor(private route: ActivatedRoute, public db: AngularFireDatabase) {
+    let id = this.route.snapshot.paramMap.get('qid');
+    console.log("***" + id);
     let itemRef = db.object('quotations');
 
     itemRef.snapshotChanges().subscribe(action => {
@@ -23,19 +24,18 @@ export class QuotationdetailsComponent implements OnInit {
       var quatationsList = action.payload.val();
       // console.log(this.quotations[0].customerName)
       // console.log(quatationsList);
-      let obj = this.snapshotToArray(action.payload);
+      let obj = Common.snapshotToArray(action.payload);
       this.quotations = [];
       obj.forEach(element => {
 
         let obj: Quotation = JSON.parse(element);
         console.log("****" + element);
-        if(obj.qid != undefined && obj.qid.endsWith(id))
-        {
-          obj.qid = obj.qid.replace("/","");
-          this.newQuotation=obj;
-          console.log("*****"+obj);
+        if (obj.qid != undefined && obj.qid.endsWith(id)) {
+          obj.qid = obj.qid.replace("/", "");
+          this.newQuotation = obj;
+          console.log("*****" + obj);
         }
-       // this.quotations.push(obj);
+        // this.quotations.push(obj);
 
       });
 
@@ -45,18 +45,7 @@ export class QuotationdetailsComponent implements OnInit {
 
 
   }
-  snapshotToArray(snapshot) {
-    var returnArr = [];
 
-    snapshot.forEach(function (childSnapshot) {
-      var item = childSnapshot.val();
-      //   item.key = childSnapshot.key;
-
-      returnArr.push(item);
-    });
-
-    return returnArr;
-  };
   ngOnInit() {
   }
 

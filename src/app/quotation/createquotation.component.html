@@ -6,7 +6,8 @@
 
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <h2>Create Quotation</h2>
+                    <h2 *ngIf='!isEditMode'>Create Quotation</h2>
+                    <h2 *ngIf='isEditMode'>Edit Quotation</h2>
                 </div>
             </div>
 
@@ -77,8 +78,8 @@
                         <option selected>Choose...</option>
                         <option>Dropbox</option>
                         <option>Bidding</option>
-                        <option>On Going</option>
-                        <option>Technical Review</option>
+                        <option>OnGoing</option>
+                        <option>TechnicalReview</option>
                         <option>PO</option>
                         <option>Cancelled</option>
                         <option>Lost</option>
@@ -99,7 +100,9 @@
 
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button *ngIf='!isEditMode' type="submit" class="btn btn-primary">Create</button>
+                    <button *ngIf='isEditMode' type="submit" class="btn btn-primary">Update</button>
+
                 </div>
             </div>
 

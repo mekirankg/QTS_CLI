@@ -1,130 +1,135 @@
 <div class="wrapper ">
 
-  <!-- Page Content Holder -->
-  <div id="content" class="createcontent">
-      <form name="form" (ngSubmit)="register()" #f="ngForm" novalidate>
+    <!-- Page Content Holder -->
+    <div id="content" class="createcontent">
+        <form name="form" (ngSubmit)="register()" #f="ngForm" novalidate>
 
-          <div class="form-row">
-              <div class="form-group col-md-12">
-                  <h2>Quotation Details</h2>
-                  <button type="button" class="btn btn-primary">
-                    <a [routerLink]="['/createquotation', newQuotation.qid]">Edit</a>
-                </button>
-              </div>
-             
-          </div>
-         
-          <div class="form-row">
-              <div class="form-group col-md-4">
-                  <label for="inputName">Customer Name</label>
-                  <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName" readonly>
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="keycontact">Customer Key Contact</label>
-                  <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newQuotation.customerContact"
-                      placeholder="Contact">
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="NextFollowup">Next Follow Up</label>
-                  <input readonly type="date" name="NextFollowup" [(ngModel)]="newQuotation.nextFollowupdate" class="form-control" id="NextFollowup"
-                      placeholder="Follow Up date">
-              </div>
-          </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div style="float:left">
+                        <h2>Quotation Details</h2>
+                    </div>
+                    <div style="float:left;margin-left: 50%;margin-top: 4%">
+                        <button type="button" class="btn btn-primary">
+                            <a [routerLink]="['/createquotation', newQuotation.qid]">Edit</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-row">
-              <!-- <div class="form-group col-md-6">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputName">Customer Name</label>
+                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName"
+                        readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="keycontact">Customer Key Contact</label>
+                    <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newQuotation.customerContact"
+                        placeholder="Contact">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="NextFollowup">Next Follow Up</label>
+                    <input readonly type="date" name="NextFollowup" [(ngModel)]="newQuotation.nextFollowupdate" class="form-control" id="NextFollowup"
+                        placeholder="Follow Up date">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <!-- <div class="form-group col-md-6">
                 <label for="quotationName">Quotation Name</label>
                 <input type="text" class="form-control" id="quotationName" placeholder="Quotation Name">
               </div> -->
 
-              <div class="form-group col-md-4">
-                  <label for="quotationreference">Quotation Reference</label>
-                  <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="newQuotation.quotationReference" id="quotationreference"
-                      placeholder="Quotation Reference">
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="SalesmanName">Salesman Name</label>
-                  <!--  <input type="text" class="form-control" id="SalesmanName" placeholder="Salesman Name">
+                <div class="form-group col-md-4">
+                    <label for="quotationreference">Quotation Reference</label>
+                    <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="newQuotation.quotationReference"
+                        id="quotationreference" placeholder="Quotation Reference">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="SalesmanName">Salesman Name</label>
+                    <!--  <input type="text" class="form-control" id="SalesmanName" placeholder="Salesman Name">
                   -->
-                  <select readonly name="SalesmanName" [(ngModel)]="newQuotation.salesmanName" class="form-control">
-                      <option value="">Choose a Salesman</option>
-                      <option value="Salesman1">Salesman1</option>
-                      <option value="Salesman2">Salesman2</option>
-                      <option value="Salesman3">Salesman3</option>
-                      <option value="Salesman4">Salesman4</option>
-                      <option value="Salesman5">Salesman5</option>
-                  </select>
+                    <select readonly name="SalesmanName" [(ngModel)]="newQuotation.salesmanName" class="form-control">
+                        <option value="">Choose a Salesman</option>
+                        <option value="Salesman1">Salesman1</option>
+                        <option value="Salesman2">Salesman2</option>
+                        <option value="Salesman3">Salesman3</option>
+                        <option value="Salesman4">Salesman4</option>
+                        <option value="Salesman5">Salesman5</option>
+                    </select>
 
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="TotalValue">Total Value</label>
-                  <input readonly type="text" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue" placeholder="Quotation total Value">
-              </div>
-          </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="TotalValue">Total Value</label>
+                    <input readonly type="text" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
+                        placeholder="Quotation total Value">
+                </div>
+            </div>
 
-          <div class="form-row">
-              <div class="form-group col-md-12">
-                  <label for="description">Material Description</label>
-                  <textarea readonly name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description"
-                      placeholder="Description"></textarea>
-              </div>
-          </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="description">Material Description</label>
+                    <textarea readonly name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description"
+                        placeholder="Description"></textarea>
+                </div>
+            </div>
 
-          <div class="form-row">
+            <div class="form-row">
 
-          </div>
+            </div>
 
-          <div class="form-row">
-              <div class="form-group col-md-4">
-                  <label for="Status">Status</label>
-                  <select readonly id="Status" name="Status" [(ngModel)]="newQuotation.status" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>Dropbox</option>
-                      <option>Bidding</option>
-                      <option>On Going</option>
-                      <option>Technical Review</option>
-                      <option>PO</option>
-                      <option>Cancelled</option>
-                      <option>Lost</option>
-                  </select>
-              </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="Status">Status</label>
+                    <select readonly id="Status" name="Status" [(ngModel)]="newQuotation.status" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Dropbox</option>
+                        <option>Bidding</option>
+                        <option>On Going</option>
+                        <option>Technical Review</option>
+                        <option>PO</option>
+                        <option>Cancelled</option>
+                        <option>Lost</option>
+                    </select>
+                </div>
 
-              <div class="form-group col-md-4">
-                  <label for="TotalValueSplit">Value Split</label>
-                  <input readonly type="text" name="TotalValueSplit" [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit"
-                      placeholder="Quotation Value Split">
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="Remarks">Remarks</label>
-                  <textarea readonly [(ngModel)]="newQuotation.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
-              </div>
-          </div>
-
-
-          <div class="form-row">
-              <div class="form-group col-md-12">
-                <!--   <button type="submit" class="btn btn-primary">Create</button> -->
-              </div>
-          </div>
-
-      </form>
-
-  </div>
+                <div class="form-group col-md-4">
+                    <label for="TotalValueSplit">Value Split</label>
+                    <input readonly type="text" name="TotalValueSplit" [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit"
+                        placeholder="Quotation Value Split">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="Remarks">Remarks</label>
+                    <textarea readonly [(ngModel)]="newQuotation.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
+                </div>
+            </div>
 
 
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <!--   <button type="submit" class="btn btn-primary">Create</button> -->
+                </div>
+            </div>
 
+        </form>
+
+    </div>
 
 
 
-  <!-- jQuery CDN -->
-
-  <!-- Bootstrap Js CDN -->
 
 
-  <script type="text/javascript">
-      $(document).ready(function () {
-          $('#sidebarCollapse').on('click', function () {
-              $('#sidebar').toggleClass('active');
-          });
-      });
-  </script>
+
+    <!-- jQuery CDN -->
+
+    <!-- Bootstrap Js CDN -->
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
