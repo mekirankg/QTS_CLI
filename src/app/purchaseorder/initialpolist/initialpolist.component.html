@@ -10,7 +10,6 @@
             <table class="table table-hover table-responsive table-bordered" *ngIf='purchaseorders && purchaseorders.length'>
                 <thead class="thead-dark ">
                     <tr>
-                        <th class="text-center">PO ID</th>
                         <th class="text-center">Customer</th>
                         <th class="text-center">Contact</th>
                         <th class="text-center">Salesman</th>
@@ -25,14 +24,13 @@
                         <td>
                             <div style="min-width:209px">
                                 <button type="button" class="btn btn-link">
-                                    <a [routerLink]="['/quotationdetails', purchaseorder.Id]">{{ purchaseorder.Id}}</a>
+                                    <a [routerLink]="['/quotationdetails', purchaseorder.Id]">{{ purchaseorder.customerName}}</a>
                                 </button>
                                 <button type="button" class="btn btn-primary">
                                     <a [routerLink]="['/newpo', purchaseorder.Id]">Confirm</a>
                                 </button>
                             </div>
                         </td>
-                        <td>{{ purchaseorder.customerName}}</td>
                         <td>{{ purchaseorder.customerContact}}</td>
                         <td>{{ purchaseorder.salesmanName }}</td>
                         <td>{{ purchaseorder.totalvalue }}</td>
