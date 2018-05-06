@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Quotation } from '../_models/quotation';
 import { Observable } from 'rxjs/Observable';
+import { Common } from '../_helpers/common';
 @Component({
   /* selector: 'app-listquotation', */
   templateUrl: './listquotation.component.html',
@@ -23,7 +24,7 @@ export class ListquotationComponent implements OnInit {
       var quatationsList = action.payload.val();
       // console.log(this.quotations[0].customerName)
       // console.log(quatationsList);
-      let obj = this.snapshotToArray(action.payload);
+      let obj = Common.snapshotToArray(action.payload);
       this.quotations = [];
       obj.forEach(element => {
 
@@ -42,18 +43,7 @@ export class ListquotationComponent implements OnInit {
   }
 
 
-  snapshotToArray(snapshot) {
-    var returnArr = [];
-
-    snapshot.forEach(function (childSnapshot) {
-      var item = childSnapshot.val();
-      //   item.key = childSnapshot.key;
-
-      returnArr.push(item);
-    });
-
-    return returnArr;
-  };
+  
   ngOnInit() {
   }
   /*

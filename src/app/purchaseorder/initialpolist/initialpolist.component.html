@@ -24,10 +24,10 @@
                         <td>
                             <div style="min-width:209px">
                                 <button type="button" class="btn btn-link">
-                                    <a [routerLink]="['/quotationdetails', purchaseorder.Id]">{{ purchaseorder.customerName}}</a>
+                                    <a [routerLink]="['/quotationdetails', purchaseorder.qid]">{{ purchaseorder.customerName}}</a>
                                 </button>
                                 <button type="button" class="btn btn-primary">
-                                    <a [routerLink]="['/newpo', purchaseorder.Id]">Confirm</a>
+                                    <a [routerLink]="['/newpo', purchaseorder.qid]">Confirm</a>
                                 </button>
                             </div>
                         </td>

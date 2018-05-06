@@ -1,17 +1,39 @@
 import { Component, OnInit } from '@angular/core';
+import { Quotation } from '../../_models/quotation';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Common } from '../../_helpers/common';
 
 @Component({
   selector: 'app-initialpolist',
   templateUrl: './initialpolist.component.html',
   styleUrls: ['./initialpolist.component.css']
 })
-export class InitialpolistComponent implements OnInit {
+export class InitialpolistComponent implements OnInit {  
+  purchaseorders: Quotation[] = [];
+  constructor(public db: AngularFireDatabase) {
+    let itemRef = db.object('quotations');
 
-  constructor() { }
+    itemRef.snapshotChanges().subscribe(action => {
+      var quatationsList = action.payload.val();
+      let obj = Common.snapshotToArray(action.payload);
+      this.purchaseorders = [];
+      obj.forEach(element => {
+        let obj: Quotation = JSON.parse(element);
+        if(obj.status == QStatus[QStatus.PO])
+        {
+          if(obj.qid != undefined)
+          {
+            obj.qid = obj.qid.replace("/","");
+            this.purchaseorders.push(obj);
+          }          
+        }       
+      });
+    });
+   }
 
   ngOnInit() {
   }
-
+/*
   purchaseorders: any[] = [
     {
       "Id": "Unique_Id_1",
@@ -57,5 +79,16 @@ export class InitialpolistComponent implements OnInit {
     }
 
   ];
+*/
 
+}
+
+enum QStatus {
+  DropBox,
+  Bidding,
+  OnGoing,
+  TechnicalReview,
+  PO,
+  Cancelled,
+  Lost
 }

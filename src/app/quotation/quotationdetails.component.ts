@@ -12,6 +12,7 @@ import { Common } from '../_helpers/common';
 export class QuotationdetailsComponent implements OnInit {
   quotations: Quotation[] = [];
   newQuotation: Quotation = new Quotation();
+  isEditable: Boolean = false;
   constructor(private route: ActivatedRoute, public db: AngularFireDatabase) {
     let id = this.route.snapshot.paramMap.get('qid');
     console.log("***" + id);
@@ -33,7 +34,16 @@ export class QuotationdetailsComponent implements OnInit {
         if (obj.qid != undefined && obj.qid.endsWith(id)) {
           obj.qid = obj.qid.replace("/", "");
           this.newQuotation = obj;
-          console.log("*****" + obj);
+          console.log("*****status"+obj.status);
+          if (obj.status == 'PO') {
+            console.log("*****noteditable"+obj.status);
+            this.isEditable = false;
+          }else
+          {
+            this.isEditable=true;
+          }
+          return;
+         
         }
         // this.quotations.push(obj);
 
