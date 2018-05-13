@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Common } from '../../_helpers/common';
-import { PurchaseOrder } from '../../_models/purchaseorder';
+import { PurchaseOrder, ConfirmedPurchaseOrder } from '../../_models/purchaseorder';
+import { Quotation } from '../../_models/quotation';
+import { QStatus } from '../../_helpers/Enums';
+import { Supplier } from '../../_models/supplier';
 
 @Component({
   selector: 'app-purchaseorderlist',
@@ -10,18 +13,64 @@ import { PurchaseOrder } from '../../_models/purchaseorder';
 })
 export class PurchaseorderlistComponent implements OnInit {
   purchaseorders: PurchaseOrder[] = [];
+  confirmedpurchaseorders: ConfirmedPurchaseOrder[] = [];
+  quotationList: Quotation[] = [];
+  suppliers: Supplier[] = [];
   constructor(public db: AngularFireDatabase) {
-    let itemRef = db.object('purchaseorder');
-    itemRef.snapshotChanges().subscribe(action => {
-      console.log(action.type);
-      console.log(action.key);
 
-      var quatationsList = action.payload.val();
-      let obj = Common.snapshotToArray(action.payload);
-      this.purchaseorders = [];
-      obj.forEach(element => {
-        let obj: PurchaseOrder = JSON.parse(element);       
-        this.purchaseorders.push(obj);
+    let supplierRef = db.object('supplier');
+    supplierRef.snapshotChanges().subscribe(action => {
+      let supplierList = Common.snapshotToArray(action.payload);
+      this.suppliers = [];
+      let shouldContinue;
+      supplierList.forEach(element => {
+        let obj: Supplier = JSON.parse(element);
+        console.log("supplier********"+obj.sid);
+        console.log("supplier********");
+        this.suppliers.push(obj);
+      });
+      console.log("suppliers*****" + this.suppliers.length);
+      let quotationRef = db.object('quotations');
+      quotationRef.snapshotChanges().subscribe(action => {
+        let quotationsList = Common.snapshotToArray(action.payload);
+        this.quotationList = [];
+        quotationsList.forEach(element => {
+          let obj: Quotation = JSON.parse(element);
+          if (obj.status == QStatus[QStatus.PO]) {
+            if (obj.qid != undefined) {
+              obj.qid = obj.qid.replace("/", "");
+              this.quotationList.push(obj);
+            }
+          }
+        });
+        console.log("quotationList*****" + this.quotationList.length);
+        let poRef = db.object('purchaseorder');
+        poRef.snapshotChanges().subscribe(action => {
+          var quatationsList = action.payload.val();
+          let obj = Common.snapshotToArray(action.payload);
+          this.purchaseorders = [];
+          obj.forEach(element => {
+            let confirmedPO: ConfirmedPurchaseOrder = new ConfirmedPurchaseOrder();
+            console.log("PO********"+element);
+            let po: PurchaseOrder = JSON.parse(element);
+            confirmedPO.purchaseorder = po;
+            let supplier = this.suppliers.find(s => s.sid.endsWith( po.supplierId);
+            console.log("supplier********"+supplier.supplierName);
+            if (supplier == undefined) {
+              supplier = new Supplier();
+            }
+            let quotation = this.quotationList.find(q => q.qid == po.qid);
+            
+            if (quotation == undefined) {
+              quotation = new Quotation();
+            }
+            confirmedPO.supplier = supplier;
+            confirmedPO.quotation = quotation;
+            this.confirmedpurchaseorders.push(confirmedPO);
+          });
+          console.log("confirmedpurchaseorders*****" + this.confirmedpurchaseorders.length)
+
+        });
       });
     });
   }

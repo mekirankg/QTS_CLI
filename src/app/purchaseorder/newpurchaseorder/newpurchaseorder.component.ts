@@ -39,8 +39,6 @@ export class NewpurchaseorderComponent implements OnInit {
       });
     });
 
-
-
     let itemRef = db.object('quotations');
     itemRef.snapshotChanges().subscribe(action => {
       var quatationsList = action.payload.val();
@@ -59,11 +57,10 @@ export class NewpurchaseorderComponent implements OnInit {
   }
 
   createPO() {
-    alert(this.selectedsupplier);
     let uniquePOId = "P" + Common.newGuid();
-    console.log("****" + uniquePOId);
+    console.log("****qid" + this.qid);
     this.newPO.pid = uniquePOId;
-    this.newPO.qid=this.qid;
+    this.newPO.qid = this.qid;
     this.newPO.supplierId=this.selectedsupplier;
     let newPOJson = JSON.stringify(this.newPO);
     console.log(newPOJson);
