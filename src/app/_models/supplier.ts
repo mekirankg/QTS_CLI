@@ -5,4 +5,5 @@ export class Supplier {
     contactNum: string;
     refNum:string;
     freightforwarder:string;
+    remarks:string;
 }

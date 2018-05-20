@@ -1,3 +1,40 @@
-<p>
-  listsupplier works!
-</p>
+<div class="wrapper ">
+  <!--  <div>
+      <app-sidebar></app-sidebar>
+  </div> -->
+  <!-- Page Content Holder -->
+  <div id="content" class="listcontent listcontenttable">
+    <h2>List Supplier</h2>
+    <div style="height:20px"></div>
+    <div>
+      <div class="loader" *ngIf='!suppliers.length'></div>
+      <table class="table table-hover table-responsive table-bordered" *ngIf='suppliers && suppliers.length'>
+        <thead class="thead-dark">
+          <tr>
+            <th>Supplier Name</th>
+            <th>Contact Name</th>
+            <th>Contact Number</th>
+            <th>Ref Number</th>
+            <th>Fright Forwarder</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let supplier of suppliers'>
+
+            <td>
+              <button type="button" class="btn btn-link">
+                <a [routerLink]="['/supplierdetails', supplier.sid]">{{ supplier.supplierName }}</a>
+              </button>
+            </td>
+            <td>{{ supplier.contactName}}</td>
+            <td>{{ supplier.contactNum }}</td>
+            <td>{{ supplier.refNum }}</td>
+            <td>{{ supplier.freightforwarder }}</td>
+            <td>{{ supplier.remarks }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>

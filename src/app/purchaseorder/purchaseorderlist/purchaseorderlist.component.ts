@@ -54,7 +54,7 @@ export class PurchaseorderlistComponent implements OnInit {
             console.log("PO********"+element);
             let po: PurchaseOrder = JSON.parse(element);
             confirmedPO.purchaseorder = po;
-            let supplier = this.suppliers.find(s => s.sid.endsWith( po.supplierId);
+            let supplier = this.suppliers.find(s => s.sid.endsWith( po.supplierId));
             console.log("supplier********"+supplier.supplierName);
             if (supplier == undefined) {
               supplier = new Supplier();

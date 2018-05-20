@@ -33,6 +33,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { QuotationdetailsComponent } from './quotation/quotationdetails.component';
 import { NewsupplierComponent } from './supplier/newsupplier.component';
 import { ListsupplierComponent } from './supplier/listsupplier.component';
+import { SupplierdetailsComponent } from './supplier/supplierdetails.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ListsupplierComponent } from './supplier/listsupplier.component';
     ListpaymentComponent,
     QuotationdetailsComponent,
     NewsupplierComponent,
-    ListsupplierComponent
+    ListsupplierComponent,
+    SupplierdetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,12 +70,14 @@ import { ListsupplierComponent } from './supplier/listsupplier.component';
         { path:'listquotation',component:ListquotationComponent/*  , canActivate: [AuthGuard] */ },
         { path:'welcome',component:WelcomeComponent },
         {path:'createsupplier',component:NewsupplierComponent},
+        { path:'createsupplier/:sid',component:NewsupplierComponent },
         { path:'listpo',component:PurchaseorderlistComponent },
         { path:'newpo/:id',component:NewpurchaseorderComponent },
         { path:'initialpolist',component:InitialpolistComponent },   
         { path:'makepayment/:id',component:MakepaymentComponent },   
         { path:'listpayments',component:ListpaymentComponent },  
         { path:'listsupplier',component:ListsupplierComponent },  
+        { path:'supplierdetails/:sid',component:SupplierdetailsComponent},
         { path:'quotationdetails/:qid',component:QuotationdetailsComponent }, 
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },

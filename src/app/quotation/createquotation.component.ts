@@ -33,6 +33,12 @@ export class CreatequotationComponent implements OnInit {
             this.newQuotation = obj;
           }
         });
+        if(this.newQuotation.qid==undefined)
+        {
+         
+          alert("Invalid quotation selected for edit...");
+          this.router.navigate(['/listquotation']);
+        }
       });
     }
   }
