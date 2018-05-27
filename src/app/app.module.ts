@@ -34,6 +34,7 @@ import { QuotationdetailsComponent } from './quotation/quotationdetails.componen
 import { NewsupplierComponent } from './supplier/newsupplier.component';
 import { ListsupplierComponent } from './supplier/listsupplier.component';
 import { SupplierdetailsComponent } from './supplier/supplierdetails.component';
+import { PurchaseorderdetailsComponent } from './purchaseorder/purchaseorderdetails/purchaseorderdetails.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { SupplierdetailsComponent } from './supplier/supplierdetails.component';
     QuotationdetailsComponent,
     NewsupplierComponent,
     ListsupplierComponent,
-    SupplierdetailsComponent
+    SupplierdetailsComponent,
+    PurchaseorderdetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import { SupplierdetailsComponent } from './supplier/supplierdetails.component';
         { path:'initialpolist',component:InitialpolistComponent },   
         { path:'makepayment/:id',component:MakepaymentComponent },   
         { path:'listpayments',component:ListpaymentComponent },  
+        {path:'podetails/:id',component:PurchaseorderdetailsComponent},
         { path:'listsupplier',component:ListsupplierComponent },  
         { path:'supplierdetails/:sid',component:SupplierdetailsComponent},
         { path:'quotationdetails/:qid',component:QuotationdetailsComponent }, 

@@ -1,0 +1,139 @@
+<div class="wrapper ">
+    <!-- <div>
+        <app-sidebar></app-sidebar>
+    </div> -->
+    <!-- Page Content Holder -->
+    <div id="content" class="createcontent">
+        <form (ngSubmit)="createPO()" #f="ngForm" novalidate>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div style="float:left">
+                        <h2>Confirm Purchase Order</h2>
+                    </div>
+
+                    <div *ngIf='isLoaded' style="float:left;margin-left: 70%;margin-top: -5%">
+                        <button type="button" class="btn btn-primary">
+                            <a [routerLink]="['/newpo', confirmedPO.purchaseorder.pid]">Edit</a>
+                        </button>
+                    </div>
+                    <div class="loader" *ngIf='!isLoaded'>
+                    </div>
+
+                </div>
+
+            </div>
+            <div *ngIf='isLoaded'>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputName">Customer Name</label>
+                        <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="confirmedPO.quotation.customerName"
+                            readonly>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="keycontact">Customer Key Contact</label>
+                        <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="confirmedPO.quotation.customerContact"
+                            placeholder="Contact">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="quotationreference">Quotation Reference</label>
+                        <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="confirmedPO.quotation.quotationReference"
+                            id="quotationreference" placeholder="Quotation Reference">
+                    </div>
+
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-4">
+                        <label for="SalesmanName">Salesman Name</label>
+                        <input type="text" name="SalesmanName" readonly [(ngModel)]="confirmedPO.quotation.salesmanName" class="form-control" id="SalesmanName"
+                            placeholder="Salesman Name">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="TotalValue">Total Value</label>
+                        <input readonly type="text" [(ngModel)]="confirmedPO.quotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
+                            placeholder="Quotation total Value">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="description">Material Description</label>
+                        <textarea readonly name="description" [(ngModel)]="confirmedPO.quotation.materialDescription" class="form-control" rows="2"
+                            id="description" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="Supplier">Supplier</label>
+                        <input readonly type="text" [(ngModel)]="confirmedPO.supplier.supplierName" name="Supplier" class="form-control" id="Supplier"
+                            placeholder="Supplier name">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="Currency"> Currency</label>
+                        <input readonly type="text" [(ngModel)]="confirmedPO.purchaseorder.currency" name="Currency" class="form-control" id="Currency"
+                            placeholder="Currency">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Expirydate">Expiry Date</label>
+                        <input readonly type="date" [(ngModel)]="confirmedPO.purchaseorder.expiryDate" name="Expirydate" class="form-control" id="Expirydate"
+                            placeholder="Expiry Date">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="podescription">PO Description</label>
+                        <textarea readonly class="form-control" [(ngModel)]="confirmedPO.purchaseorder.description" name="podescription" rows="2"
+                            id="podescription" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for=" SalesValue"> Sales Value</label>
+                        <input readonly type="text" [(ngModel)]="confirmedPO.purchaseorder.salesValue" name="SalesValue" class="form-control" id=" SalesValue"
+                            placeholder=" Sales Value">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Amount">Amount</label>
+                        <input readonly type="text" [(ngModel)]="confirmedPO.purchaseorder.amount" name="Amount" class="form-control" id="Amount"
+                            placeholder="Amount">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="Milestone">Milestone</label>
+                        <input readonly type="text" [(ngModel)]="confirmedPO.purchaseorder.milestone" name="Milestone" class="form-control" id="Milestone"
+                            placeholder="Milestone">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="MilestoneCompDate">Milestone Comp.Date</label>
+                        <input readonly type="date" [(ngModel)]="confirmedPO.purchaseorder.milestoneCompletionDate" name="MilestoneCompDate" class="form-control"
+                            id="MilestoneCompDate" placeholder="Milestone Comp.Date">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="Status">Status</label>
+                        <input readonly type="text" [(ngModel)]="confirmedPO.purchaseorder.Status" name="Status" class="form-control" id="Status"
+                            placeholder="Status">
+
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="remarks">Remarks</label>
+                        <textarea readonly class="form-control" rows="2" [(ngModel)]="confirmedPO.purchaseorder.remarks" name="remarks" id="remarks"
+                            placeholder="Remarks"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>

@@ -41,6 +41,11 @@ export class CreatequotationComponent implements OnInit {
         }
       });
     }
+    else{
+
+      let qRef="JGB-QUT-"+ new Date().valueOf();
+      this.newQuotation.quotationReference=qRef;
+    }
   }
 
   ngOnInit() {
@@ -51,7 +56,8 @@ export class CreatequotationComponent implements OnInit {
       updates['/quotations/' + this.newQuotation.qid] = JSON.stringify(this.newQuotation);
       try {
         let up = this.db.database.ref().update(updates);
-        this.router.navigate(['/listquotation']);
+        alert("Quotation added as initial PO. Please continue to add more details to the PO")
+        this.router.navigate(['/newpo',this.newQuotation.qid]);
       }
       catch (ex) {
         alert("Error in Updating Quotation");
