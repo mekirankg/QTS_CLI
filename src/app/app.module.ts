@@ -35,6 +35,10 @@ import { NewsupplierComponent } from './supplier/newsupplier.component';
 import { ListsupplierComponent } from './supplier/listsupplier.component';
 import { SupplierdetailsComponent } from './supplier/supplierdetails.component';
 import { PurchaseorderdetailsComponent } from './purchaseorder/purchaseorderdetails/purchaseorderdetails.component';
+import { Component } from './salesman/.component';
+import { NewsalesmanComponent } from './salesman/newsalesman/newsalesman.component';
+import { ListsalesmanComponent } from './salesman/listsalesman/listsalesman.component';
+import { SalesmandetailsComponent } from './salesman/salesmandetails/salesmandetails.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +61,10 @@ import { PurchaseorderdetailsComponent } from './purchaseorder/purchaseorderdeta
     NewsupplierComponent,
     ListsupplierComponent,
     SupplierdetailsComponent,
-    PurchaseorderdetailsComponent
+    PurchaseorderdetailsComponent,
+    NewsalesmanComponent,
+    ListsalesmanComponent,
+    SalesmandetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +88,12 @@ import { PurchaseorderdetailsComponent } from './purchaseorder/purchaseorderdeta
         {path:'podetails/:id',component:PurchaseorderdetailsComponent},
         { path:'listsupplier',component:ListsupplierComponent },  
         { path:'supplierdetails/:sid',component:SupplierdetailsComponent},
-        { path:'quotationdetails/:qid',component:QuotationdetailsComponent }, 
+        { path:'quotationdetails/:qid',component:QuotationdetailsComponent },
+        { path:'createsalesman',component:NewsalesmanComponent },
+        { path:'createsalesman/:salesmanid',component:NewsalesmanComponent },
+        { path:'listsalesman',component:ListsalesmanComponent }, 
+        { path:'salesmandetails/:salesmanid',component:SalesmandetailsComponent },    
+              
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },
