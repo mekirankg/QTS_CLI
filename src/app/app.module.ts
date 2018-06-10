@@ -35,7 +35,7 @@ import { NewsupplierComponent } from './supplier/newsupplier.component';
 import { ListsupplierComponent } from './supplier/listsupplier.component';
 import { SupplierdetailsComponent } from './supplier/supplierdetails.component';
 import { PurchaseorderdetailsComponent } from './purchaseorder/purchaseorderdetails/purchaseorderdetails.component';
-import { Component } from './salesman/.component';
+
 import { NewsalesmanComponent } from './salesman/newsalesman/newsalesman.component';
 import { ListsalesmanComponent } from './salesman/listsalesman/listsalesman.component';
 import { SalesmandetailsComponent } from './salesman/salesmandetails/salesmandetails.component';

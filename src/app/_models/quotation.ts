@@ -1,5 +1,8 @@
+import { Salesman } from "./salesman";
+
 export class Quotation {
     qid: string;
+    salesmanId:string;
     customerName: string;
     customerContact: string;
     salesmanName: string;
@@ -11,4 +14,9 @@ export class Quotation {
     materialDescription: string;
     valueSplit: string;
     totalValueSplit: string;
+}
+
+export class QuotationList{
+    quotation:Quotation=new Quotation();
+    salesman:Salesman=new Salesman();
 }

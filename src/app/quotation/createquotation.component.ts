@@ -3,6 +3,7 @@ import { Quotation } from '../_models/quotation';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Common } from '../_helpers/common';
+import { Salesman } from '../_models/salesman';
 
 @Component({
 
@@ -14,7 +15,8 @@ export class CreatequotationComponent implements OnInit {
   newQuotation: Quotation = new Quotation();
   dbOperator: any;
   isEditMode: boolean = false;
-  qIdEditMode: string = undefined;
+  qIdEditMode: string = undefined; salesmanList: Salesman[] = [];
+  selectedsalesman: string = "";
   constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
     this.dbOperator = db;
     let id = this.route.snapshot.paramMap.get('qid');
@@ -22,42 +24,65 @@ export class CreatequotationComponent implements OnInit {
     if (id != undefined) {
       this.qIdEditMode = id;
       this.isEditMode = true;
-      let itemRef = db.object('quotations');
-      itemRef.snapshotChanges().subscribe(action => {
-        var quatationsList = action.payload.val();
-        let obj = Common.snapshotToArray(action.payload);
-        obj.forEach(element => {
-          let obj: Quotation = JSON.parse(element);
-          if (obj.qid != undefined && obj.qid.endsWith(id)) {
-            obj.qid = obj.qid.replace("/", "");
-            this.newQuotation = obj;
+    }
+    else {
+
+      let qRef = "JGB-QUT-" + new Date().valueOf();
+      this.newQuotation.quotationReference = qRef;
+    }
+    let salesmanitemRef = db.object('salesman');
+    salesmanitemRef.snapshotChanges().subscribe(action => {
+      var quatationsList = action.payload.val();
+      let obj = Common.snapshotToArray(action.payload);
+      obj.forEach(element => {
+        let obj: Salesman = JSON.parse(element);
+        obj.salesmanid = obj.salesmanid.replace("/", "");
+        this.salesmanList.push(obj);
+      });
+      if (id != undefined) {
+
+
+        let itemRef = db.object('quotations');
+        itemRef.snapshotChanges().subscribe(action => {
+          var quatationsList = action.payload.val();
+          let obj = Common.snapshotToArray(action.payload);
+          obj.forEach(element => {
+            let obj: Quotation = JSON.parse(element);
+            if (obj.qid != undefined && obj.qid.endsWith(id)) {
+              obj.qid = obj.qid.replace("/", "");
+              this.newQuotation = obj;
+              let salesMans = this.salesmanList.filter(item => item.salesmanid === obj.salesmanId);
+              if (salesMans.length > 0) {
+                this.selectedsalesman = salesMans[0].salesmanid;
+              }
+            }
+          });
+          if (this.newQuotation.qid == undefined) {
+            alert("Invalid quotation selected for edit...");
+            this.router.navigate(['/listquotation']);
           }
         });
-        if(this.newQuotation.qid==undefined)
-        {
-         
-          alert("Invalid quotation selected for edit...");
-          this.router.navigate(['/listquotation']);
-        }
-      });
-    }
-    else{
+      }
+    });
 
-      let qRef="JGB-QUT-"+ new Date().valueOf();
-      this.newQuotation.quotationReference=qRef;
-    }
   }
 
   ngOnInit() {
   }
   register() {
     if (this.isEditMode) {
-      var updates = {};
+      var updates = {};alert(this.selectedsalesman)
+      this.newQuotation.salesmanId=this.selectedsalesman;
       updates['/quotations/' + this.newQuotation.qid] = JSON.stringify(this.newQuotation);
       try {
         let up = this.db.database.ref().update(updates);
         alert("Quotation added as initial PO. Please continue to add more details to the PO")
-        this.router.navigate(['/newpo',this.newQuotation.qid]);
+        if (this.newQuotation.status == "PO") {
+          this.router.navigate(['/newpo', this.newQuotation.qid]);
+        }
+        else {
+          this.router.navigate(['/listquotation']);
+        }
       }
       catch (ex) {
         alert("Error in Updating Quotation");
@@ -67,6 +92,7 @@ export class CreatequotationComponent implements OnInit {
       let uniqueId = "/Q" + Common.newGuid();
       console.log("****" + uniqueId);
       this.newQuotation.qid = uniqueId;
+      this.newQuotation.salesmanId=this.selectedsalesman;
       let newQuotationJson = JSON.stringify(this.newQuotation);
       console.log(newQuotationJson);
       try {

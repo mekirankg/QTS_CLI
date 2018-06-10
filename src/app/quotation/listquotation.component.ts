@@ -1,49 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Quotation } from '../_models/quotation';
+import { Quotation, QuotationList } from '../_models/quotation';
 import { Observable } from 'rxjs/Observable';
 import { Common } from '../_helpers/common';
+import { Salesman } from '../_models/salesman';
 @Component({
   /* selector: 'app-listquotation', */
   templateUrl: './listquotation.component.html',
   styleUrls: ['./listquotation.component.css']
 })
 export class ListquotationComponent implements OnInit {
+  quotationList: QuotationList[] = [];
   quotations: Quotation[] = [];
+  salesmanList: Salesman[] = [];
   constructor(public db: AngularFireDatabase) {
 
+    let salesmanitemRef = db.object('salesman');
+    salesmanitemRef.snapshotChanges().subscribe(action => {
+      let salesmanobj = Common.snapshotToArray(action.payload);
+      salesmanobj.forEach(element => {
+        let obj: Salesman = JSON.parse(element);
+        this.salesmanList.push(obj);
+      });
 
-    // this.db.list('/items').push({ content: "new added content" });
-    // this.quotations = this.db.list('/quotations').();
-    let itemRef = db.object('quotations');
-
-    itemRef.snapshotChanges().subscribe(action => {
-      console.log(action.type);
-      console.log(action.key);
-
-      var quatationsList = action.payload.val();
-      // console.log(this.quotations[0].customerName)
-      // console.log(quatationsList);
-      let obj = Common.snapshotToArray(action.payload);
-      this.quotations = [];
-      obj.forEach(element => {
-
-        let obj: Quotation = JSON.parse(element);
-        console.log("****" + element);
-        if(obj.qid != undefined)
-        {
-          obj.qid = obj.qid.replace("/","");
-        }
-        this.quotations.push(obj);
+      let itemRef = db.object('quotations');
+      itemRef.snapshotChanges().subscribe(action => {
+        console.log(action.type);
+        console.log(action.key);
+        var quatationsList = action.payload.val();
+        let quotationobj = Common.snapshotToArray(action.payload);
+        quotationobj.forEach(element => {
+          let quotationListItem = new QuotationList();
+          let qobj: Quotation = JSON.parse(element);
+          console.log("****" + element);
+          if (qobj.qid != undefined) {
+            qobj.qid = qobj.qid.replace("/", "");
+          }
+          quotationListItem.quotation = qobj;
+          let salesMan = this.salesmanList.filter(s => s.salesmanid.endsWith(qobj.salesmanId));
+          if (salesMan.length > 0) {
+            quotationListItem.salesman = salesMan[0];
+          }
+          this.quotationList.push(quotationListItem);
+        });
 
       });
 
+
     });
+
+
+
+
 
   }
 
 
-  
+
   ngOnInit() {
   }
   /*
