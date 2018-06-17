@@ -15,7 +15,8 @@ export class CreatequotationComponent implements OnInit {
   newQuotation: Quotation = new Quotation();
   dbOperator: any;
   isEditMode: boolean = false;
-  qIdEditMode: string = undefined; salesmanList: Salesman[] = [];
+  qIdEditMode: string = undefined; 
+  salesmanList: Salesman[] = [];
   selectedsalesman: string = "";
   constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
     this.dbOperator = db;
@@ -29,6 +30,8 @@ export class CreatequotationComponent implements OnInit {
 
       let qRef = "JGB-QUT-" + new Date().valueOf();
       this.newQuotation.quotationReference = qRef;
+      let followUpdate=(new Date(Date.now() + 12096e5));
+      this.newQuotation.nextFollowupdate = this.formatDate(followUpdate);
     }
     let salesmanitemRef = db.object('salesman');
     salesmanitemRef.snapshotChanges().subscribe(action => {
@@ -40,8 +43,6 @@ export class CreatequotationComponent implements OnInit {
         this.salesmanList.push(obj);
       });
       if (id != undefined) {
-
-
         let itemRef = db.object('quotations');
         itemRef.snapshotChanges().subscribe(action => {
           var quatationsList = action.payload.val();
@@ -71,16 +72,18 @@ export class CreatequotationComponent implements OnInit {
   }
   register() {
     if (this.isEditMode) {
-      var updates = {};alert(this.selectedsalesman)
+      var updates = {};
       this.newQuotation.salesmanId=this.selectedsalesman;
       updates['/quotations/' + this.newQuotation.qid] = JSON.stringify(this.newQuotation);
       try {
         let up = this.db.database.ref().update(updates);
-        alert("Quotation added as initial PO. Please continue to add more details to the PO")
+        
         if (this.newQuotation.status == "PO") {
+          alert("Quotation added as initial PO. Please continue to add more details to the PO");
           this.router.navigate(['/newpo', this.newQuotation.qid]);
         }
         else {
+          alert("Quotation updated successfully");
           this.router.navigate(['/listquotation']);
         }
       }
@@ -105,6 +108,16 @@ export class CreatequotationComponent implements OnInit {
       }
     }
   }
+   formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 
 }
