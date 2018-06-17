@@ -39,6 +39,9 @@ import { PurchaseorderdetailsComponent } from './purchaseorder/purchaseorderdeta
 import { NewsalesmanComponent } from './salesman/newsalesman/newsalesman.component';
 import { ListsalesmanComponent } from './salesman/listsalesman/listsalesman.component';
 import { SalesmandetailsComponent } from './salesman/salesmandetails/salesmandetails.component';
+import { NewcustomerComponent } from './customer/newcustomer/newcustomer.component';
+import { ListcustomerComponent } from './customer/listcustomer/listcustomer.component';
+import { CustomerdetailsComponent } from './customer/customerdetails/customerdetails.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { SalesmandetailsComponent } from './salesman/salesmandetails/salesmandet
     PurchaseorderdetailsComponent,
     NewsalesmanComponent,
     ListsalesmanComponent,
-    SalesmandetailsComponent
+    SalesmandetailsComponent,
+    NewcustomerComponent,
+    ListcustomerComponent,
+    CustomerdetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -92,8 +98,11 @@ import { SalesmandetailsComponent } from './salesman/salesmandetails/salesmandet
         { path:'createsalesman',component:NewsalesmanComponent },
         { path:'createsalesman/:salesmanid',component:NewsalesmanComponent },
         { path:'listsalesman',component:ListsalesmanComponent }, 
-        { path:'salesmandetails/:salesmanid',component:SalesmandetailsComponent },    
-              
+        { path:'salesmandetails/:salesmanid',component:SalesmandetailsComponent },
+        { path:'createcustomer',component:NewcustomerComponent },
+        { path:'createcustomer/:customerid',component:NewcustomerComponent },
+        { path:'customerdetails/:customerid',component:CustomerdetailsComponent },
+        { path:'listcustomer',component:ListcustomerComponent }, 
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },

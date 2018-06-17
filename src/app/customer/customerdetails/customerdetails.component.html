@@ -1,0 +1,68 @@
+<div class="wrapper ">
+
+  <!-- Page Content Holder -->
+  <div id="content" class="createcontent">
+      <form name="form" (ngSubmit)="create()" #f="ngForm" novalidate>
+          <div class="row">
+              <div class="form-row" style="width: 42em;">
+                  <div class="form-group col-md-12" style="float:left;width: fit-content;">
+                      <h2>Customer Details</h2>
+                  </div>
+                  <div style="float:right;margin-top: 4%">
+                      <button type="button" class="btn btn-primary">
+                          <a [routerLink]="['/createcustomer', newCustomer.customerId]">Edit</a>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-row">
+                  <div class="form-group col-md-4">
+                      <label for="inputName">Customer Name</label>
+                      <input readonly type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newCustomer.customerName">
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="keycontact">Customer Contact </label>
+                      <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newCustomer.customerContactName"
+                          placeholder="Customer contact">
+                  </div>
+                  <div class="form-group col-md-4">
+                      <label for="contactNumber">Customer Number</label>
+                      <input readonly type="text" name="contactNumber" [(ngModel)]="newCustomer.customerContactNumber" class="form-control" id="contactNumber"
+                          placeholder="Customer Number">
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-row">
+                    <div class="form-group col-md-4">
+                            <label for="contactEmail">Customer email</label>
+                            <input readonly type="text" name="contactEmail" [(ngModel)]="newCustomer.customerContactEmail" class="form-control" id="contactEmail"
+                                placeholder="Customer Email">
+                        </div>
+                  <div class="form-group col-md-4">
+                      <label for="Remarks">Remarks</label>
+                      <textarea readonly [(ngModel)]="newCustomer.customerRemarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+
+</div>
+
+
+
+
+<!-- jQuery CDN -->
+
+<!-- Bootstrap Js CDN -->
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+      });
+  });
+</script>

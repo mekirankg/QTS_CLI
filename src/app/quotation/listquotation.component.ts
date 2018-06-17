@@ -36,12 +36,14 @@ export class ListquotationComponent implements OnInit {
           if (qobj.qid != undefined) {
             qobj.qid = qobj.qid.replace("/", "");
           }
-          quotationListItem.quotation = qobj;
-          let salesMan = this.salesmanList.filter(s => s.salesmanid.endsWith(qobj.salesmanId));
-          if (salesMan.length > 0) {
-            quotationListItem.salesman = salesMan[0];
+          if (qobj.status != "PO") {
+            quotationListItem.quotation = qobj;
+            let salesMan = this.salesmanList.filter(s => s.salesmanid.endsWith(qobj.salesmanId));
+            if (salesMan.length > 0) {
+              quotationListItem.salesman = salesMan[0];
+            }
+            this.quotationList.push(quotationListItem);
           }
-          this.quotationList.push(quotationListItem);
         });
 
       });

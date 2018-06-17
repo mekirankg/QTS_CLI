@@ -1,0 +1,70 @@
+
+<div class="wrapper ">
+
+  <!-- Page Content Holder -->
+  <div id="content" class="createcontent">
+      <form name="form" (ngSubmit)="create()" #f="ngForm" novalidate>
+
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                <h2 *ngIf='!isEditMode'>Create Customer</h2>
+                <h2 *ngIf='isEditMode'>Edit Customer</h2>
+              </div>
+          </div>
+
+          <div class="form-row">
+              <div class="form-group col-md-4">
+                  <label for="inputName">Customer Name</label>
+                  <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newCustomer.customerName">
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="keycontact">Customer Contact </label>
+                  <input type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newCustomer.customerContactName"
+                      placeholder="contact person">
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="keycontactnumber">Contact Number </label>
+                <input type="text" class="form-control" name="keycontactnumber" id="keycontactnumber" #keycontact="ngModel" [(ngModel)]="newCustomer.customerContactNumber"
+                    placeholder="Customer Number">
+            </div>
+             
+          </div>      
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="contactNumber">Customer Email</label>
+              <input type="text" name="contactNumber" [(ngModel)]="newCustomer.customerContactEmail" class="form-control" id="contactNumber"
+                  placeholder="Customer Email">
+          </div>
+              <div class="form-group col-md-4">
+                  <label for="Remarks">Remarks</label>
+                  <textarea [(ngModel)]="newCustomer.customerRemarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
+              </div>
+          </div>
+
+          <div class="form-row">
+                <div class="form-group col-md-12">
+                    <button *ngIf='!isEditMode' type="submit" class="btn btn-primary">Add Customer</button>
+                    <button *ngIf='isEditMode' type="submit" class="btn btn-primary">Update </button>
+                </div>
+            </div>
+      </form>
+  </div>
+
+
+
+
+
+
+  <!-- jQuery CDN -->
+
+  <!-- Bootstrap Js CDN -->
+
+
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('#sidebarCollapse').on('click', function () {
+              $('#sidebar').toggleClass('active');
+          });
+      });
+  </script>
