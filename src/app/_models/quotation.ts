@@ -1,10 +1,12 @@
 import { Salesman } from "./salesman";
+import { Customer } from "./customer";
 
 export class Quotation {
     qid: string;
     salesmanId:string;
-    customerName: string;
-    customerContact: string;
+    customerId:string;
+ //   customerName: string;
+ //   customerContact: string;
     salesmanName: string;
     totalvalue: number;
     status: string;
@@ -19,4 +21,5 @@ export class Quotation {
 export class QuotationList{
     quotation:Quotation=new Quotation();
     salesman:Salesman=new Salesman();
+    customer:Customer=new Customer();
 }

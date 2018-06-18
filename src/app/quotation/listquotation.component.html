@@ -27,10 +27,10 @@
 
                         <td>
                             <button type="button" class="btn btn-link">
-                                <a [routerLink]="['/quotationdetails', quotation.quotation.qid]">{{ quotation.quotation.customerName }}</a>
+                                <a [routerLink]="['/quotationdetails', quotation.quotation.qid]">{{ quotation.customer.customerName }}</a>
                             </button>
                         </td>
-                        <td>{{ quotation.quotation.customerContact}}</td>
+                        <td>{{ quotation.customer.customerContactNumber}}</td>
                         <!--  <td>{{ quotation.quotationName}}</td> -->
                         <td>{{ quotation.salesman.salesmanName }}</td>
                         <td>{{ quotation.quotation.totalvalue }}</td>

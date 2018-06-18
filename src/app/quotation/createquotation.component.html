@@ -2,23 +2,29 @@
 
     <!-- Page Content Holder -->
     <div id="content" class="createcontent">
-        <form name="form" (ngSubmit)="register()" #f="ngForm" novalidate>
-
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <h2 *ngIf='!isEditMode'>Create Quotation</h2>
-                    <h2 *ngIf='isEditMode'>Edit Quotation</h2>
-                </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <h2 *ngIf='!isEditMode'>Create Quotation</h2>
+                <h2 *ngIf='isEditMode'>Edit Quotation</h2>
             </div>
-
+        </div>
+        <div class="loader" *ngIf='!shouldShowContent'></div>
+        <form name="form" (ngSubmit)="register()" #f="ngForm" *ngIf='shouldShowContent' novalidate>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="inputName">Customer Name</label>
-                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName">
+                    <label for="CustomerName">Customer Name</label>
+
+                    <select [(ngModel)]="selectedCustomer" id="CustomerName" name="CustomerName" class="form-control">
+                        <option value="" disabled selected>--Choose--</option>
+                        <option *ngFor="let s of customerList" [ngValue]="s">{{s.customerName}}</option>
+                    </select>
+
+                    <!-- <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName">
+               -->
                 </div>
                 <div class="form-group col-md-4">
                     <label for="keycontact">Customer Key Contact</label>
-                    <input type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newQuotation.customerContact"
+                    <input type="text" readonly class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="selectedCustomer.customerContactNumber"
                         placeholder="Contact">
                 </div>
                 <div class="form-group col-md-4">
@@ -40,9 +46,10 @@
                         id="quotationreference" placeholder="Quotation Reference">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="SalesmanName">Salesman Name</label>       
+                    <label for="SalesmanName">Salesman Name</label>
 
                     <select [(ngModel)]="selectedsalesman" id="SalesmanName" name="SalesmanName" class="form-control">
+                        <option value="" disabled selected>--Choose--</option>
                         <option *ngFor="let s of salesmanList" [ngValue]="s.salesmanid">{{s.salesmanName}}</option>
                     </select>
                 </div>
@@ -68,7 +75,7 @@
                 <div class="form-group col-md-4">
                     <label for="Status">Status</label>
                     <select id="Status" name="Status" [(ngModel)]="newQuotation.status" class="form-control">
-                        <option selected>Choose...</option>
+                        <option selected disabled>Choose...</option>
                         <option>Dropbox</option>
                         <option>Bidding</option>
                         <option>OnGoing</option>
