@@ -20,12 +20,12 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputName">Customer Name</label>
-                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName"
+                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="selectedCustomer.customerName"
                         readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="keycontact">Customer Key Contact</label>
-                    <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newQuotation.customerContact"
+                    <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="selectedCustomer.customerContactNumber"
                         placeholder="Contact">
                 </div>
                 <div class="form-group col-md-4">
@@ -43,21 +43,11 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="SalesmanName">Salesman Name</label>
-                    <!--  <input type="text" class="form-control" id="SalesmanName" placeholder="Salesman Name">
-                  -->
-                    <select readonly name="SalesmanName" [(ngModel)]="newQuotation.salesmanName" class="form-control">
-                        <option value="">Choose a Salesman</option>
-                        <option value="Salesman1">Salesman1</option>
-                        <option value="Salesman2">Salesman2</option>
-                        <option value="Salesman3">Salesman3</option>
-                        <option value="Salesman4">Salesman4</option>
-                        <option value="Salesman5">Salesman5</option>
-                    </select>
-
+                    <input type="text" readonly [(ngModel)]="salesmanName" class="form-control" name="SalesmanName" id="SalesmanName" placeholder="Salesman Name">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="TotalValue">Total Value</label>
-                    <input readonly type="text" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
+                    <input readonly type="text"  [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
                         placeholder="Quotation total Value">
                 </div>
             </div>
@@ -73,16 +63,9 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="Status">Status</label>
-                    <select readonly id="Status" name="Status" [(ngModel)]="newQuotation.status" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>Dropbox</option>
-                        <option>Bidding</option>
-                        <option>On Going</option>
-                        <option>Technical Review</option>
-                        <option>PO</option>
-                        <option>Cancelled</option>
-                        <option>Lost</option>
-                    </select>
+                    <input readonly type="text" name="Status" [(ngModel)]="newQuotation.status" class="form-control" id="Status"
+                    placeholder="Status">
+                   
                 </div>
 
                <!--  <div class="form-group col-md-4">

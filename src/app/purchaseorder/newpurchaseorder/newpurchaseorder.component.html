@@ -20,12 +20,12 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputName">Customer Name</label>
-                        <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName"
+                        <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="selectedCustomer.customerName"
                             readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="keycontact">Customer Key Contact</label>
-                        <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newQuotation.customerContact"
+                        <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="selectedCustomer.customerContactNumber"
                             placeholder="Contact">
                     </div>
                     
@@ -41,7 +41,7 @@
                     
                     <div class="form-group col-md-4">
                         <label for="SalesmanName">Salesman Name</label>
-                          <input type="text" name="SalesmanName" readonly [(ngModel)]="newQuotation.salesmanName" class="form-control" id="SalesmanName" placeholder="Salesman Name">
+                          <input type="text" name="SalesmanName" readonly [(ngModel)]="selectedSalesMan.salesmanName" class="form-control" id="SalesmanName" placeholder="Salesman Name">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="TotalValue">Total Value</label>

@@ -8,7 +8,7 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <div style="float:left">
-                        <h2>Confirm Purchase Order</h2>
+                        <h2>Purchase Order Details</h2>
                     </div>
 
                     <div *ngIf='isLoaded' style="float:left;margin-left: 70%;margin-top: -5%">
@@ -26,18 +26,18 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputName">Customer Name</label>
-                        <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="confirmedPO.quotation.customerName"
+                        <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="confirmedPO.quotationList.customer.customerName"
                             readonly>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="keycontact">Customer Key Contact</label>
-                        <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="confirmedPO.quotation.customerContact"
+                        <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="confirmedPO.quotationList.customer.customerContactNumber"
                             placeholder="Contact">
                     </div>
 
                     <div class="form-group col-md-4">
                         <label for="quotationreference">Quotation Reference</label>
-                        <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="confirmedPO.quotation.quotationReference"
+                        <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="confirmedPO.quotationList.quotation.quotationReference"
                             id="quotationreference" placeholder="Quotation Reference">
                     </div>
 
@@ -46,19 +46,19 @@
 
                     <div class="form-group col-md-4">
                         <label for="SalesmanName">Salesman Name</label>
-                        <input type="text" name="SalesmanName" readonly [(ngModel)]="confirmedPO.quotation.salesmanName" class="form-control" id="SalesmanName"
+                        <input type="text" name="SalesmanName" readonly [(ngModel)]="confirmedPO.quotationList.salesman.salesmanName" class="form-control" id="SalesmanName"
                             placeholder="Salesman Name">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="TotalValue">Total Value</label>
-                        <input readonly type="text" [(ngModel)]="confirmedPO.quotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
+                        <input readonly type="text" [(ngModel)]="confirmedPO.quotationList.quotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
                             placeholder="Quotation total Value">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="description">Material Description</label>
-                        <textarea readonly name="description" [(ngModel)]="confirmedPO.quotation.materialDescription" class="form-control" rows="2"
+                        <textarea readonly name="description" [(ngModel)]="confirmedPO.quotationList.quotation.materialDescription" class="form-control" rows="2"
                             id="description" placeholder="Description"></textarea>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import { Supplier } from "./supplier";
-import { Quotation } from "./quotation";
+import { Quotation, QuotationList } from "./quotation";
 
 export class PurchaseOrder {
     pid: string;
@@ -20,5 +20,5 @@ export class PurchaseOrder {
 export class ConfirmedPurchaseOrder {
     purchaseorder:PurchaseOrder= new PurchaseOrder();
     supplier: Supplier= new Supplier();
-    quotation:Quotation= new Quotation();
+    quotationList:QuotationList= new QuotationList();
 }

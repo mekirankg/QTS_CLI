@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { Constants } from './shared/constants';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AppComponent {
   title = 'Quotation Tracking System';
+  version =Constants.VERSION;
   itemValue = '';
   items: Observable<any[]>;
   constructor(public db: AngularFireDatabase) {

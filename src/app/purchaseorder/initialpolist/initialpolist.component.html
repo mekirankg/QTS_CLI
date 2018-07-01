@@ -25,19 +25,19 @@
                         <td>
                             <div style="min-width:209px">
                                 <button type="button" class="btn btn-link">
-                                    <a [routerLink]="['/quotationdetails', purchaseorder.qid]">{{ purchaseorder.customerName}}</a>
+                                    <a [routerLink]="['/quotationdetails', purchaseorder.quotation.qid]">{{ purchaseorder.customer.customerName}}</a>
                                 </button>
-                                <button type="button" class="btn btn-primary">
-                                    <a [routerLink]="['/newpo', purchaseorder.qid]">Confirm</a>
+                                <button type="button" style="float:right" class="btn btn-primary">
+                                    <a [routerLink]="['/newpo', purchaseorder.quotation.qid]">Confirm</a>
                                 </button>
                             </div>
                         </td>
-                        <td>{{ purchaseorder.customerContact}}</td>
-                        <td>{{ purchaseorder.salesmanName }}</td>
-                        <td>{{ purchaseorder.totalvalue }}</td>
-                        <td>{{ purchaseorder.status }}</td>
-                        <td>{{ purchaseorder.nextFollowupdate }}</td>
-                        <td>{{ purchaseorder.remarks }}</td>
+                        <td>{{ purchaseorder.customer.customerContactNumber}}</td>
+                        <td>{{ purchaseorder.salesman.salesmanName }}</td>
+                        <td>{{ purchaseorder.quotation.totalvalue }}</td>
+                        <td>{{ purchaseorder.quotation.status }}</td>
+                        <td>{{ purchaseorder.quotation.nextFollowupdate }}</td>
+                        <td>{{ purchaseorder.quotation.remarks }}</td>
                     </tr>
                 </tbody>
             </table>

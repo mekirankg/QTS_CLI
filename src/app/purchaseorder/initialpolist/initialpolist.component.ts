@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Quotation } from '../../_models/quotation';
+import { Quotation, QuotationList } from '../../_models/quotation';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Common } from '../../_helpers/common';
 import { PurchaseOrder } from '../../_models/purchaseorder';
+import { Salesman } from '../../_models/salesman';
+import { Customer } from '../../_models/customer';
 
 @Component({
   selector: 'app-initialpolist',
@@ -11,10 +13,11 @@ import { PurchaseOrder } from '../../_models/purchaseorder';
 })
 export class InitialpolistComponent implements OnInit {
   quotationsList: Quotation[] = [];
-  purchaseorders: Quotation[] = [];
+  purchaseorders: QuotationList[] = [];
   confirmedpurchaseorders: PurchaseOrder[] = [];
+  customerList: Customer[] = [];
+  salesmanList: Salesman[] = [];
   constructor(public db: AngularFireDatabase) {
-    let shouldContinue = false;
     let poRef = db.object('purchaseorder');
     poRef.snapshotChanges().subscribe(action => {
       let poList = Common.snapshotToArray(action.payload);
@@ -23,28 +26,79 @@ export class InitialpolistComponent implements OnInit {
         let po_obj: PurchaseOrder = JSON.parse(element);
         this.confirmedpurchaseorders.push(po_obj);
       });
-      shouldContinue = true;
-    });
 
-    let itemRef = db.object('quotations');
-    itemRef.snapshotChanges().subscribe(action => {
-      while (!shouldContinue) {
+      let itemRef = db.object('quotations');
+      let salesmanitemRef = db.object('salesman');
+      salesmanitemRef.snapshotChanges().subscribe(action => {
+        let salesmanobj = Common.snapshotToArray(action.payload);
+        salesmanobj.forEach(element => {
+          let obj: Salesman = JSON.parse(element);
+          this.salesmanList.push(obj);
+        });
+        let customeritemRef = db.object('customer');
+        customeritemRef.snapshotChanges().subscribe(action => {
+          let obj = Common.snapshotToArray(action.payload);
+          obj.forEach(element => {
+            let obj: Customer = JSON.parse(element);
+            obj.customerId = obj.customerId.replace("/", "");
+            this.customerList.push(obj);
+  
+          });
+      itemRef.snapshotChanges().subscribe(action => {
+        let quotationsList = Common.snapshotToArray(action.payload);
+        this.purchaseorders = [];
+        quotationsList.forEach(element => {
+          let obj: Quotation = JSON.parse(element);
+          let initialPO: QuotationList = new QuotationList();
+          if (obj.status == QStatus[QStatus.PO]) {
+            if (obj.qid != undefined) {
+              obj.qid = obj.qid.replace("/", "");
+              console.log("length" + this.confirmedpurchaseorders.length);
+              let poIndex = this.confirmedpurchaseorders.findIndex(p => p.qid == obj.qid);
+              if (poIndex == -1) {
+                initialPO.quotation = obj;
+                let salesMan = this.salesmanList.filter(s => s.salesmanid.endsWith(obj.salesmanId));
+                if (salesMan.length > 0) {
+                  initialPO.salesman = salesMan[0];
+                }
 
-      }
-      let quotationsList = Common.snapshotToArray(action.payload);
-      this.purchaseorders = [];
-      quotationsList.forEach(element => {
-        let obj: Quotation = JSON.parse(element);
-        if (obj.status == QStatus[QStatus.PO]) {
-          if (obj.qid != undefined) {
-            obj.qid = obj.qid.replace("/", "");
-            console.log("length" + this.confirmedpurchaseorders.length);
-            let poIndex = this.confirmedpurchaseorders.findIndex(p => p.qid == obj.qid);
-            if (poIndex == -1) {
-              this.purchaseorders.push(obj);
+                let custList = this.customerList.filter(item => item.customerId === obj.customerId);
+                if (custList.length > 0) {
+                  initialPO.customer = custList[0];
+                }
+
+                this.purchaseorders.push(initialPO);
+              }
             }
           }
-        }
+        });
+
+       if( this.purchaseorders.length<=0)
+       {
+         alert("No Quotations are in PO status");
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+    
+
+
+
+        
+        });
       });
     });
   }
