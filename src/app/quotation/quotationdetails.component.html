@@ -8,8 +8,11 @@
                 <div class="form-group col-md-12">
                     <div style="float:left">
                         <h2>Quotation Details</h2>
-                    </div>
-                    <div *ngIf='isEditable' style="float:left;margin-left: 50%;margin-top: 4%">
+                    </div>                   
+                    <div *ngIf='isEditable' style="float:left;margin-left: 35%;margin-top: 4%">
+                            <button type="button" class="btn btn-primary">
+                                    <a [routerLink]="['/newpo', newQuotation.qid]">Convert to PO</a>
+                                </button>
                         <button type="button" class="btn btn-primary">
                             <a [routerLink]="['/createquotation', newQuotation.qid]">Edit</a>
                         </button>

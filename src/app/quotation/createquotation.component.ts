@@ -128,7 +128,7 @@ export class CreatequotationComponent implements OnInit {
       console.log(newQuotationJson);
       try {
         this.db.database.ref('quotations').child(uniqueId).set(newQuotationJson);
-        alert("Quotation added successful!!. This message box temporary");
+        alert("Quotation added successful!!. ");
         this.router.navigate(['/listquotation']);
       }
       catch (ex) {

@@ -61,7 +61,7 @@ export class NewsupplierComponent implements OnInit {
     console.log(newSupplierJson);
     try {
       this.db.database.ref('supplier').child(uniqueId).set(newSupplierJson);
-      alert("Supplier added successfully!!. This message box is temporary");
+      alert("Supplier added successfully!!.");
       this.router.navigate(['/listsupplier']);
     }
     catch (ex) {

@@ -34,6 +34,8 @@ export class NewpurchaseorderComponent implements OnInit {
     if (this.id.toLowerCase().startsWith('p')) {
       this.isEditMode = true;
     }
+    let qRef = "JGB-PO-" + new Date().valueOf();
+    this.newPO.poRef = qRef;
 
     let salesmanitemRef = db.object('salesman');
     salesmanitemRef.snapshotChanges().subscribe(action => {
@@ -53,10 +55,6 @@ export class NewpurchaseorderComponent implements OnInit {
           this.customerList.push(obj);
 
         });
-
-
-
-
         let supplierRef = db.object('supplier');
         supplierRef.snapshotChanges().subscribe(action => {
           var supplierList = action.payload.val();
@@ -99,9 +97,6 @@ export class NewpurchaseorderComponent implements OnInit {
                         if (custList.length > 0) {
                           this.selectedCustomer = custList[0];
                         }
-
-
-
                         this.suppliers.forEach(element => {
                           if (element.sid.endsWith(this.newPO.supplierId))
                             this.selectedsupplier = element.sid;
@@ -120,9 +115,6 @@ export class NewpurchaseorderComponent implements OnInit {
         if (!this.id.toLowerCase().startsWith('p')) {
           {
             this.isEditMode = false;
-
-
-
             let itemRef = db.object('quotations');
             itemRef.snapshotChanges().subscribe(action => {
               var quatationsList = action.payload.val();
@@ -143,26 +135,15 @@ export class NewpurchaseorderComponent implements OnInit {
                   if (custList.length > 0) {
                     this.selectedCustomer = custList[0];
                   }
-
-
-
                   this.isLoaded = true;
                   return;
                 }
               });
             });
-
-
           }
         }
-        
       });
     });
-
-
-
-    
-   
   }
 
   createPO() {
@@ -173,10 +154,14 @@ export class NewpurchaseorderComponent implements OnInit {
       this.newPO.qid = this.id;
       this.newPO.supplierId = this.selectedsupplier;
       let newPOJson = JSON.stringify(this.newPO);
+      this.newQuotation.status="PO";
+      let quotation = JSON.stringify(this.newQuotation)
       console.log(newPOJson);
       try {
+
+        this.db.database.ref('quotations').child(this.id).set(quotation);
         this.db.database.ref('purchaseorder').child(uniquePOId).set(newPOJson);
-        alert("PO added successful!!. This message box temporary");
+        alert("PO added successful!!.");
         this.router.navigate(['/listpo']);
       }
       catch (ex) {

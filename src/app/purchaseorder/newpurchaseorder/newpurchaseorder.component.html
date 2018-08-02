@@ -7,8 +7,8 @@
         <form (ngSubmit)="createPO()" #f="ngForm" novalidate>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <h2 *ngIf='!isEditMode'>Confirm Purchase Order</h2>
-                    <h2 *ngIf='isEditMode'>Edit Purchase Order</h2>
+                    <h2 *ngIf='!isEditMode'>Convert to PO</h2>
+                    <h2 *ngIf='isEditMode'>Edit PO</h2>
                 </div>
                 <div class="form-group col-md-12">
                     <div class="loader" *ngIf='!isLoaded' ></div>
@@ -30,8 +30,8 @@
                     </div>
                     
                     <div class="form-group col-md-4">
-                        <label for="quotationreference">Quotation Reference</label>
-                        <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="newQuotation.quotationReference"
+                        <label for="quotationreference">Purchase Order Reference</label>
+                        <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="newPO.poRef"
                             id="quotationreference" placeholder="Quotation Reference">
                     </div>
                    
@@ -88,10 +88,10 @@
                         <label for="Currency"> Currency</label>
                         <input type="text"  [(ngModel)]="newPO.currency" name="Currency" class="form-control" id="Currency" placeholder="Currency">
                     </div>
-                    <div class="form-group col-md-4">
+                    <!-- <div class="form-group col-md-4">
                         <label for="Expirydate">Expiry Date</label>
                         <input type="date" [(ngModel)]="newPO.expiryDate" name="Expirydate" class="form-control" id="Expirydate" placeholder="Expiry Date">
-                    </div>
+                    </div> -->
                 </div>
     
                
@@ -106,7 +106,7 @@
                         <label for=" SalesValue"> Sales Value</label>
                         <input type="text" [(ngModel)]="newPO.salesValue" name="SalesValue" class="form-control" id=" SalesValue" placeholder=" Sales Value">
                     </div>
-                    <div class="form-group col-md-4">
+                    <!-- <div class="form-group col-md-4">
                         <label for="Amount">Amount</label>
                         <input type="text"  [(ngModel)]="newPO.amount" name="Amount"  class="form-control" id="Amount" placeholder="Amount">
                     </div>
@@ -114,23 +114,22 @@
                     <div class="form-group col-md-4">
                         <label for="Milestone">Milestone</label>
                         <input type="text"  [(ngModel)]="newPO.milestone" name="Milestone"  class="form-control" id="Milestone" placeholder="Milestone">
-                    </div>
+                    </div> -->
                 </div>
     
     
     
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <!-- <div class="form-group col-md-4">
                         <label for="MilestoneCompDate">Milestone Comp.Date</label>
                         <input type="date" [(ngModel)]="newPO.milestoneCompletionDate" name="MilestoneCompDate" class="form-control" id="MilestoneCompDate" placeholder="Milestone Comp.Date">
-                    </div>
+                    </div> -->
                  
                     <div class="form-group col-md-4">
                     <label for="Status">Status</label>
                     <select id="Status" [(ngModel)]="newPO.Status" name="Status" class="form-control">
-                        <option selected>Choose...</option>                    
-                        <option>On Going</option>                    
-                        <option>PO</option>
+                       <option selected>On Going</option>                    
+                        <option>PO Placed</option>
                         <option>Cancelled</option>
                         <option>Lost</option>
                     </select>

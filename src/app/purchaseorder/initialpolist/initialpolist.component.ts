@@ -42,62 +42,44 @@ export class InitialpolistComponent implements OnInit {
             let obj: Customer = JSON.parse(element);
             obj.customerId = obj.customerId.replace("/", "");
             this.customerList.push(obj);
-  
+
           });
-      itemRef.snapshotChanges().subscribe(action => {
-        let quotationsList = Common.snapshotToArray(action.payload);
-        this.purchaseorders = [];
-        quotationsList.forEach(element => {
-          let obj: Quotation = JSON.parse(element);
-          let initialPO: QuotationList = new QuotationList();
-          if (obj.status == QStatus[QStatus.PO]) {
-            if (obj.qid != undefined) {
-              obj.qid = obj.qid.replace("/", "");
-              console.log("length" + this.confirmedpurchaseorders.length);
-              let poIndex = this.confirmedpurchaseorders.findIndex(p => p.qid == obj.qid);
-              if (poIndex == -1) {
-                initialPO.quotation = obj;
-                let salesMan = this.salesmanList.filter(s => s.salesmanid.endsWith(obj.salesmanId));
-                if (salesMan.length > 0) {
-                  initialPO.salesman = salesMan[0];
-                }
+          itemRef.snapshotChanges().subscribe(action => {
+            let quotationsList = Common.snapshotToArray(action.payload);
+            this.purchaseorders = [];
+            quotationsList.forEach(element => {
+              let obj: Quotation = JSON.parse(element);
+              let initialPO: QuotationList = new QuotationList();
+              if (obj.status == QStatus[QStatus.PO]) {
+                if (obj.qid != undefined) {
+                  obj.qid = obj.qid.replace("/", "");
+                  console.log("length" + this.confirmedpurchaseorders.length);
+                  let poIndex = this.confirmedpurchaseorders.findIndex(p => p.qid == obj.qid);
+                  if (poIndex == -1) {
+                    initialPO.quotation = obj;
+                    let salesMan = this.salesmanList.filter(s => s.salesmanid.endsWith(obj.salesmanId));
+                    if (salesMan.length > 0) {
+                      initialPO.salesman = salesMan[0];
+                    }
 
-                let custList = this.customerList.filter(item => item.customerId === obj.customerId);
-                if (custList.length > 0) {
-                  initialPO.customer = custList[0];
-                }
+                    let custList = this.customerList.filter(item => item.customerId === obj.customerId);
+                    if (custList.length > 0) {
+                      initialPO.customer = custList[0];
+                    }
 
-                this.purchaseorders.push(initialPO);
+                    this.purchaseorders.push(initialPO);
+                  }
+                }
               }
-            }
-          }
-        });
+            });
 
-       if( this.purchaseorders.length<=0)
-       {
-         alert("No Quotations are in PO status");
-       }
+            // if( this.purchaseorders.length<=0)
+            // {
+            //   alert("No Quotations are in PO status");
+            // }
 
+          });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    });
-    
-
-
-
-        
         });
       });
     });

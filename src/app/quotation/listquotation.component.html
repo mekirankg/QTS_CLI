@@ -29,6 +29,9 @@
                             <button type="button" class="btn btn-link">
                                 <a [routerLink]="['/quotationdetails', quotation.quotation.qid]">{{ quotation.customer.customerName }}</a>
                             </button>
+                            <button type="button" style="float:right" class="btn btn-primary">
+                                <a [routerLink]="['/newpo', quotation.quotation.qid]">Convert to PO</a>
+                            </button>
                         </td>
                         <td>{{ quotation.customer.customerContactNumber}}</td>
                         <!--  <td>{{ quotation.quotationName}}</td> -->

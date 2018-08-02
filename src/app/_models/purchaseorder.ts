@@ -14,6 +14,7 @@ export class PurchaseOrder {
     expiryDate:string;
     Status:string;
     remarks:string;
+    poRef:string;
     amountPaid:string="0";
 }
 

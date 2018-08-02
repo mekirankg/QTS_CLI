@@ -16,11 +16,11 @@
                         <!-- <th>SupplierRefNo</th> -->
                         <th class="text-center">SalesPerson</th>
                         <th class="text-center">Currency</th>
-                        <th class="text-center">Total Amount</th>
+                        <th class="text-center">Sales Value</th>
                         <th class="text-center">Status</th>
-                        <th class="text-center">Expiry</th>
+                        <!-- <th class="text-center">Expiry</th> -->
                         <th class="text-center">Remarks</th>
-                        <th class="text-center">Amount Paid</th>
+                        <!-- <th class="text-center">Amount Paid</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -39,11 +39,11 @@
                         </td>
                         <td>{{ confirmedPO.quotationList.salesman.salesmanName }}</td>
                         <td>{{ confirmedPO.purchaseorder.currency }}</td>
-                        <td>{{ confirmedPO.purchaseorder.amount }}</td>
+                        <td>{{ confirmedPO.purchaseorder.salesValue }}</td>
                         <td>{{ confirmedPO.purchaseorder.Status }}</td>
-                        <td>{{ confirmedPO.purchaseorder.expiryDate }}</td>
+                        <!-- <td>{{ confirmedPO.purchaseorder.expiryDate }}</td> -->
                         <td>{{ confirmedPO.purchaseorder.remarks }}</td>
-                        <td>{{ confirmedPO.purchaseorder.amountPaid }}</td>
+                        <!-- <td>{{ confirmedPO.purchaseorder.amountPaid }}</td> -->
                     </tr>
                 </tbody>
             </table>

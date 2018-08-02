@@ -35,8 +35,7 @@ export class ListquotationComponent implements OnInit {
 
         let itemRef = db.object('quotations');
         itemRef.snapshotChanges().subscribe(action => {
-          console.log(action.type);
-          console.log(action.key);
+          this.quotationList =[];
           var quatationsList = action.payload.val();
           let quotationobj = Common.snapshotToArray(action.payload);
           quotationobj.forEach(element => {
