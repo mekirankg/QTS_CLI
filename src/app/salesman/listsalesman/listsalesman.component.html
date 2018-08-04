@@ -1,0 +1,36 @@
+<div class="wrapper ">
+  <!--  <div>
+      <app-sidebar></app-sidebar>
+  </div> -->
+  <!-- Page Content Holder -->
+  <div id="content" class="listcontent listcontenttable">
+    <h2>Salesman List</h2>
+    <div style="height:20px"></div>
+    <div>
+      <div class="loader" *ngIf='!salesmanList.length'></div>
+      <table class="table table-hover table-responsive table-bordered" *ngIf='salesmanList && salesmanList.length'>
+        <thead class="thead-dark">
+          <tr>
+            <th>Salesman Name</th>
+            <th>Contact </th>
+            <th>Contact Email</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let salesman of salesmanList'>
+
+            <td>
+              <button type="button" class="btn btn-link">
+                <a [routerLink]="['/salesmandetails', salesman.salesmanid]">{{ salesman.salesmanName }}</a>
+              </button>
+            </td>
+            <td>{{ salesman.salesmanContact}}</td>
+            <td>{{ salesman.salesmanEmail }}</td>
+            <td>{{ salesman.remarks }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>

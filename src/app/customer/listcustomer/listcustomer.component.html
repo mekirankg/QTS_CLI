@@ -1,0 +1,38 @@
+<div class="wrapper ">
+  <!--  <div>
+      <app-sidebar></app-sidebar>
+  </div> -->
+  <!-- Page Content Holder -->
+  <div id="content" class="listcontent listcontenttable">
+    <h2>Customer List</h2>
+    <div style="height:20px"></div>
+    <div>
+      <div class="loader" *ngIf='!customerList.length'></div>
+      <table class="table table-hover table-responsive table-bordered" *ngIf='customerList && customerList.length'>
+        <thead class="thead-dark">
+          <tr>
+            <th>Customer Name</th>
+            <th>Contact Person </th>
+            <th>Contact Number</th>
+            <th>Contact Email</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let customer of customerList'>
+
+            <td>
+              <button type="button" class="btn btn-link">
+                <a [routerLink]="['/customerdetails', customer.customerId]">{{ customer.customerName }}</a>
+              </button>
+            </td>
+            <td>{{ customer.customerContactName}}</td>
+            <td>{{ customer.customerContactNumber}}</td>
+            <td>{{ customer.customerContactEmail }}</td>
+            <td>{{ customer.customerRemarks }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>

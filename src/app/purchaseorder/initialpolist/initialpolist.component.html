@@ -1,23 +1,23 @@
 <div class="wrapper ">
-    <div>
+    <!-- <div>
         <app-sidebar></app-sidebar>
-    </div>
+    </div> -->
     <!-- Page Content Holder -->
     <div id="content" class="listcontent listcontenttable">
         <h2>Initial Purchase Orders</h2>
         <div style="height:20px"></div>
         <div>
+                <div class="loader" *ngIf='!purchaseorders.length' ></div>
             <table class="table table-hover table-responsive table-bordered" *ngIf='purchaseorders && purchaseorders.length'>
-                <thead class="thead-dark">
+                <thead class="thead-dark ">
                     <tr>
-                        <th>PO ID</th>
-                        <th>Customer Name</th>
-                        <th>Contact</th>
-                        <th>Salesman Name</th>
-                        <th>Total Value</th>
-                        <th>Status</th>
-                        <th>Next Follow Up</th>
-                        <th>Remarks</th>
+                        <th class="text-center">Customer</th>
+                        <th class="text-center">Contact</th>
+                        <th class="text-center">Salesman</th>
+                        <th class="text-center">Value</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Follow Up</th>
+                        <th class="text-center">Remarks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,20 +25,19 @@
                         <td>
                             <div style="min-width:209px">
                                 <button type="button" class="btn btn-link">
-                                    <a [routerLink]="['/quotationdetails', purchaseorder.Id]">{{ purchaseorder.Id}}</a>
+                                    <a [routerLink]="['/quotationdetails', purchaseorder.quotation.qid]">{{ purchaseorder.customer.customerName}}</a>
                                 </button>
-                                <button type="button" class="btn btn-primary">
-                                    <a [routerLink]="['/newpo', purchaseorder.Id]">Confirm PO</a>
+                                <button type="button" style="float:right" class="btn btn-primary">
+                                    <a [routerLink]="['/newpo', purchaseorder.quotation.qid]">Confirm</a>
                                 </button>
                             </div>
                         </td>
-                        <td>{{ purchaseorder.customerName}}</td>
-                        <td>{{ purchaseorder.customerContact}}</td>
-                        <td>{{ purchaseorder.salesmanName }}</td>
-                        <td>{{ purchaseorder.totalvalue }}</td>
-                        <td>{{ purchaseorder.status }}</td>
-                        <td>{{ purchaseorder.nextFollowupdate }}</td>
-                        <td>{{ purchaseorder.remarks }}</td>
+                        <td>{{ purchaseorder.customer.customerContactNumber}}</td>
+                        <td>{{ purchaseorder.salesman.salesmanName }}</td>
+                        <td>{{ purchaseorder.quotation.totalvalue }}</td>
+                        <td>{{ purchaseorder.quotation.status }}</td>
+                        <td>{{ purchaseorder.quotation.nextFollowupdate }}</td>
+                        <td>{{ purchaseorder.quotation.remarks }}</td>
                     </tr>
                 </tbody>
             </table>

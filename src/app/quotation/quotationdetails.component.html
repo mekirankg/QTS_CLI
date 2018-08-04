@@ -1,0 +1,115 @@
+<div class="wrapper ">
+
+    <!-- Page Content Holder -->
+    <div id="content" class="createcontent">
+        <form name="form" (ngSubmit)="register()" #f="ngForm" novalidate>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <div style="float:left">
+                        <h2>Quotation Details</h2>
+                    </div>                   
+                    <div *ngIf='isEditable' style="float:left;margin-left: 35%;margin-top: 4%">
+                            <button type="button" class="btn btn-primary">
+                                    <a [routerLink]="['/newpo', newQuotation.qid]">Convert to PO</a>
+                                </button>
+                        <button type="button" class="btn btn-primary">
+                            <a [routerLink]="['/createquotation', newQuotation.qid]">Edit</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputName">Customer Name</label>
+                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="selectedCustomer.customerName"
+                        readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="keycontact">Customer Key Contact</label>
+                    <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="selectedCustomer.customerContactNumber"
+                        placeholder="Contact">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="NextFollowup">Next Follow Up</label>
+                    <input readonly type="date" name="NextFollowup" [(ngModel)]="newQuotation.nextFollowupdate" class="form-control" id="NextFollowup"
+                        placeholder="Follow Up date">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="quotationreference">Quotation Reference</label>
+                    <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="newQuotation.quotationReference"
+                        id="quotationreference" placeholder="Quotation Reference">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="SalesmanName">Salesman Name</label>
+                    <input type="text" readonly [(ngModel)]="salesmanName" class="form-control" name="SalesmanName" id="SalesmanName" placeholder="Salesman Name">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="TotalValue">Total Value</label>
+                    <input readonly type="text"  [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
+                        placeholder="Quotation total Value">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="description">Material Description</label>
+                    <textarea readonly name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description"
+                        placeholder="Description"></textarea>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="Status">Status</label>
+                    <input readonly type="text" name="Status" [(ngModel)]="newQuotation.status" class="form-control" id="Status"
+                    placeholder="Status">
+                   
+                </div>
+
+               <!--  <div class="form-group col-md-4">
+                    <label for="TotalValueSplit">Value Split</label>
+                    <input readonly type="text" name="TotalValueSplit" [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit"
+                        placeholder="Quotation Value Split">
+                </div> -->
+                <div class="form-group col-md-4">
+                    <label for="Remarks">Remarks</label>
+                    <textarea readonly [(ngModel)]="newQuotation.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <!--   <button type="submit" class="btn btn-primary">Create</button> -->
+               <p *ngIf='!isEditable' style="color:purple" >
+Note:Editing is not allowed for Quotations that are changed to POs. You can view this and add details from the initial PO list.
+               </p>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+
+
+
+    <!-- jQuery CDN -->
+
+    <!-- Bootstrap Js CDN -->
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>

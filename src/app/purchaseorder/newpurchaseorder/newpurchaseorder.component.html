@@ -1,109 +1,156 @@
 <div class="wrapper ">
-    <div>
+    <!-- <div>
         <app-sidebar></app-sidebar>
-    </div>
+    </div> -->
     <!-- Page Content Holder -->
     <div id="content" class="createcontent">
-        <form>
-
+        <form (ngSubmit)="createPO()" #f="ngForm" novalidate>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <h2>Confirm Purchase Order</h2>
+                    <h2 *ngIf='!isEditMode'>Convert to PO</h2>
+                    <h2 *ngIf='isEditMode'>Edit PO</h2>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="loader" *ngIf='!isLoaded' ></div>
                 </div>
             </div>
+          
+            <div *ngIf='isLoaded' >
 
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputName">Quotation Id</label>
-                    <input type="text" class="form-control" id="Qid" placeholder={{id}} readonly>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputName">Customer Name</label>
+                        <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="selectedCustomer.customerName"
+                            readonly>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="keycontact">Customer Key Contact</label>
+                        <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="selectedCustomer.customerContactNumber"
+                            placeholder="Contact">
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label for="quotationreference">Purchase Order Reference</label>
+                        <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="newPO.poRef"
+                            id="quotationreference" placeholder="Quotation Reference">
+                    </div>
+                   
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="quotationreference">Quotation Reference</label>
-                    <input type="text" class="form-control" id="quotationreference" placeholder="Quotation Reference No:" readonly>
+    
+                <div class="form-row">
+                    
+                    <div class="form-group col-md-4">
+                        <label for="SalesmanName">Salesman Name</label>
+                          <input type="text" name="SalesmanName" readonly [(ngModel)]="selectedSalesMan.salesmanName" class="form-control" id="SalesmanName" placeholder="Salesman Name">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="TotalValue">Total Value</label>
+                        <input readonly type="text" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
+                            placeholder="Quotation total Value">
+                    </div>
+                   <!--  <div class="form-group col-md-4">
+                        <label for="TotalValueSplit">Value Split</label>
+                        <input readonly type="text" name="TotalValueSplit" [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit"
+                            placeholder="Quotation Value Split">
+                    </div> -->
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="TotalValue">Supplier</label>
-                    <input type="text" class="form-control" id="Suppliername" placeholder="Supplier">
+    
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="description">Material Description</label>
+                        <textarea readonly name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description"
+                            placeholder="Description"></textarea>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputName">Supplier Ref No</label>
-                    <input type="text" class="form-control" id="SupplierRefNo" placeholder="Supplier Ref No">
+    
+                <div class="form-row">
+                    <!-- <div class="form-group col-md-4">
+                        <label for="inputName">Quotation Id</label>
+                        <input type="text" class="form-control" id="Qid" placeholder={{id}} readonly>
+                    </div> -->
+                   
+                    <div class="form-group col-md-4">
+                        <label for="Supplier">Supplier</label>
+                                        <!--   <select id="Supplier" name="Supplier" class="form-control">
+                            <option selected>Choose...</option>                    
+                            <option>Supplier1</option>                    
+                            <option>Supplier2</option>
+                            <option>Supplier3</option>
+                            <option>Supplier3</option>
+                        </select> -->
+                        <select [(ngModel)]="selectedsupplier"  id="Supplier" name="Supplier" class="form-control" >
+                            <!-- <option selected>Choose...</option>   -->
+                            <option *ngFor="let s of suppliers" [ngValue]="s.sid">{{s.supplierName}}</option>
+                          </select>
+                    </div>
+    
+                    <div class="form-group col-md-4">
+                        <label for="Currency"> Currency</label>
+                        <input type="text"  [(ngModel)]="newPO.currency" name="Currency" class="form-control" id="Currency" placeholder="Currency">
+                    </div>
+                    <!-- <div class="form-group col-md-4">
+                        <label for="Expirydate">Expiry Date</label>
+                        <input type="date" [(ngModel)]="newPO.expiryDate" name="Expirydate" class="form-control" id="Expirydate" placeholder="Expiry Date">
+                    </div> -->
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="SalesPersonName">Sales Person</label>
-                    <select class="form-control" name="color">
-                        <option value="">Choose a Sales Person</option>
-                        <option value="black">Sales Person 1</option>
-                        <option value="green">Sales Person 2</option>
-                        <option value="red">Sales Person 3</option>
-                        <option value="yellow">Sales Person4</option>
-                        <option value="white">Sales Person 5</option>
+    
+               
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="podescription">PO Description</label>
+                        <textarea class="form-control" [(ngModel)]="newPO.description" name="podescription" rows="2" id="podescription" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for=" SalesValue"> Sales Value</label>
+                        <input type="text" [(ngModel)]="newPO.salesValue" name="SalesValue" class="form-control" id=" SalesValue" placeholder=" Sales Value">
+                    </div>
+                    <!-- <div class="form-group col-md-4">
+                        <label for="Amount">Amount</label>
+                        <input type="text"  [(ngModel)]="newPO.amount" name="Amount"  class="form-control" id="Amount" placeholder="Amount">
+                    </div>
+    
+                    <div class="form-group col-md-4">
+                        <label for="Milestone">Milestone</label>
+                        <input type="text"  [(ngModel)]="newPO.milestone" name="Milestone"  class="form-control" id="Milestone" placeholder="Milestone">
+                    </div> -->
+                </div>
+    
+    
+    
+                <div class="form-row">
+                    <!-- <div class="form-group col-md-4">
+                        <label for="MilestoneCompDate">Milestone Comp.Date</label>
+                        <input type="date" [(ngModel)]="newPO.milestoneCompletionDate" name="MilestoneCompDate" class="form-control" id="MilestoneCompDate" placeholder="Milestone Comp.Date">
+                    </div> -->
+                 
+                    <div class="form-group col-md-4">
+                    <label for="Status">Status</label>
+                    <select id="Status" [(ngModel)]="newPO.Status" name="Status" class="form-control">
+                       <option selected>On Going</option>                    
+                        <option>PO Placed</option>
+                        <option>Cancelled</option>
+                        <option>Lost</option>
                     </select>
-
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="Currency"> Currency</label>
-                    <input type="text" class="form-control" id="Currency" placeholder="Currency">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="remarks">Remarks</label>
+                        <textarea class="form-control" rows="2" [(ngModel)]="newPO.remarks" name="remarks" id="remarks" placeholder="Remarks"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" rows="2" id="description" placeholder="Description"></textarea>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for=" SalesValue"> Sales Value</label>
-                    <input type="text" class="form-control" id=" SalesValue" placeholder=" Sales Value">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="Amount">Amount</label>
-                    <input type="text" class="form-control" id="Amount" placeholder="Amount">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button *ngIf='!isEditMode' type="submit" class="btn btn-primary">Confirm</button>
+                        <button *ngIf='isEditMode' type="submit" class="btn btn-primary">Update</button>
+    
+                    </div>
                 </div>
 
-                <div class="form-group col-md-4">
-                    <label for="Milestone">Milestone</label>
-                    <input type="text" class="form-control" id="Milestone" placeholder="Milestone">
-                </div>
             </div>
-
-
-
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="MilestoneCompDate">Milestone Comp.Date</label>
-                    <input type="date" class="form-control" id="MilestoneCompDate" placeholder="Milestone Comp.Date">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="Expirydate">Expiry Date</label>
-                    <input type="date" class="form-control" id="Expirydate" placeholder="Expiry Date">
-                </div>
-                <div class="form-group col-md-4">
-                <label for="Status">Status</label>
-                <select id="Status" class="form-control">
-                    <option selected>Choose...</option>                    
-                    <option>On Going</option>                    
-                    <option>PO</option>
-                    <option>Cancelled</option>
-                    <option>Lost</option>
-                </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="remarks">Remarks</label>
-                    <textarea class="form-control" rows="2" id="remarks" placeholder="Remarks"></textarea>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <button type="submit" class="btn btn-primary">Confirm</button>
-                </div>
-            </div>
+           
 
         </form>
 

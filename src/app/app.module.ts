@@ -27,6 +27,21 @@ import { NewpurchaseorderComponent } from './purchaseorder/newpurchaseorder/newp
 import { InitialpolistComponent } from './purchaseorder/initialpolist/initialpolist.component';
 import { MakepaymentComponent } from './payments/makepayment/makepayment.component';
 import { ListpaymentComponent } from './payments/listpayment/listpayment.component';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { QuotationdetailsComponent } from './quotation/quotationdetails.component';
+import { NewsupplierComponent } from './supplier/newsupplier.component';
+import { ListsupplierComponent } from './supplier/listsupplier.component';
+import { SupplierdetailsComponent } from './supplier/supplierdetails.component';
+import { PurchaseorderdetailsComponent } from './purchaseorder/purchaseorderdetails/purchaseorderdetails.component';
+
+import { NewsalesmanComponent } from './salesman/newsalesman/newsalesman.component';
+import { ListsalesmanComponent } from './salesman/listsalesman/listsalesman.component';
+import { SalesmandetailsComponent } from './salesman/salesmandetails/salesmandetails.component';
+import { NewcustomerComponent } from './customer/newcustomer/newcustomer.component';
+import { ListcustomerComponent } from './customer/listcustomer/listcustomer.component';
+import { CustomerdetailsComponent } from './customer/customerdetails/customerdetails.component';
 
 @NgModule({
   declarations: [
@@ -44,28 +59,56 @@ import { ListpaymentComponent } from './payments/listpayment/listpayment.compone
     NewpurchaseorderComponent,
     InitialpolistComponent,
     MakepaymentComponent,
-    ListpaymentComponent
+    ListpaymentComponent,
+    QuotationdetailsComponent,
+    NewsupplierComponent,
+    ListsupplierComponent,
+    SupplierdetailsComponent,
+    PurchaseorderdetailsComponent,
+    NewsalesmanComponent,
+    ListsalesmanComponent,
+    SalesmandetailsComponent,
+    NewcustomerComponent,
+    ListcustomerComponent,
+    CustomerdetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     RouterModule.forRoot(
       [
         { path:'createquotation',component:CreatequotationComponent /* , canActivate: [AuthGuard] */ },
+        { path:'createquotation/:qid',component:CreatequotationComponent },
         { path:'listquotation',component:ListquotationComponent/*  , canActivate: [AuthGuard] */ },
         { path:'welcome',component:WelcomeComponent },
+        {path:'createsupplier',component:NewsupplierComponent},
+        { path:'createsupplier/:sid',component:NewsupplierComponent },
         { path:'listpo',component:PurchaseorderlistComponent },
         { path:'newpo/:id',component:NewpurchaseorderComponent },
         { path:'initialpolist',component:InitialpolistComponent },   
         { path:'makepayment/:id',component:MakepaymentComponent },   
-        { path:'listpayments',component:ListpaymentComponent },   
-        
+        { path:'listpayments',component:ListpaymentComponent },  
+        {path:'podetails/:id',component:PurchaseorderdetailsComponent},
+        { path:'listsupplier',component:ListsupplierComponent },  
+        { path:'supplierdetails/:sid',component:SupplierdetailsComponent},
+        { path:'quotationdetails/:qid',component:QuotationdetailsComponent },
+        { path:'createsalesman',component:NewsalesmanComponent },
+        { path:'createsalesman/:salesmanid',component:NewsalesmanComponent },
+        { path:'listsalesman',component:ListsalesmanComponent }, 
+        { path:'salesmandetails/:salesmanid',component:SalesmandetailsComponent },
+        { path:'createcustomer',component:NewcustomerComponent },
+        { path:'createcustomer/:customerid',component:NewcustomerComponent },
+        { path:'customerdetails/:customerid',component:CustomerdetailsComponent },
+        { path:'listcustomer',component:ListcustomerComponent }, 
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },
         { path:'',component:DashboardComponent,pathMatch:'full' },
         { path:'**',component:WelcomeComponent ,pathMatch:'full'}
+       
       ]
     )
   ],
