@@ -16,6 +16,7 @@ import { Salesman } from '../../_models/salesman';
 export class PurchaseorderdetailsComponent implements OnInit {
   //  isEditable: Boolean = true;
   isLoaded: Boolean = false;
+  isEditable: Boolean = false;
   confirmedPO: ConfirmedPurchaseOrder = new ConfirmedPurchaseOrder();
   pid: string = "";
 
@@ -87,6 +88,10 @@ export class PurchaseorderdetailsComponent implements OnInit {
                         if (obj.sid != undefined && obj.sid.endsWith(this.confirmedPO.purchaseorder.supplierId)) {
                           obj.sid = obj.sid.replace("/", "");
                           this.confirmedPO.supplier = obj;
+                          let status= this.confirmedPO.purchaseorder.Status.toLocaleLowerCase();
+                          if(status =="on going"){
+                            this.isEditable=true;
+                          }
                           this.isLoaded = true;
                         }
                       });

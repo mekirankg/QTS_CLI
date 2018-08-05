@@ -4,7 +4,7 @@
     </div> -->
     <!-- Page Content Holder -->
     <div id="content" class="listcontent listcontenttable">
-        <h2>Ongoing Purchase Orders</h2>
+        <h2>Make Payment for POs </h2>
         <div style="height:20px"></div>
         <div>
                 <div class="loader" *ngIf='!confirmedpurchaseorders.length' ></div>
@@ -28,8 +28,11 @@
                     <tr *ngFor='let confirmedPO of confirmedpurchaseorders'>
                        <td>
                        <button type="button" class="btn btn-link">
-                            <a [routerLink]="['/podetails', confirmedPO.purchaseorder.pid]">{{ confirmedPO.quotationList.customer.customerName }}</a>
+                            <a [routerLink]="['/pomakepayment', confirmedPO.purchaseorder.pid]">{{ confirmedPO.quotationList.customer.customerName }}</a>
                         </button>
+                        <button type="button" style="float:right" class="btn btn-primary">
+                                <a [routerLink]="['/pomakepayment', confirmedPO.purchaseorder.pid]">Make Payment</a>
+                            </button>
                         </td>
                         <td>{{ confirmedPO.supplier.supplierName}}
 

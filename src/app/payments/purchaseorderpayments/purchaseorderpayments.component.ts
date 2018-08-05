@@ -7,13 +7,12 @@ import { QStatus } from '../../_helpers/Enums';
 import { Supplier } from '../../_models/supplier';
 import { Customer } from '../../_models/customer';
 import { Salesman } from '../../_models/salesman';
-
 @Component({
-  selector: 'app-purchaseorderlist',
-  templateUrl: './purchaseorderlist.component.html',
-  styleUrls: ['./purchaseorderlist.component.css']
+  selector: 'app-purchaseorderpayments',
+  templateUrl: './purchaseorderpayments.component.html',
+  styleUrls: ['./purchaseorderpayments.component.css']
 })
-export class PurchaseorderlistComponent implements OnInit {
+export class PurchaseorderpaymentsComponent implements OnInit {
   purchaseorders: PurchaseOrder[] = [];
   confirmedpurchaseorders: ConfirmedPurchaseOrder[] = [];
   quotationList: Quotation[] = [];
@@ -74,8 +73,8 @@ export class PurchaseorderlistComponent implements OnInit {
                 let confirmedPO: ConfirmedPurchaseOrder = new ConfirmedPurchaseOrder();
 
                 let po: PurchaseOrder = JSON.parse(element);
-                confirmedPO.purchaseorder = po;
-                if (po.Status.toLocaleLowerCase() != "closed") {
+                if (po.Status.toLocaleLowerCase() == "po placed") {
+                  confirmedPO.purchaseorder = po;
                   let supplier = this.suppliers.find(s => s.sid.endsWith(po.supplierId));
 
                   if (supplier == undefined) {

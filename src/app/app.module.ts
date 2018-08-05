@@ -42,6 +42,8 @@ import { SalesmandetailsComponent } from './salesman/salesmandetails/salesmandet
 import { NewcustomerComponent } from './customer/newcustomer/newcustomer.component';
 import { ListcustomerComponent } from './customer/listcustomer/listcustomer.component';
 import { CustomerdetailsComponent } from './customer/customerdetails/customerdetails.component';
+import { PurchaseorderpaymentsComponent } from './payments/purchaseorderpayments/purchaseorderpayments.component';
+import { PurchaseordermakepaymentComponent } from './payments/purchaseordermakepayment/purchaseordermakepayment.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { CustomerdetailsComponent } from './customer/customerdetails/customerdet
     SalesmandetailsComponent,
     NewcustomerComponent,
     ListcustomerComponent,
-    CustomerdetailsComponent
+    CustomerdetailsComponent,
+    PurchaseorderpaymentsComponent,
+    PurchaseordermakepaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -86,12 +90,14 @@ import { CustomerdetailsComponent } from './customer/customerdetails/customerdet
         { path:'welcome',component:WelcomeComponent },
         {path:'createsupplier',component:NewsupplierComponent},
         { path:'createsupplier/:sid',component:NewsupplierComponent },
-        { path:'listpo',component:PurchaseorderlistComponent },
+        { path:'listpo',component:PurchaseorderlistComponent },    
+        { path:'popaymentlist',component:PurchaseorderpaymentsComponent },    
         { path:'newpo/:id',component:NewpurchaseorderComponent },
         { path:'initialpolist',component:InitialpolistComponent },   
         { path:'makepayment/:id',component:MakepaymentComponent },   
         { path:'listpayments',component:ListpaymentComponent },  
-        {path:'podetails/:id',component:PurchaseorderdetailsComponent},
+        {path:'podetails/:id',component:PurchaseorderdetailsComponent},        
+        {path:'pomakepayment/:id',component:PurchaseordermakepaymentComponent},
         { path:'listsupplier',component:ListsupplierComponent },  
         { path:'supplierdetails/:sid',component:SupplierdetailsComponent},
         { path:'quotationdetails/:qid',component:QuotationdetailsComponent },
