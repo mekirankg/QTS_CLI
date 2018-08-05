@@ -11,7 +11,7 @@
                         <h2>Purchase Order Details</h2>
                     </div>
 
-                    <div *ngIf='isLoaded' style="float:left;margin-left: 70%;margin-top: -5%">
+                    <div *ngIf='isLoaded && isEditable' style="float:left;margin-left: 70%;margin-top: -5%">
                         <button type="button" class="btn btn-primary">
                             <a [routerLink]="['/newpo', confirmedPO.purchaseorder.pid]">Edit</a>
                         </button>
@@ -127,6 +127,14 @@
                     </div>
                 </div>
             </div>
+            <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <!--   <button type="submit" class="btn btn-primary">Create</button> -->
+                   <p *ngIf='!isEditable && isLoaded' style="color:purple" >
+    Note:Editing is not allowed for POs with status PO Placed.You can add payments for this PO from payments tab.
+                   </p>
+                    </div>
+                </div>
         </form>
     </div>
 </div>

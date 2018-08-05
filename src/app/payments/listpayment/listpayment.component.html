@@ -7,34 +7,28 @@
       <h2>Payments Till Date</h2>
       <div style="height:20px"></div>
       <div>
-          <table class="table table-hover table-responsive table-bordered" *ngIf='payments && payments.length'>
+          <table class="table table-hover table-responsive table-bordered" *ngIf='paymentList && paymentList.length'>
               <thead class="thead-dark">
                   <tr>
-                      <th>Payment ID</th>
-                      <th>Quotation ID</th>
-                      <th>Quotation Reference</th>
-                      <th>Payment type</th>
-                      <th>Sales Value</th>                      
+                        <th>PO Id</th>
+                      <th>Payment Date</th>                      
                       <th>Payment Amount</th>
-                      <th>Remarks</th>
+                      <th>Total PO Payment %</th> 
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor='let payment of payments'>
+                  <tr *ngFor='let payment of paymentList'>
                       <td>
                           <div style="min-width:209px">
                               <button type="button" class="btn btn-link">
-                                  <a [routerLink]="['/quotationdetails', payment.Id]">{{ payment.Id}}</a>
+                                  <a [routerLink]="['/podetails', payment.poId]">{{ payment.poId}}</a>
                               </button>
                               
                           </div>
                       </td>
-                      <td>{{ payment.QuotationId}}</td>
-                      <td>{{ payment.QuotationReference}}</td> 
-                      <td>{{ payment.Paymenttype }}</td>
-                      <td>{{ payment.SalesValue }}</td>                     
-                      <td>{{ payment.PaymentAmount }}</td>
-                      <td>{{ payment.remarks }}</td>
+                      <td>{{ payment.paymentDate}}</td>
+                      <td>{{ payment.paymentAmount }}</td>
+                      <td>{{ payment.paymentPercentage }}</td>  
                   </tr>
               </tbody>
           </table>

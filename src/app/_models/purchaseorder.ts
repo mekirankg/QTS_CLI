@@ -15,7 +15,7 @@ export class PurchaseOrder {
     Status:string;
     remarks:string;
     poRef:string;
-    amountPaid:string="0";
+    paymentPercentage:Number=0;
 }
 
 export class ConfirmedPurchaseOrder {
