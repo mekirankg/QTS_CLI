@@ -39,6 +39,9 @@ export class NewcustomerComponent implements OnInit {
 
   ngOnInit() {
   }
+  cancel(){
+    this.router.navigate(['/listcustomer']);
+  }
   create() {
 
     if (this.isEditMode) {
