@@ -1,4 +1,4 @@
-<nav id="sidebar" class="sidebarstyle">
+<nav id="sidebar" *ngIf="isLoggedIn$ | async as isLoggedIn" class="sidebarstyle">
 
     <ul class="list-unstyled components">
         <li class="active">

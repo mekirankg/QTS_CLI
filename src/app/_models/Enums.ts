@@ -15,3 +15,12 @@ enum QStatus {
     Cancelled,
     Lost
   }
+
+enum Users {
+    SuperAdmin = 1,
+    CourtyManager = 2,
+    RegionalManager = 3,
+    Salesman = 4,
+    Accountant = 5,
+    LogisticsManager = 6
+}
