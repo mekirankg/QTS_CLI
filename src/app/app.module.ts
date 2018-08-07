@@ -45,6 +45,9 @@ import { CustomerdetailsComponent } from './customer/customerdetails/customerdet
 import { PurchaseorderpaymentsComponent } from './payments/purchaseorderpayments/purchaseorderpayments.component';
 import { PurchaseordermakepaymentComponent } from './payments/purchaseordermakepayment/purchaseordermakepayment.component';
 
+// validation import class
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +82,7 @@ import { PurchaseordermakepaymentComponent } from './payments/purchaseordermakep
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

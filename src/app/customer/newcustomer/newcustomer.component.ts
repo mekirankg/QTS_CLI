@@ -3,6 +3,7 @@ import { Common } from '../../_helpers/common';
 import { Customer } from '../../_models/customer';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-newcustomer',
@@ -10,10 +11,15 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./newcustomer.component.css']
 })
 export class NewcustomerComponent implements OnInit {
+
+
+
   newCustomer: Customer = new Customer();
   sIdEditMode: string = "";
   isEditMode: Boolean = false;
-  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
+  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
+
+    this.customerCreateForm();
     let id = this.route.snapshot.paramMap.get('customerid');
     if (id != undefined) {
       this.sIdEditMode = id;
@@ -39,7 +45,7 @@ export class NewcustomerComponent implements OnInit {
 
   ngOnInit() {
   }
-  cancel(){
+  cancel() {
     this.router.navigate(['/listcustomer']);
   }
   create() {
@@ -70,5 +76,24 @@ export class NewcustomerComponent implements OnInit {
 
       }
     }
+  }
+  // VALIDATION CODES
+  customerForm = new FormGroup({
+    custName: new FormControl(),
+    contactPerson: new FormControl(),
+    contactNumber: new FormControl(),
+    email: new FormControl(),
+    remarks :new FormControl()
+  });
+
+  customerCreateForm() {
+    this.customerForm = this.fb.group({
+
+      custName: ['', Validators.required],
+      contactPerson: [null, Validators.required],
+      contactNumber: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
+      remarks :['', Validators.required]
+    });
   }
 }

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Common } from '../_helpers/common';
 import { Salesman } from '../_models/salesman';
 import { Customer } from '../_models/customer';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
 
@@ -13,6 +14,9 @@ import { Customer } from '../_models/customer';
   styleUrls: ['./createquotation.component.css']
 })
 export class CreatequotationComponent implements OnInit {
+
+
+
   shouldShowContent: boolean = false;
   newQuotation: Quotation = new Quotation();
   dbOperator: any;
@@ -22,7 +26,8 @@ export class CreatequotationComponent implements OnInit {
   customerList: Customer[] = [];
   selectedsalesman: string = "";
   selectedCustomer: Customer = new Customer();
-  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
+  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
+
     this.dbOperator = db;
     let id = this.route.snapshot.paramMap.get('qid');
 
@@ -150,5 +155,8 @@ export class CreatequotationComponent implements OnInit {
   cancel() {
     this.router.navigate(['/listquotation']);
   }
+
+
+
 
 }

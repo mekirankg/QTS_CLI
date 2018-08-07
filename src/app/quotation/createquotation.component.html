@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="loader" *ngIf='!shouldShowContent'></div>
-        <form name="form"  #f="ngForm" *ngIf='shouldShowContent' novalidate>
+        <form name="form" [formGroup]="angularForm" #f="ngForm" *ngIf='shouldShowContent' novalidate>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="CustomerName">Customer Name</label>
@@ -17,6 +17,7 @@
                     <select [(ngModel)]="selectedCustomer" id="CustomerName" name="CustomerName" class="form-control">
                         <option value="" disabled selected>--Choose--</option>
                         <option *ngFor="let s of customerList" [ngValue]="s">{{s.customerName}}</option>
+
                     </select>
 
                     <!-- <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName">
@@ -44,6 +45,7 @@
                     <label for="quotationreference">Quotation Reference</label>
                     <input type="text" name="quotationreference" readonly class="form-control" [(ngModel)]="newQuotation.quotationReference"
                         id="quotationreference" placeholder="Quotation Reference">
+
                 </div>
                 <div class="form-group col-md-4">
                     <label for="SalesmanName">Salesman Name</label>
@@ -64,6 +66,7 @@
                     <label for="description">Material Description</label>
                     <textarea name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description"
                         placeholder="Description"></textarea>
+
                 </div>
             </div>
 
@@ -99,9 +102,9 @@
 
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <button *ngIf='!isEditMode' type="submit" (click)="register()" class="btn btn-primary">Create</button>
+                    <button *ngIf='!isEditMode' type="submit" [disabled]="angularForm.pristine || angularForm.invalid" (click)="register()" class="btn btn-primary">Create</button>
                     <button *ngIf='isEditMode' type="submit" (click)="register()" class="btn btn-primary">Update</button>
-                    <button  type="reset" (click)="cancel()" class="btn btn-primary">Cancel</button>
+                    <button type="reset" (click)="cancel()" class="btn btn-primary">Cancel</button>
 
 
                 </div>
