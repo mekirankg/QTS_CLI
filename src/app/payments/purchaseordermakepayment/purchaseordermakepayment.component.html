@@ -4,7 +4,7 @@
     </div> -->
     <!-- Page Content Holder -->
     <div id="content" class="createcontent">
-        <form (ngSubmit)="createPO()" #f="ngForm" novalidate>
+        <form  #f="ngForm" novalidate>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <h2 *ngIf='!isEditMode'>Convert to PO</h2>
@@ -163,8 +163,9 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <button *ngIf='!isEditMode' type="submit" class="btn btn-primary">Confirm</button>
-                        <button *ngIf='isEditMode' type="submit" class="btn btn-primary">Update</button>
+                        <button *ngIf='!isEditMode' (click)="createPO()" type="submit" class="btn btn-primary">Confirm</button>
+                        <button *ngIf='isEditMode' (click)="createPO()" type="submit" class="btn btn-primary">Update</button>
+                        <button  type="reset" (click)="cancel()" class="btn btn-primary">Cancel</button>
     
                     </div>
                 </div>

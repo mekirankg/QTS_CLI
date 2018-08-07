@@ -192,4 +192,8 @@ export class PurchaseordermakepaymentComponent implements OnInit {
 
     }
   }
+  cancel()
+  {
+    this.router.navigate(['/popaymentlist']);
+  }
 }
