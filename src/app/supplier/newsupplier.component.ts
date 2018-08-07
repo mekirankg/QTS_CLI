@@ -41,6 +41,9 @@ export class NewsupplierComponent implements OnInit {
 
   ngOnInit() {
   }
+  cancel(){
+    this.router.navigate(['/listsupplier'])
+  }
   register() {
 
     if (this.isEditMode) {

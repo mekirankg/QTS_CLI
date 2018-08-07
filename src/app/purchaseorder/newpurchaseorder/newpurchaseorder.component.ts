@@ -90,9 +90,9 @@ export class NewpurchaseorderComponent implements OnInit {
 
                         let salesMan = this.salesmanList.filter(s => s.salesmanid.endsWith(this.newQuotation.salesmanId));
                         if (salesMan.length > 0) {
-                          this.selectedSalesMan = salesMan[0];alert
+                          this.selectedSalesMan = salesMan[0]; alert
                         }
-                    
+
                         let custList = this.customerList.filter(item => item.customerId === this.newQuotation.customerId);
                         if (custList.length > 0) {
                           this.selectedCustomer = custList[0];
@@ -154,7 +154,7 @@ export class NewpurchaseorderComponent implements OnInit {
       this.newPO.qid = this.id;
       this.newPO.supplierId = this.selectedsupplier;
       let newPOJson = JSON.stringify(this.newPO);
-      this.newQuotation.status="PO";
+      this.newQuotation.status = "PO";
       let quotation = JSON.stringify(this.newQuotation)
       console.log(newPOJson);
       try {
@@ -181,6 +181,14 @@ export class NewpurchaseorderComponent implements OnInit {
         alert("Error in Updating Quotation");
       }
 
+    }
+  }
+  cancel() {
+    if (!this.isEditMode) {
+      this.router.navigate(['/listquotation']);
+    }
+    else {
+      this.router.navigate(['/listpo']);
     }
   }
 }

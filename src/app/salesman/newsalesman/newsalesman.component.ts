@@ -39,6 +39,10 @@ export class NewsalesmanComponent implements OnInit {
 
   ngOnInit() {
   }
+  cancel() {
+
+    this.router.navigate(['/listsalesman'])
+  }
   create() {
 
     if (this.isEditMode) {
