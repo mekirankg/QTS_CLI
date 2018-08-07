@@ -4,18 +4,18 @@
     </div> -->
     <!-- Page Content Holder -->
     <div id="content" class="createcontent">
-        <form (ngSubmit)="createPO()" #f="ngForm" novalidate>
+        <form  #f="ngForm" novalidate>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <h2 *ngIf='!isEditMode'>Convert to PO</h2>
                     <h2 *ngIf='isEditMode'>Edit PO</h2>
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="loader" *ngIf='!isLoaded' ></div>
+                    <div class="loader" *ngIf='!isLoaded'></div>
                 </div>
             </div>
-          
-            <div *ngIf='isLoaded' >
+
+            <div *ngIf='isLoaded'>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
@@ -28,33 +28,34 @@
                         <input readonly type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="selectedCustomer.customerContactNumber"
                             placeholder="Contact">
                     </div>
-                    
+
                     <div class="form-group col-md-4">
                         <label for="quotationreference">Purchase Order Reference</label>
-                        <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="newPO.poRef"
-                            id="quotationreference" placeholder="Quotation Reference">
+                        <input readonly type="text" name="quotationreference" class="form-control" [(ngModel)]="newPO.poRef" id="quotationreference"
+                            placeholder="Quotation Reference">
                     </div>
-                   
+
                 </div>
-    
+
                 <div class="form-row">
-                    
+
                     <div class="form-group col-md-4">
                         <label for="SalesmanName">Salesman Name</label>
-                          <input type="text" name="SalesmanName" readonly [(ngModel)]="selectedSalesMan.salesmanName" class="form-control" id="SalesmanName" placeholder="Salesman Name">
+                        <input type="text" name="SalesmanName" readonly [(ngModel)]="selectedSalesMan.salesmanName" class="form-control" id="SalesmanName"
+                            placeholder="Salesman Name">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="TotalValue">Total Value</label>
                         <input readonly type="text" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue"
                             placeholder="Quotation total Value">
                     </div>
-                   <!--  <div class="form-group col-md-4">
+                    <!--  <div class="form-group col-md-4">
                         <label for="TotalValueSplit">Value Split</label>
                         <input readonly type="text" name="TotalValueSplit" [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit"
                             placeholder="Quotation Value Split">
                     </div> -->
                 </div>
-    
+
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="description">Material Description</label>
@@ -62,39 +63,39 @@
                             placeholder="Description"></textarea>
                     </div>
                 </div>
-    
+
                 <div class="form-row">
                     <!-- <div class="form-group col-md-4">
                         <label for="inputName">Quotation Id</label>
                         <input type="text" class="form-control" id="Qid" placeholder={{id}} readonly>
                     </div> -->
-                   
+
                     <div class="form-group col-md-4">
                         <label for="Supplier">Supplier</label>
-                                        <!--   <select id="Supplier" name="Supplier" class="form-control">
+                        <!--   <select id="Supplier" name="Supplier" class="form-control">
                             <option selected>Choose...</option>                    
                             <option>Supplier1</option>                    
                             <option>Supplier2</option>
                             <option>Supplier3</option>
                             <option>Supplier3</option>
                         </select> -->
-                        <select [(ngModel)]="selectedsupplier"  id="Supplier" name="Supplier" class="form-control" >
+                        <select [(ngModel)]="selectedsupplier" id="Supplier" name="Supplier" class="form-control">
                             <!-- <option selected>Choose...</option>   -->
                             <option *ngFor="let s of suppliers" [ngValue]="s.sid">{{s.supplierName}}</option>
-                          </select>
+                        </select>
                     </div>
-    
+
                     <div class="form-group col-md-4">
                         <label for="Currency"> Currency</label>
-                        <input type="text"  [(ngModel)]="newPO.currency" name="Currency" class="form-control" id="Currency" placeholder="Currency">
+                        <input type="text" [(ngModel)]="newPO.currency" name="Currency" class="form-control" id="Currency" placeholder="Currency">
                     </div>
                     <!-- <div class="form-group col-md-4">
                         <label for="Expirydate">Expiry Date</label>
                         <input type="date" [(ngModel)]="newPO.expiryDate" name="Expirydate" class="form-control" id="Expirydate" placeholder="Expiry Date">
                     </div> -->
                 </div>
-    
-               
+
+
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="podescription">PO Description</label>
@@ -116,23 +117,23 @@
                         <input type="text"  [(ngModel)]="newPO.milestone" name="Milestone"  class="form-control" id="Milestone" placeholder="Milestone">
                     </div> -->
                 </div>
-    
-    
-    
+
+
+
                 <div class="form-row">
                     <!-- <div class="form-group col-md-4">
                         <label for="MilestoneCompDate">Milestone Comp.Date</label>
                         <input type="date" [(ngModel)]="newPO.milestoneCompletionDate" name="MilestoneCompDate" class="form-control" id="MilestoneCompDate" placeholder="Milestone Comp.Date">
                     </div> -->
-                 
+
                     <div class="form-group col-md-4">
-                    <label for="Status">Status</label>
-                    <select id="Status" [(ngModel)]="newPO.Status" name="Status" class="form-control">
-                       <option selected>On Going</option>                    
-                        <option>PO Placed</option>
-                        <option>Cancelled</option>
-                        <option>Lost</option>
-                    </select>
+                        <label for="Status">Status</label>
+                        <select id="Status" [(ngModel)]="newPO.Status" name="Status" class="form-control">
+                            <option selected>On Going</option>
+                            <option>PO Placed</option>
+                            <option>Cancelled</option>
+                            <option>Lost</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
@@ -143,23 +144,24 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <button *ngIf='!isEditMode' type="submit" class="btn btn-primary">Confirm</button>
-                        <button *ngIf='isEditMode' type="submit" class="btn btn-primary">Update</button>
-    
+                        <button *ngIf='!isEditMode' type="submit" (click)="createPO()" class="btn btn-primary">Confirm</button>
+                        <button *ngIf='isEditMode' type="submit" (click)="createPO()" class="btn btn-primary">Update</button>
+                        <button *ngIf='!isEditMode' type="reset" (click)="cancel()" class="btn btn-primary">Cancel</button>
+                        <button *ngIf='isEditMode' type="reset" (click)="cancel()" class="btn btn-primary">Cancel</button>
                     </div>
                 </div>
 
             </div>
-           
+
 
         </form>
 
     </div>
 </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
         });
-    </script>
+    });
+</script>

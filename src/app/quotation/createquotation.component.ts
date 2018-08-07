@@ -99,9 +99,9 @@ export class CreatequotationComponent implements OnInit {
   }
   register() {
     this.newQuotation.salesmanId = this.selectedsalesman;
-    this.newQuotation.customerId=this.selectedCustomer.customerId;
+    this.newQuotation.customerId = this.selectedCustomer.customerId;
     if (this.isEditMode) {
-      var updates = {};     
+      var updates = {};
       updates['/quotations/' + this.newQuotation.qid] = JSON.stringify(this.newQuotation);
       try {
         let up = this.db.database.ref().update(updates);
@@ -123,7 +123,7 @@ export class CreatequotationComponent implements OnInit {
       let uniqueId = "/Q" + Common.newGuid();
       console.log("****" + uniqueId);
       this.newQuotation.qid = uniqueId;
-     
+
       let newQuotationJson = JSON.stringify(this.newQuotation);
       console.log(newQuotationJson);
       try {
@@ -146,6 +146,9 @@ export class CreatequotationComponent implements OnInit {
     if (day.length < 2) day = '0' + day;
 
     return [year, month, day].join('-');
+  }
+  cancel() {
+    this.router.navigate(['/listquotation']);
   }
 
 }
