@@ -3,6 +3,8 @@ import { Salesman } from '../../_models/salesman';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Common } from '../../_helpers/common';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { formControlBinding } from '../../../../node_modules/@angular/forms/src/directives/ng_model';
 
 @Component({
   selector: 'app-newsalesman',
@@ -13,7 +15,8 @@ export class NewsalesmanComponent implements OnInit {
   newSalesman: Salesman = new Salesman();
   sIdEditMode: string = "";
   isEditMode: Boolean = false;
-  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
+  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
+    this.salesmanCreateForm();
     let id = this.route.snapshot.paramMap.get('salesmanid');
     if (id != undefined) {
       this.sIdEditMode = id;
@@ -71,5 +74,29 @@ export class NewsalesmanComponent implements OnInit {
 
       }
     }
+  }
+  //validation
+  salesmanForm = new FormGroup(
+    {
+      salesmanName: new FormControl(),
+      salesmanContact: new FormControl(),
+      salesmanContactNumber: new FormControl(),
+      salesmanEmail: new FormControl(),
+      remarks: new FormControl()
+    }
+  );
+
+
+  salesmanCreateForm() {
+    this.salesmanForm = this.fb.group(
+      {
+
+        salesmanName: [null, Validators.required],
+        salesmanContact: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')])],
+        salesmanEmail: [null, Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
+        remarks: [null,Validators.maxLength(200)]
+
+      }
+    );
   }
 }

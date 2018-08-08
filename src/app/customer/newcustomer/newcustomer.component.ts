@@ -11,9 +11,6 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./newcustomer.component.css']
 })
 export class NewcustomerComponent implements OnInit {
-
-
-
   newCustomer: Customer = new Customer();
   sIdEditMode: string = "";
   isEditMode: Boolean = false;
@@ -83,17 +80,16 @@ export class NewcustomerComponent implements OnInit {
     contactPerson: new FormControl(),
     contactNumber: new FormControl(),
     email: new FormControl(),
-    remarks :new FormControl()
+    remarks: new FormControl()
   });
 
   customerCreateForm() {
     this.customerForm = this.fb.group({
-
       custName: ['', Validators.required],
       contactPerson: [null, Validators.required],
-      contactNumber: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      remarks :['', Validators.required]
+      contactNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.pattern('[0-9]*')])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
+      remarks: ['', Validators.maxLength(200)]
     });
   }
 }
