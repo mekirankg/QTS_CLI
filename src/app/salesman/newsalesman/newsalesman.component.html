@@ -16,9 +16,9 @@
                     <label for="inputName">Salesman Name</label>
                     <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newSalesman.salesmanName"
                         formControlName="salesmanName">
-                    <div *ngIf="salesmanForm.controls['salesmanName'].invalid && (salesmanForm.controls['salesmanName'].dirty || salesmanForm.controls['salesmanName'].touched)"
+                    <div *ngIf="salesmanName.invalid && (salesmanName.dirty || salesmanName.touched)"
                         class="alert-danger">
-                        <div *ngIf="salesmanForm.controls['salesmanName'].errors.required">
+                        <div *ngIf="salesmanName.errors.required">
                             Name is Required
                         </div>
                     </div>
@@ -27,15 +27,15 @@
                     <label for="keycontact">Salesman Contact </label>
                     <input type="text" class="form-control" name="keycontact" id="keycontact" [(ngModel)]="newSalesman.salesmanContact" placeholder="Salesman contact"
                         formControlName="salesmanContact" maxlength="10" >
-                    <div *ngIf="salesmanForm.controls['salesmanContact'].invalid && (salesmanForm.controls['salesmanContact'].dirty || salesmanForm.controls['salesmanContact'].touched)"
+                    <div *ngIf="salesmanContact.invalid && (salesmanContact.dirty || salesmanContact.touched)"
                         class="alert-danger">
-                        <div *ngIf="salesmanForm.controls['salesmanContact'].errors.required">
+                        <div *ngIf="salesmanContact.errors.required">
                             Salesman Contact is Required
                         </div>
-                        <div *ngIf="salesmanForm.controls['salesmanContact'].errors.pattern">
+                        <div *ngIf="salesmanContact.errors.pattern">
                             Please enter valid input
                         </div>
-                        <div *ngIf="salesmanForm.controls['salesmanContact'].errors.minlength">
+                        <div *ngIf="salesmanContact.errors.minlength">
                             Please enter 10 digit number
                         </div>
                         
@@ -46,12 +46,12 @@
                     <label for="contactNumber">Salesman Email</label>
                     <input type="text" name="contactNumber" [(ngModel)]="newSalesman.salesmanEmail" class="form-control" id="contactNumber" placeholder="Salesman Email"
                         formControlName="salesmanEmail">
-                    <div *ngIf="salesmanForm.controls['salesmanEmail'].invalid && (salesmanForm.controls['salesmanEmail'].dirty || salesmanForm.controls['salesmanEmail'].touched)"
+                    <div *ngIf="salesmanEmail.invalid && (salesmanEmail.dirty || salesmanEmail.touched)"
                         class="alert-danger">
-                        <div *ngIf="salesmanForm.controls['salesmanEmail'].errors.required">
+                        <div *ngIf="salesmanEmail.errors.required">
                             Salesman Email is required
                         </div>
-                        <div *ngIf="salesmanForm.controls['salesmanEmail'].errors.pattern">
+                        <div *ngIf="salesmanEmail.errors.pattern">
                             Please enter valid email
                         </div>
                     </div>
@@ -63,9 +63,9 @@
                     <label for="Remarks">Remarks</label>
                     <textarea [(ngModel)]="newSalesman.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"
                         formControlName="remarks" maxlength="200"></textarea>
-                    <div *ngIf="salesmanForm.controls['remarks'].invalid && (salesmanForm.controls['remarks'].dirty || salesmanForm.controls['remarks'].touched)"
+                    <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched)"
                         class="alert-danger">
-                        <div *ngIf="salesmanForm.controls['remarks'].errors.maxlength ">
+                        <div *ngIf="remarks.errors.maxlength ">
                             Text maximum is 200
                         </div>
                     </div>
@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <button *ngIf='!isEditMode' (click)="create()"  type="submit" [disabled]="salesmanForm.pristine || salesmanForm.invalid" class="btn btn-primary">Add Salesman</button>
-                    <button *ngIf='isEditMode' (click)="create()" type="submit" [disabled]="salesmanForm.pristine || salesmanForm.invalid" class="btn btn-primary">Update </button>
+                    <button *ngIf='isEditMode' (click)="create()" type="submit" [disabled]="salesmanForm.invalid" class="btn btn-primary">Update </button>
                     <button (click)="cancel()" class="btn btn-primary">Cancel</button>
                 </div>
             </div>

@@ -83,6 +83,7 @@ export class NewsalesmanComponent implements OnInit {
       salesmanContactNumber: new FormControl(),
       salesmanEmail: new FormControl(),
       remarks: new FormControl()
+
     }
   );
 
@@ -97,6 +98,14 @@ export class NewsalesmanComponent implements OnInit {
         remarks: [null,Validators.maxLength(200)]
 
       }
+      
     );
+
   }
+  
+  get salesmanName() { return this.salesmanForm.get('salesmanName'); }
+  get salesmanContact() { return this.salesmanForm.get('salesmanContact'); }
+  get salesmanEmail() { return this.salesmanForm.get('salesmanEmail'); }
+  get remarks() { return this.salesmanForm.get('remarks'); }
+
 }

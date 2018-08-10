@@ -17,22 +17,39 @@
             <th>Ref Number</th>
             <th>Fright Forwarder</th>
             <th>Remarks</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let supplier of suppliers'>
+          <ng-container *ngFor="let supplier of suppliers">
+            <tr *ngIf="supplier.isDeleted == false">
 
-            <td>
-              <button type="button" class="btn btn-link">
-                <a [routerLink]="['/supplierdetails', supplier.sid]">{{ supplier.supplierName }}</a>
-              </button>
-            </td>
-            <td>{{ supplier.contactName}}</td>
-            <td>{{ supplier.contactNum }}</td>
-            <td>{{ supplier.refNum }}</td>
-            <td>{{ supplier.freightforwarder }}</td>
-            <td>{{ supplier.remarks }}</td>
-          </tr>
+              <!-- *ngif="supplier.isDeleted == false" -->
+              <td>
+                <button type="button" class="btn btn-link">
+                  <a [routerLink]="['/supplierdetails', supplier.sid]">{{ supplier.supplierName }}</a>
+                </button>
+              </td>
+              <td>
+                <input type="hidden" [(ngModel)]="supplier.contactName">{{ supplier.contactName}}</td>
+              <td>
+                <input type="hidden" [(ngModel)]="supplier.contactNum">{{ supplier.contactNum }}</td>
+              <td>
+                <input type="hidden" [(ngModel)]="supplier.refNum">{{ supplier.refNum }}</td>
+              <td>
+                <input type="hidden" [(ngModel)]="supplier.freightforwarder">{{ supplier.freightforwarder }}</td>
+              <td>
+                <input type="hidden" [(ngModel)]="supplier.remarks">
+                <input type="hidden" [(ngModel)]="supplier.isDeleted"> {{ supplier.remarks }}</td>
+
+
+
+              <td>
+                <button class="btn btn-primary" (click)="delete(supplier.sid ,supplier)">Delete</button>
+              </td>
+
+            </tr>
+          </ng-container>
         </tbody>
 
       </table>

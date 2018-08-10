@@ -97,7 +97,7 @@
                 <div class="form-group col-md-12">
                     <button *ngIf='!isEditMode' (click)="register()" [disabled]="supplierForm.pristine || supplierForm.invalid" type="submit"
                         class="btn btn-primary">Add Supplier</button>
-                    <button *ngIf='isEditMode' (click)="register()" [disabled]="supplierForm.pristine || supplierForm.invalid" type="submit"
+                    <button *ngIf='isEditMode' (click)="register()" [disabled]="supplierForm.invalid" type="submit"
                         class="btn btn-primary">Update Supplier</button>
                     <button (click)="cancel()" class="btn btn-primary">Cancel</button>
                 </div>

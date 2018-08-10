@@ -62,10 +62,11 @@ export class NewsupplierComponent implements OnInit {
     else {
       let uniqueId = "/S" + Common.newGuid();
       this.newSupplier.sid = uniqueId;
+      this.newSupplier.isDeleted =false;
       let newSupplierJson = JSON.stringify(this.newSupplier);
       console.log(newSupplierJson);
       try {
-        this.db.database.ref('supplier').child(uniqueId).set(newSupplierJson);
+        this.db.database.ref('supplier').child(uniqueId ).set(newSupplierJson);
         alert("Supplier added successfully!!.");
         this.router.navigate(['/listsupplier']);
       }
@@ -94,7 +95,7 @@ export class NewsupplierComponent implements OnInit {
         supplierContactNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')])],
         supplierReference: [null, Validators.required],
         freightForwarder: [null, Validators.required],
-        remarks: ['',Validators.maxLength(10)]
+        remarks: ['',Validators.maxLength(200)]
       }
     );
   }

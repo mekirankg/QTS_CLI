@@ -89,7 +89,7 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <button *ngIf='!isEditMode' (click)="create()" type="submit" [disabled]="customerForm.pristine || customerForm.invalid" class="btn btn-primary">Add Customer</button>
-                    <button *ngIf='isEditMode' (click)="create()" type="submit" [disabled]="customerForm.pristine || customerForm.invalid" class="btn btn-primary">Update </button>
+                    <button *ngIf='isEditMode' (click)="create()" type="submit" [disabled]="customerForm.invalid" class="btn btn-primary">Update </button>
                     <button (click)="cancel()" class="btn btn-primary">Cancel</button>
 
                 </div>

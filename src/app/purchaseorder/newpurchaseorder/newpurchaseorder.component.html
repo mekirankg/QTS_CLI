@@ -79,9 +79,11 @@
                             <option>Supplier3</option>
                             <option>Supplier3</option>
                         </select> -->
-                        <select [(ngModel)]="selectedsupplier" id="Supplier" name="Supplier" class="form-control">
+                        <select  [(ngModel)]="selectedsupplier" id="Supplier" name="Supplier" class="form-control">
                             <!-- <option selected>Choose...</option>   -->
-                            <option *ngFor="let s of suppliers" [ngValue]="s.sid">{{s.supplierName}}</option>
+                            <ng-container *ngFor="let s of suppliers" >
+                            <option  *ngIf="s.isDeleted == false"  [ngValue]="s.sid">{{s.supplierName}}</option>
+                        </ng-container>
                         </select>
                     </div>
 
