@@ -16,3 +16,4 @@
 .listcontenttable{
     padding-top: 0px !important;
 }
+tr:nth-child(even) {background-color:lightblue}
