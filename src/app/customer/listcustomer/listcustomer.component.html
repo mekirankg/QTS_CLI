@@ -16,21 +16,28 @@
             <th>Contact Number</th>
             <th>Contact Email</th>
             <th>Remarks</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let customer of customerList'>
+          <ng-container *ngFor='let customer of customerList'>
+            <tr *ngIf="customer.isDeleted == false">
 
-            <td>
-              <button type="button" class="btn btn-link">
-                <a [routerLink]="['/customerdetails', customer.customerId]">{{ customer.customerName }}</a>
-              </button>
-            </td>
-            <td>{{ customer.customerContactName}}</td>
-            <td>{{ customer.customerContactNumber}}</td>
-            <td>{{ customer.customerContactEmail }}</td>
-            <td>{{ customer.customerRemarks }}</td>
-          </tr>
+              <td>
+                <button type="button" class="btn btn-link">
+                  <a [routerLink]="['/customerdetails', customer.customerId]">{{ customer.customerName }}</a>
+                </button>
+              </td>
+              <td>{{ customer.customerContactName}}</td>
+              <td>{{ customer.customerContactNumber}}</td>
+              <td>{{ customer.customerContactEmail }}</td>
+              <td class="dot" title="{{ customer.customerRemarks }}">{{ customer.customerRemarks }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="delete(customer.customerId ,customer)">Delete</button>
+
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
 
       </table>

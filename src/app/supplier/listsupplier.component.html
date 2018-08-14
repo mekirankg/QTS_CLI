@@ -31,18 +31,16 @@
                 </button>
               </td>
               <td>
-                <input type="hidden" [(ngModel)]="supplier.contactName">{{ supplier.contactName}}</td>
+                {{ supplier.contactName}}</td>
               <td>
-                <input type="hidden" [(ngModel)]="supplier.contactNum">{{ supplier.contactNum }}</td>
+                {{ supplier.contactNum }}</td>
               <td>
-                <input type="hidden" [(ngModel)]="supplier.refNum">{{ supplier.refNum }}</td>
+                {{ supplier.refNum }}</td>
               <td>
-                <input type="hidden" [(ngModel)]="supplier.freightforwarder">{{ supplier.freightforwarder }}</td>
-              <td>
-                <input type="hidden" [(ngModel)]="supplier.remarks">
-                <input type="hidden" [(ngModel)]="supplier.isDeleted"> {{ supplier.remarks }}</td>
+                {{ supplier.freightforwarder }}</td>
+              <td class="dot" title="{{supplier.remarks}}">
 
-
+                {{ supplier.remarks }}</td>
 
               <td>
                 <button class="btn btn-primary" (click)="delete(supplier.sid ,supplier)">Delete</button>

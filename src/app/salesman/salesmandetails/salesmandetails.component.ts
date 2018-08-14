@@ -41,5 +41,24 @@ export class SalesmandetailsComponent implements OnInit {
 
   ngOnInit() {
   }
+  delete(key, sale:Salesman)
+  {
+    this.db.database.ref(`salesman/${key}`).once("value", snapshot => {
+      let sid = snapshot.key;
+      if (snapshot.exists()) {
+        alert('Do you want to delete the record ?');
+        sale.isDeleted = true;
+        var updates = {};
+        updates['/salesman/' + sid] = JSON.stringify(sale);
+        try {
+          let up = this.db.database.ref().update(updates);
+          this.router.navigate(['/listsalesman']);
+        }
+        catch (ex) {
+          alert("Error in Deleting salesman");
+        }
+      }
+    })
+  }
 
 }

@@ -12,6 +12,8 @@
                         <button type="button" class="btn btn-primary">
                             <a [routerLink]="['/createsalesman', newSalesman.salesmanid]">Edit</a>
                         </button>
+                        <button class="btn btn-primary" (click)="delete(newSalesman.salesmanid ,newSalesman)">Delete</button>
+
                     </div>
                 </div>
             </div>

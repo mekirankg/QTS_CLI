@@ -62,6 +62,7 @@ export class NewcustomerComponent implements OnInit {
     else {
       let uniqueId = "/C" + Common.newGuid();
       this.newCustomer.customerId = uniqueId;
+      this.newCustomer.isDeleted = false;
       let newCustomerJson = JSON.stringify(this.newCustomer);
       console.log(newCustomerJson);
       try {
@@ -85,11 +86,17 @@ export class NewcustomerComponent implements OnInit {
 
   customerCreateForm() {
     this.customerForm = this.fb.group({
-      custName: ['', Validators.required],
-      contactPerson: [null, Validators.required],
+      custName: [null, Validators.required],
+      contactPerson: [null, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z \-\']+')])],
       contactNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.pattern('[0-9]*')])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
-      remarks: ['', Validators.maxLength(200)]
+      email: [null, Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
+      remarks: [null, Validators.maxLength(200)]
     });
+
   }
+  get custName() { return this.customerForm.get('custName'); }
+  get contactPerson() { return this.customerForm.get('contactPerson'); }
+  get contactNumber() { return this.customerForm.get('contactNumber'); }
+  get email() { return this.customerForm.get('email'); }
+  get remarks() { return this.customerForm.get('remarks'); }
 }

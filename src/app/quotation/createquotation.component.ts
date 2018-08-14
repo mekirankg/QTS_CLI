@@ -28,6 +28,7 @@ export class CreatequotationComponent implements OnInit {
   selectedCustomer: Customer = new Customer();
   constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
 
+    this.quotationCreateForm();
     this.dbOperator = db;
     let id = this.route.snapshot.paramMap.get('qid');
 
@@ -156,6 +157,27 @@ export class CreatequotationComponent implements OnInit {
     this.router.navigate(['/listquotation']);
   }
 
+  //validation codes
+
+  quotationForm = new FormGroup(
+    {
+      customerName: new FormControl(),
+      SalesmanName: new FormControl(),
+      totalValue: new FormControl(),
+      materialDesc: new FormControl(),
+      status: new FormControl(),
+      remarks: new FormControl()
+    }
+  );
+  quotationCreateForm() {
+    this.quotationForm = this.fb.group(
+      {
+        customerName: [null, Validators.required]
+      }
+    );
+
+  }
+  get customerName() { return this.quotationForm.get('customerName'); }
 
 
 

@@ -11,7 +11,7 @@ import { Common } from '../_helpers/common';
 })
 export class SupplierdetailsComponent implements OnInit {
   newSupplier: Supplier = new Supplier();
-  
+
   constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
     let id = this.route.snapshot.paramMap.get('sid');
 
@@ -27,15 +27,13 @@ export class SupplierdetailsComponent implements OnInit {
             this.newSupplier = obj;
           }
         });
-        if(this.newSupplier.sid==undefined)
-        {         
+        if (this.newSupplier.sid == undefined) {
           alert("Invalid Supplier selected ");
           this.router.navigate(['/listSupplier']);
         }
       });
     }
-    else
-    {
+    else {
       alert("Invalid Supplier selected ");
       this.router.navigate(['/listSupplier']);
     }
@@ -44,4 +42,23 @@ export class SupplierdetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  delete(key, sup: Supplier) {
+    this.db.database.ref(`supplier/${key}`).once("value", snapshot => {
+      let sid = snapshot.key;
+      if (snapshot.exists()) {
+        alert('Do you want to delete the record ?');
+        sup.isDeleted = true;
+        var updates = {};
+        updates['/supplier/' + sid] = JSON.stringify(sup);
+        try {
+          let up = this.db.database.ref().update(updates);
+          this.router.navigate(['/listsupplier']);
+        }
+        catch (ex) {
+          alert("Error in Deleting supplier");
+        }
+      }
+    })
+    this.router.navigate(['/listsupplier']);
+  }
 }

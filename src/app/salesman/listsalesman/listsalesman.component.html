@@ -15,20 +15,28 @@
             <th>Contact </th>
             <th>Contact Email</th>
             <th>Remarks</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let salesman of salesmanList'>
+          <ng-container *ngFor='let salesman of salesmanList'>
+            <tr *ngIf="salesman.isDeleted == false">
 
-            <td>
-              <button type="button" class="btn btn-link">
-                <a [routerLink]="['/salesmandetails', salesman.salesmanid]">{{ salesman.salesmanName }}</a>
-              </button>
-            </td>
-            <td>{{ salesman.salesmanContact}}</td>
-            <td>{{ salesman.salesmanEmail }}</td>
-            <td>{{ salesman.remarks }}</td>
-          </tr>
+              <td>
+                <button type="button" class="btn btn-link">
+                  <a [routerLink]="['/salesmandetails', salesman.salesmanid]">{{ salesman.salesmanName }}</a>
+                </button>
+              </td>
+              <td>{{ salesman.salesmanContact}}</td>
+              <td>{{ salesman.salesmanEmail }}</td>
+              <td class="dot" title="{{salesman.remarks}}">{{ salesman.remarks }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="delete(salesman.salesmanid ,salesman)">Delete</button>
+              </td>
+
+
+            </tr>
+          </ng-container>
         </tbody>
 
       </table>

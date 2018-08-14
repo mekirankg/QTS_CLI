@@ -62,11 +62,11 @@ export class NewsupplierComponent implements OnInit {
     else {
       let uniqueId = "/S" + Common.newGuid();
       this.newSupplier.sid = uniqueId;
-      this.newSupplier.isDeleted =false;
+      this.newSupplier.isDeleted = false;
       let newSupplierJson = JSON.stringify(this.newSupplier);
       console.log(newSupplierJson);
       try {
-        this.db.database.ref('supplier').child(uniqueId ).set(newSupplierJson);
+        this.db.database.ref('supplier').child(uniqueId).set(newSupplierJson);
         alert("Supplier added successfully!!.");
         this.router.navigate(['/listsupplier']);
       }
@@ -91,13 +91,20 @@ export class NewsupplierComponent implements OnInit {
     this.supplierForm = this.fb.group(
       {
         supplierName: [null, Validators.required],
-        supplierConatactName: [null, Validators.required],
+        supplierConatactName: [null, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z \-\']+')])],
         supplierContactNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')])],
         supplierReference: [null, Validators.required],
         freightForwarder: [null, Validators.required],
-        remarks: ['',Validators.maxLength(200)]
+        remarks: [null, Validators.maxLength(200)]
       }
     );
   }
+  get supplierName() { return this.supplierForm.get('supplierName'); }
+  get supplierConatactName() { return this.supplierForm.get('supplierConatactName'); }
+  get supplierContactNumber() { return this.supplierForm.get('supplierContactNumber'); }
+  get supplierReference() { return this.supplierForm.get('supplierReference'); }
+  get freightForwarder() { return this.supplierForm.get('freightForwarder'); }
+  get remarks() { return this.supplierForm.get('remarks'); }
+
 
 }

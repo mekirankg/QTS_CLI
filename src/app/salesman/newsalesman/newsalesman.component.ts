@@ -63,12 +63,13 @@ export class NewsalesmanComponent implements OnInit {
     else {
       let uniqueId = "/SM" + Common.newGuid();
       this.newSalesman.salesmanid = uniqueId;
+      this.newSalesman.isDeleted = false;
       let newSalesmanJson = JSON.stringify(this.newSalesman);
       console.log(newSalesmanJson);
       try {
         this.db.database.ref('salesman').child(uniqueId).set(newSalesmanJson);
         alert("Salesman added successfully!!.");
-        // this.router.navigate(['/listsupplier']);
+        this.router.navigate(['/listsalesman']);
       }
       catch (ex) {
 
@@ -95,14 +96,14 @@ export class NewsalesmanComponent implements OnInit {
         salesmanName: [null, Validators.required],
         salesmanContact: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')])],
         salesmanEmail: [null, Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
-        remarks: [null,Validators.maxLength(200)]
+        remarks: [null, Validators.maxLength(200)]
 
       }
-      
+
     );
 
   }
-  
+
   get salesmanName() { return this.salesmanForm.get('salesmanName'); }
   get salesmanContact() { return this.salesmanForm.get('salesmanContact'); }
   get salesmanEmail() { return this.salesmanForm.get('salesmanEmail'); }

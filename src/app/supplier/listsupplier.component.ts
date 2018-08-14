@@ -40,37 +40,21 @@ export class ListsupplierComponent implements OnInit {
     this.db.database.ref(`supplier/${key}`).once("value", snapshot => {
       let sid = snapshot.key;
       if (snapshot.exists()) {
-        sup.isDeleted = true;
-        var updates = {};
-        updates['/supplier/' + sid] = JSON.stringify(sup);
-        try {
-          let up = this.db.database.ref().update(updates);
-          this.router.navigate(['/listsupplier']);
+        if (confirm('Are you sure to delete ' + sup.supplierName)) {
+
+          sup.isDeleted = true;
+          var updates = {};
+          updates['/supplier/' + sid] = JSON.stringify(sup);
+          try {
+            let up = this.db.database.ref().update(updates);
+            this.router.navigate(['/listsupplier']);
+          }
+          catch (ex) {
+            alert("Error in Deleting supplier");
+          }
         }
-        catch (ex) {
-          alert("Error in Deleting supplier");
-        }
-
-
-
-
       }
     })
-
-
-
-
-
-    this.router.navigate(['/listsupplier']);
-
-
-    //   }
-    // });
-
-    // console.log("key........", key)
-
-
-
 
   }
 }
