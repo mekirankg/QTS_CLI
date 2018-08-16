@@ -9,12 +9,14 @@
                     <div style="float:left">
                         <h2>Supplier Details</h2>
                     </div>
-                    <div style="float:left;margin-left: 50%;margin-top: 4%">
+                    <div style="float:right;margin-top: 4%">
+                        
                         <button type="button" class="btn btn-primary">
                             <a [routerLink]="['/createsupplier', newSupplier.sid]">Edit</a>
 
                         </button>
                         <button  class="btn btn-primary" (click)="delete(newSupplier.sid ,newSupplier)">Delete</button>
+
 
                     </div>
                 </div>

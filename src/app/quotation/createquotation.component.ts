@@ -16,7 +16,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 export class CreatequotationComponent implements OnInit {
 
 
-
+  public hide: boolean = true;
   shouldShowContent: boolean = false;
   newQuotation: Quotation = new Quotation();
   dbOperator: any;
@@ -159,6 +159,7 @@ export class CreatequotationComponent implements OnInit {
 
   //validation codes
 
+
   quotationForm = new FormGroup(
     {
       customerName: new FormControl(),
@@ -172,12 +173,24 @@ export class CreatequotationComponent implements OnInit {
   quotationCreateForm() {
     this.quotationForm = this.fb.group(
       {
-        customerName: [null, Validators.required]
+        customerName: [null, Validators.required],
+        totalValue: [null, Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
+        materialDesc: [null, Validators.compose([Validators.maxLength(400), Validators.required])],
+        SalesmanName: [null, Validators.required],
+        remarks: [null, Validators.maxLength(200)],
+        status: [null, Validators.required]
+
+
       }
     );
 
   }
+  get totalValue() { return this.quotationForm.get('totalValue'); }
+  get materialDesc() { return this.quotationForm.get('materialDesc'); }
+  get remarks() { return this.quotationForm.get('remarks'); }
+  get status() { return this.quotationForm.get('status'); }
   get customerName() { return this.quotationForm.get('customerName'); }
+  get SalesmanName() { return this.quotationForm.get('SalesmanName'); }
 
 
 

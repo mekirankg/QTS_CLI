@@ -9,37 +9,63 @@
             </div>
         </div>
         <div class="loader" *ngIf='!shouldShowContent'></div>
-        <form name="form"  #f="ngForm"  *ngIf='shouldShowContent' novalidate >
-            <div class="form-row">
-                <div class="form-group col-md-4">
+        <form name="form" #f="ngForm" *ngIf='shouldShowContent' novalidate>
+            <div class="row">
+                <div class="form-group col-md-4" *ngIf="!isEditMode" [formGroup]="quotationForm">
                     <label for="CustomerName">Customer Name</label>
 
-                    <select [(ngModel)]="selectedCustomer" id="CustomerName" name="CustomerName" class="form-control"  required>
+                    <select id="CustomerName" name="CustomerName" class="form-control" required formControlName="customerName">
                         <option value="" disabled selected>--Choose--</option>
                         <ng-container *ngFor="let s of customerList">
-                            <option *ngIf="s.isDeleted ==false"  [ngValue]="s">{{s.customerName}}</option>
+                            <option *ngIf="s.isDeleted ==false" [ngValue]="s">{{s.customerName}}</option>
                         </ng-container>
-                       
+
                     </select>
-                 
-                    
+                    <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)" class="alert-danger">
+                        <div *ngIf="customerName.errors.required">
+                            Please select an option
+                        </div>
+
+                    </div>
 
                     <!-- <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName">
                -->
                 </div>
+                <div class="form-group col-md-4" *ngIf="isEditMode" [formGroup]="quotationForm">
+                    <label for="CustomerName">Customer Name</label>
+
+                    <select [(ngModel)]="selectedCustomer" id="CustomerName" name="CustomerName" class="form-control" required formControlName="customerName">
+                        <option value="" disabled selected>--Choose--</option>
+                        <ng-container *ngFor="let s of customerList">
+                            <option *ngIf="s.isDeleted ==false" [ngValue]="s">{{s.customerName}}</option>
+                        </ng-container>
+
+                    </select>
+                    <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)" class="alert-danger">
+                        <div *ngIf="customerName.errors.required">
+                            Please select an option
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName">
+                   -->
+                </div>
                 <div class="form-group col-md-4">
                     <label for="keycontact">Customer Key Contact</label>
-                    <input type="text" readonly class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="selectedCustomer.customerContactNumber"
-                        placeholder="Contact">
+                    <input type="text" readonly class="form-control" name="keycontact" id="keycontact" [ngModelOptions]="{standalone: true}"
+                        #keycontact="ngModel" [(ngModel)]="selectedCustomer.customerContactNumber" placeholder="Contact">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="NextFollowup">Next Follow Up</label>
                     <input type="date" name="NextFollowup" [(ngModel)]="newQuotation.nextFollowupdate" class="form-control" id="NextFollowup"
-                        placeholder="Follow Up date">
+                        placeholder="Follow Up date" [ngModelOptions]="{standalone: true}">
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="row">
                 <!-- <div class="form-group col-md-6">
                   <label for="quotationName">Quotation Name</label>
                   <input type="text" class="form-control" id="quotationName" placeholder="Quotation Name">
@@ -47,44 +73,83 @@
 
                 <div class="form-group col-md-4">
                     <label for="quotationreference">Quotation Reference</label>
-                    <input type="text" name="quotationreference" readonly class="form-control" [(ngModel)]="newQuotation.quotationReference"
+                    <input type="text" name="quotationreference" readonly class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="newQuotation.quotationReference"
                         id="quotationreference" placeholder="Quotation Reference">
 
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" *ngIf="!isEditMode" [formGroup]="quotationForm">
                     <label for="SalesmanName">Salesman Name</label>
 
-                    <select [(ngModel)]="selectedsalesman" id="SalesmanName" name="SalesmanName" class="form-control">
+                    <select id="SalesmanName" name="SalesmanName" class="form-control" formControlName="SalesmanName">
                         <option value="" disabled selected>--Choose--</option>
                         <ng-container *ngFor="let s of salesmanList">
 
-                        <option *ngIf="s.isDeleted == false" [ngValue]="s.salesmanid">{{s.salesmanName}}</option>
-                    </ng-container>
+                            <option *ngIf="s.isDeleted == false" [ngValue]="s.salesmanid">{{s.salesmanName}}</option>
+                        </ng-container>
                     </select>
+                    <div *ngIf="SalesmanName.invalid && (SalesmanName.dirty || SalesmanName.touched)" class="alert-danger">
+                        <div *ngIf="SalesmanName.errors.required">
+                            Please select an option
+                        </div>
+
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" *ngIf="isEditMode" [formGroup]="quotationForm">
+                    <label for="SalesmanName">Salesman Name</label>
+
+                    <select [(ngModel)]="selectedsalesman" id="SalesmanName" name="SalesmanName" class="form-control" formControlName="SalesmanName">
+                        <option value="" disabled selected>--Choose--</option>
+                        <ng-container *ngFor="let s of salesmanList">
+
+                            <option *ngIf="s.isDeleted == false" [ngValue]="s.salesmanid">{{s.salesmanName}}</option>
+                        </ng-container>
+                    </select>
+                    <div *ngIf="SalesmanName.invalid && (SalesmanName.dirty || SalesmanName.touched)" class="alert-danger">
+                        <div *ngIf="SalesmanName.errors.required">
+                            Please select an option
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group col-md-4" [formGroup]="quotationForm">
                     <label for="TotalValue">Total Value</label>
-                    <input type="text" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control" id="TotalValue" placeholder="Quotation total Value">
+                    <input type="text" formControlName="totalValue" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control"
+                        id="TotalValue" placeholder="Quotation total Value">
+                    <div *ngIf="totalValue.invalid && (totalValue.dirty || totalValue.touched)" class="alert-danger">
+                        <div *ngIf="totalValue.errors.required">
+                            Total value is Required
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-12">
+            <div class="row">
+                <div class="form-group col-md-12" [formGroup]="quotationForm">
                     <label for="description">Material Description</label>
                     <textarea name="description" [(ngModel)]="newQuotation.materialDescription" class="form-control" rows="2" id="description"
-                        placeholder="Description"></textarea>
+                        placeholder="Description" formControlName="materialDesc"></textarea>
+                    <div *ngIf="materialDesc.invalid && (materialDesc.dirty || materialDesc.touched)" class="alert-danger">
+                        <div *ngIf="materialDesc.errors.required">
+                            Material Description is Required
+                        </div>
+                        <div *ngIf="materialDesc.errors.maxLength">
+                            Text length is 400
+                        </div>
+
+                    </div>
 
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="row">
 
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-4">
+            <div class="row">
+                <div class="form-group col-md-4" [formGroup]="quotationForm">
                     <label for="Status">Status</label>
-                    <select id="Status" name="Status" [(ngModel)]="newQuotation.status" class="form-control">
+                    <select id="Status" name="Status" [(ngModel)]="newQuotation.status" class="form-control" formControlName="status">
 
                         <option>Dropbox</option>
                         <option>Bidding</option>
@@ -93,6 +158,12 @@
                         <option>Cancelled</option>
                         <option>Lost</option>
                     </select>
+                    <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert-danger">
+                        <div *ngIf="status.errors.required">
+                            Please select an option
+                        </div>
+
+                    </div>
                 </div>
 
                 <!--  <div class="form-group col-md-4">
@@ -100,17 +171,24 @@
                     <input type="text" name="TotalValueSplit" [(ngModel)]="newQuotation.totalValueSplit" class="form-control" id="TotalValueSplit"
                         placeholder="Quotation Value Split">
                 </div> -->
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" [formGroup]="quotationForm">
                     <label for="Remarks">Remarks</label>
-                    <textarea [(ngModel)]="newQuotation.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
+                    <textarea [(ngModel)]="newQuotation.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"
+                        formControlName="remarks"></textarea>
+                    <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched)" class="alert-danger">
+                        <div *ngIf="remarks.errors.maxlength ">
+                            Text length is 200
+                        </div>
+                    </div>
                 </div>
             </div>
 
 
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-12">
-                    <button *ngIf='!isEditMode' type="submit" (click)="register()" class="btn btn-primary">Create</button>
-                    <button *ngIf='isEditMode' type="submit" (click)="register()" class="btn btn-primary">Update</button>
+                    <button *ngIf='!isEditMode' type="submit" (click)="register()" [disabled]="quotationForm.pristine || quotationForm.invalid"
+                        class="btn btn-primary">Create</button>
+                    <button *ngIf='isEditMode' type="submit" (click)="register()" [disabled]="quotationForm.invalid" class="btn btn-primary">Update</button>
                     <button type="reset" (click)="cancel()" class="btn btn-primary">Cancel</button>
 
 

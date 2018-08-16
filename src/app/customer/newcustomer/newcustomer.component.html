@@ -2,7 +2,7 @@
 
     <!-- Page Content Holder -->
     <div id="content" class="createcontent">
-        <form name="form" #f="ngForm" formGroup="customerForm" novalidate>
+        <form name="form" #f="ngForm" [formGroup]="customerForm" novalidate>
 
             <div class="row">
                 <div class="form-group col-md-12">
@@ -80,7 +80,7 @@
                 <div class="form-group col-md-4">
                     <label for="Remarks">Remarks</label>
                     <textarea [(ngModel)]="newCustomer.customerRemarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"
-                        formControlName="remarks" maxlength="200"></textarea>
+                        formControlName="remarks" ></textarea>
 
                     <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched)"
                         class="alert-danger">

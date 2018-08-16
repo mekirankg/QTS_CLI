@@ -35,7 +35,7 @@ export class ListquotationComponent implements OnInit {
 
         let itemRef = db.object('quotations');
         itemRef.snapshotChanges().subscribe(action => {
-          this.quotationList =[];
+          this.quotationList = [];
           var quatationsList = action.payload.val();
           let quotationobj = Common.snapshotToArray(action.payload);
           quotationobj.forEach(element => {
@@ -55,7 +55,7 @@ export class ListquotationComponent implements OnInit {
               if (custList.length > 0) {
                 quotationListItem.customer = custList[0];
               }
-              
+
               this.quotationList.push(quotationListItem);
             }
           });
@@ -74,6 +74,10 @@ export class ListquotationComponent implements OnInit {
 
 
   ngOnInit() {
+  }
+
+  delete(key: any) {
+    console.log('key.......', key)
   }
   /*
     quotations: any[] = [

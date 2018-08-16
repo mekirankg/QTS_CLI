@@ -55,3 +55,10 @@ a, a:hover, a:focus {
     100% { transform: rotate(360deg); }
 }
 tr:nth-child(even) {background-color:lightblue;}
+.dot {
+    max-width:180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
