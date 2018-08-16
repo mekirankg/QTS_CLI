@@ -54,4 +54,4 @@ a, a:hover, a:focus {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-tr:nth-child(even) {background-color:lightblue;}
+tr:nth-child(even) {background-color:#CCCCCC;}
