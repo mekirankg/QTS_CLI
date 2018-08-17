@@ -11,27 +11,7 @@
         <div class="loader" *ngIf='!shouldShowContent'></div>
         <form name="form" #f="ngForm" *ngIf='shouldShowContent' novalidate>
             <div class="row">
-                <div class="form-group col-md-4" *ngIf="!isEditMode" [formGroup]="quotationForm">
-                    <label for="CustomerName">Customer Name</label>
-
-                    <select id="CustomerName" name="CustomerName" class="form-control" required formControlName="customerName">
-                        <option value="" disabled selected>--Choose--</option>
-                        <ng-container *ngFor="let s of customerList">
-                            <option *ngIf="s.isDeleted ==false" [ngValue]="s">{{s.customerName}}</option>
-                        </ng-container>
-
-                    </select>
-                    <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)" class="alert-danger">
-                        <div *ngIf="customerName.errors.required">
-                            Please select an option
-                        </div>
-
-                    </div>
-
-                    <!-- <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName">
-               -->
-                </div>
-                <div class="form-group col-md-4" *ngIf="isEditMode" [formGroup]="quotationForm">
+                <div class="form-group col-md-4" [formGroup]="quotationForm">
                     <label for="CustomerName">Customer Name</label>
 
                     <select [(ngModel)]="selectedCustomer" id="CustomerName" name="CustomerName" class="form-control" required formControlName="customerName">
@@ -48,11 +28,10 @@
 
                     </div>
 
-
-
                     <!-- <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newQuotation.customerName">
-                   -->
+               -->
                 </div>
+
                 <div class="form-group col-md-4">
                     <label for="keycontact">Customer Key Contact</label>
                     <input type="text" readonly class="form-control" name="keycontact" id="keycontact" [ngModelOptions]="{standalone: true}"
@@ -77,24 +56,7 @@
                         id="quotationreference" placeholder="Quotation Reference">
 
                 </div>
-                <div class="form-group col-md-4" *ngIf="!isEditMode" [formGroup]="quotationForm">
-                    <label for="SalesmanName">Salesman Name</label>
-
-                    <select id="SalesmanName" name="SalesmanName" class="form-control" formControlName="SalesmanName">
-                        <option value="" disabled selected>--Choose--</option>
-                        <ng-container *ngFor="let s of salesmanList">
-
-                            <option *ngIf="s.isDeleted == false" [ngValue]="s.salesmanid">{{s.salesmanName}}</option>
-                        </ng-container>
-                    </select>
-                    <div *ngIf="SalesmanName.invalid && (SalesmanName.dirty || SalesmanName.touched)" class="alert-danger">
-                        <div *ngIf="SalesmanName.errors.required">
-                            Please select an option
-                        </div>
-
-                    </div>
-                </div>
-                <div class="form-group col-md-4" *ngIf="isEditMode" [formGroup]="quotationForm">
+                <div class="form-group col-md-4" [formGroup]="quotationForm">
                     <label for="SalesmanName">Salesman Name</label>
 
                     <select [(ngModel)]="selectedsalesman" id="SalesmanName" name="SalesmanName" class="form-control" formControlName="SalesmanName">

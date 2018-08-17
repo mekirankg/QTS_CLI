@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Common } from '../_helpers/common';
 import { Salesman } from '../_models/salesman';
 import { Customer } from '../_models/customer';
+import { Router } from '@angular/router';
 @Component({
   /* selector: 'app-listquotation', */
   templateUrl: './listquotation.component.html',
@@ -15,7 +16,7 @@ export class ListquotationComponent implements OnInit {
   quotations: Quotation[] = [];
   salesmanList: Salesman[] = [];
   customerList: Customer[] = [];
-  constructor(public db: AngularFireDatabase) {
+  constructor(public db: AngularFireDatabase, private router: Router) {
 
     let salesmanitemRef = db.object('salesman');
     salesmanitemRef.snapshotChanges().subscribe(action => {
@@ -77,7 +78,31 @@ export class ListquotationComponent implements OnInit {
   }
 
   delete(key: any) {
-    console.log('key.......', key)
+
+    this.db.database.ref(`quotations/${key}`).once("value", snapshot => {
+
+      let sid = snapshot.key;
+      if (snapshot.exists()) {
+        if (confirm('Are you sure to delete ?')) {
+          try {
+            this.db.list('/quotations').remove(key);
+            this.router.navigate(['/listquotation']);
+
+          }
+          catch (ex) {
+
+            alert('Error in deleting quotation')
+          }
+        }
+
+      }
+      else {
+        alert('Item does not exist in the list')
+      }
+
+    })
+
+
   }
   /*
     quotations: any[] = [
