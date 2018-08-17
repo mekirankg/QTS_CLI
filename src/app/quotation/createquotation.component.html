@@ -15,7 +15,7 @@
                     <label for="CustomerName">Customer Name</label>
 
                     <select [(ngModel)]="selectedCustomer" id="CustomerName" name="CustomerName" class="form-control" required formControlName="customerName">
-                        <option value="" disabled selected>--Choose--</option>
+                        <option value="" [selected]="selectedCustomer !=0" disabled disabled [selected]="">--Choose--</option>
                         <ng-container *ngFor="let s of customerList">
                             <option *ngIf="s.isDeleted ==false" [ngValue]="s">{{s.customerName}}</option>
                         </ng-container>
@@ -59,20 +59,23 @@
                 <div class="form-group col-md-4" [formGroup]="quotationForm">
                     <label for="SalesmanName">Salesman Name</label>
 
-                    <select [(ngModel)]="selectedsalesman" id="SalesmanName" name="SalesmanName" class="form-control" formControlName="SalesmanName">
-                        <option value="" disabled selected>--Choose--</option>
+                    <select [(ngModel)]="selectedsalesman" id="SalesmanName" name="SalesmanName" class="form-control" formControlName="SalesmanName" required>
+
+                        <option value="" [selected]="SalesmanName!=0" disabled>--Choose--</option>
+
                         <ng-container *ngFor="let s of salesmanList">
 
                             <option *ngIf="s.isDeleted == false" [ngValue]="s.salesmanid">{{s.salesmanName}}</option>
                         </ng-container>
                     </select>
-                    <div *ngIf="SalesmanName.invalid && (SalesmanName.dirty || SalesmanName.touched)" class="alert-danger">
-                        <div *ngIf="SalesmanName.errors.required">
+                    <div *ngIf="SalesmanName.invalid && (SalesmanName.dirty || SalesmanName.touched )" class="alert-danger">
+                        <div *ngIf="SalesmanName.errors.required ">
                             Please select an option
                         </div>
 
                     </div>
                 </div>
+                
                 <div class="form-group col-md-4" [formGroup]="quotationForm">
                     <label for="TotalValue">Total Value</label>
                     <input type="text" formControlName="totalValue" [(ngModel)]="newQuotation.totalvalue" name="TotalValue" class="form-control"
@@ -112,7 +115,7 @@
                 <div class="form-group col-md-4" [formGroup]="quotationForm">
                     <label for="Status">Status</label>
                     <select id="Status" name="Status" [(ngModel)]="newQuotation.status" class="form-control" formControlName="status">
-
+                        <option value="" [selected]="status !=0" disabled>--Choose--</option>
                         <option>Dropbox</option>
                         <option>Bidding</option>
                         <option selected>OnGoing</option>

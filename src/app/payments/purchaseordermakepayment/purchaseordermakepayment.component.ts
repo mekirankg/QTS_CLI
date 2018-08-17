@@ -8,6 +8,7 @@ import { Supplier } from '../../_models/supplier';
 import { Salesman } from '../../_models/salesman';
 import { Customer } from '../../_models/customer';
 import { Payment } from '../../_models/payment';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-purchaseordermakepayment',
@@ -30,7 +31,8 @@ export class PurchaseordermakepaymentComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  constructor(private route: ActivatedRoute, private router: Router, public db: AngularFireDatabase) {
+  constructor(private route: ActivatedRoute, private router: Router, public db: AngularFireDatabase, private fb: FormBuilder) {
+    this.poMakePayment();
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id.toLowerCase().startsWith('p')) {
       this.isEditMode = true;
@@ -91,9 +93,9 @@ export class PurchaseordermakepaymentComponent implements OnInit {
 
                         let salesMan = this.salesmanList.filter(s => s.salesmanid.endsWith(this.newQuotation.salesmanId));
                         if (salesMan.length > 0) {
-                          this.selectedSalesMan = salesMan[0];alert
+                          this.selectedSalesMan = salesMan[0]; alert
                         }
-                    
+
                         let custList = this.customerList.filter(item => item.customerId === this.newQuotation.customerId);
                         if (custList.length > 0) {
                           this.selectedCustomer = custList[0];
@@ -155,7 +157,7 @@ export class PurchaseordermakepaymentComponent implements OnInit {
       this.newPO.qid = this.id;
       this.newPO.supplierId = this.selectedsupplier.sid;
       let newPOJson = JSON.stringify(this.newPO);
-      this.newQuotation.status="PO";
+      this.newQuotation.status = "PO";
       let quotation = JSON.stringify(this.newQuotation)
       console.log(newPOJson);
       try {
@@ -171,12 +173,12 @@ export class PurchaseordermakepaymentComponent implements OnInit {
 
     } else {
       var updates = {};
-     // this.newPO.supplierId = this.selectedsupplier;
+      // this.newPO.supplierId = this.selectedsupplier;
       this.newpayment.paymentId = "AMT" + Common.newGuid();
       this.newpayment.poId = this.newPO.pid;
-      this.newPO.paymentPercentage=this.newpayment.paymentPercentage;
-      if(this.newpayment.paymentPercentage>=100){
-        this.newPO.Status="Closed";
+      this.newPO.paymentPercentage = this.newpayment.paymentPercentage;
+      if (this.newpayment.paymentPercentage >= 100) {
+        this.newPO.Status = "Closed";
       }
       updates['/purchaseorder/' + this.newPO.pid] = JSON.stringify(this.newPO);
       let paymentStr = JSON.stringify(this.newpayment)
@@ -192,8 +194,25 @@ export class PurchaseordermakepaymentComponent implements OnInit {
 
     }
   }
-  cancel()
-  {
+  cancel() {
     this.router.navigate(['/popaymentlist']);
   }
+
+  paymentForm = new FormGroup({
+
+    paymentAmount: new FormControl(),
+    totalPayment: new FormControl()
+  })
+
+  poMakePayment() {
+    this.paymentForm = this.fb.group({
+
+      paymentAmount: [null, Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
+      totalPayment: [null, Validators.required]
+    })
+
+  }
+  get paymentAmount() { return this.paymentForm.get('paymentAmount'); }
+  get totalPayment() { return this.paymentForm.get('totalPayment'); }
+
 }

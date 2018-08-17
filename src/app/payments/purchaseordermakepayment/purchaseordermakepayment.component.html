@@ -147,24 +147,39 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4" [formGroup]="paymentForm">
                         <label for="PaymentAmount">Payment Amount</label>
-                        <input type="text" [(ngModel)]="newpayment.paymentAmount" name="PaymentAmount" class="form-control" id="PaymentAmount" placeholder="Payment Amount">
+                        <input type="text" [(ngModel)]="newpayment.paymentAmount" name="PaymentAmount" class="form-control" id="PaymentAmount" placeholder="Payment Amount" formControlName="paymentAmount">
+                        <div *ngIf="paymentAmount.invalid && (paymentAmount.dirty || paymentAmount.touched)" class="alert-danger">
+                                <div *ngIf="paymentAmount.errors.required">
+                                    Payment Amount Required
+                                </div>
+                                <div *ngIf="paymentAmount.errors.pattern">
+                                        Please input number
+                                    </div>
+        
+                            </div>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="PaymentDate">Payment Date</label>
                         <input type="date" [(ngModel)]="newpayment.paymentDate" name="PaymentDate" class="form-control" id="PaymentDate" placeholder="Payment Date">
                       </div>
     
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4" [formGroup]="paymentForm">
                         <label for="paymentpercentage">Total Payment Persantage</label>
-                        <input type="text"  [(ngModel)]="newpayment.paymentPercentage" name="paymentpercentage"  class="form-control" id="paymentpercentage" placeholder="Payment Percentage">
+                        <input type="text"  [(ngModel)]="newpayment.paymentPercentage" name="paymentpercentage"  class="form-control" id="paymentpercentage" placeholder="Payment Percentage" formControlName="totalPayment">
+                        <div *ngIf="totalPayment.invalid && (totalPayment.dirty || totalPayment.touched)" class="alert-danger">
+                                <div *ngIf="totalPayment.errors.required">
+                                    Payment Amount Required
+                                </div>
+                                       
+                            </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <button *ngIf='!isEditMode' (click)="createPO()" type="submit" class="btn btn-primary">Confirm</button>
-                        <button *ngIf='isEditMode' (click)="createPO()" type="submit" class="btn btn-primary">Update</button>
+                        <button *ngIf='isEditMode' (click)="createPO()" type="submit" [disabled]="paymentForm.invalid" class="btn btn-primary">Update</button>
                         <button  type="reset" (click)="cancel()" class="btn btn-primary">Cancel</button>
     
                     </div>
