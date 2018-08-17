@@ -61,7 +61,6 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 tr:nth-child(even) {background-color:lightblue;}
-
 .dot {
     max-width:180px;
     overflow: hidden;
