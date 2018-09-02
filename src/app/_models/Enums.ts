@@ -16,7 +16,7 @@ enum QStatus {
     Lost
   }
 
-enum Users {
+enum UsersType {
     SuperAdmin = 1,
     CourtyManager = 2,
     RegionalManager = 3,

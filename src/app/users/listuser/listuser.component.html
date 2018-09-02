@@ -1,0 +1,53 @@
+<div class="wrapper ">
+    <!--  <div>
+        <app-sidebar></app-sidebar>
+    </div> -->
+    <!-- Page Content Holder -->
+    <div id="content" class="listcontent listcontenttable">
+      <h2>Users List</h2>
+      <div style="height:20px"></div>
+      <div>
+        <div class="loader" *ngIf='!users.length'></div>
+        <table class="table table-hover table-responsive table-bordered" *ngIf='users && users.length'>
+          <thead class="thead-dark">
+            <tr>
+              <th height="50" bgcolor="#6599F">User Name</th>
+              <th bgcolor="#6599F">First Name</th>
+              <th bgcolor="#6599F">Last Name</th>
+
+              <th bgcolor="#6599F">User Type</th>
+              <th bgcolor="#6599F">Remarks</th>
+
+              <th bgcolor="#6599F">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let user of users">
+              <tr>  
+                <td>
+                  <button type="button" class="btn btn-link">
+                    <a [routerLink]="['/supplierdetails', user.uid]">{{ user.username }}</a>
+                  </button>
+                </td>
+                <td>
+                  {{ user.firstName}}</td>
+                <td>
+                  {{ user.lastName }}</td>
+                <td>
+                  {{ user.userType }}</td>
+                
+                <td class="dot" title="{{user.remarks}}">
+  
+                  {{ user.remarks }}</td>
+  
+                <td>
+                  <button class="btn btn-primary" (click)="delete(user.uid ,user)">Delete</button>
+                </td>
+  
+              </tr>
+            </ng-container>
+          </tbody>
+  
+        </table>
+      </div>
+    </div>

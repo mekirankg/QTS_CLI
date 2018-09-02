@@ -1,3 +1,3 @@
 export class Constants {
-    public static readonly VERSION = "V1.5";
+    public static readonly VERSION = "V1.6";
 }

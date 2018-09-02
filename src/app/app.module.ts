@@ -47,6 +47,8 @@ import { PurchaseordermakepaymentComponent } from './payments/purchaseordermakep
 
 // validation import class
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateuserComponent } from './users/createuser/createuser.component';
+import { ListuserComponent } from './users/listuser/listuser.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListcustomerComponent,
     CustomerdetailsComponent,
     PurchaseorderpaymentsComponent,
-    PurchaseordermakepaymentComponent
+    PurchaseordermakepaymentComponent,
+    CreateuserComponent,
+    ListuserComponent
   ],
   imports: [
     BrowserModule,
@@ -111,8 +115,11 @@ import { ReactiveFormsModule } from '@angular/forms';
         { path:'salesmandetails/:salesmanid',component:SalesmandetailsComponent, canActivate: [AuthGuard] },
         { path:'createcustomer',component:NewcustomerComponent , canActivate: [AuthGuard]},
         { path:'createcustomer/:customerid',component:NewcustomerComponent , canActivate: [AuthGuard]},
+        { path:'createuser/:userid',component:CreateuserComponent , canActivate: [AuthGuard]},
+        { path:'createuser',component:CreateuserComponent , canActivate: [AuthGuard]},
         { path:'customerdetails/:customerid',component:CustomerdetailsComponent, canActivate: [AuthGuard] },
         { path:'listcustomer',component:ListcustomerComponent , canActivate: [AuthGuard]}, 
+        { path:'listuser',component:ListuserComponent , canActivate: [AuthGuard]}, 
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },
