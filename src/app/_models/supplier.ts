@@ -6,4 +6,5 @@ export class Supplier {
     refNum:string;
     freightforwarder:string;
     remarks:string;
+    isDeleted :boolean;
 }

@@ -1,0 +1,87 @@
+<div class="wrapper ">
+
+  <!-- Page Content Holder -->
+  <div id="content" class="createcontent">
+      <form name="form" #f="ngForm"  novalidate>
+
+          <div class="row">
+              <div class="form-group col-md-12">
+                  <h2 *ngIf='!isEditMode'>Create User</h2>
+                  <h2 *ngIf='isEditMode'>Edit User</h2>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="form-group col-md-4">
+                  <label for="inputName">User Name</label>
+                  <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newUser.username"
+                     >                
+
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="firstname">First Name</label>
+                  <input type="text" class="form-control" name="firstname" id="firstname" [(ngModel)]="newUser.firstName" placeholder="First Name"
+                     >
+                  
+
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" name="lastname" [(ngModel)]="newUser.lastName" class="form-control" id="lastname" placeholder="Last Name"
+                       >
+                 
+              </div>
+          </div>
+
+
+
+
+          <div class="row">   
+            
+              <div class="form-group col-md-4">
+                  <label for="userType">User Type</label>
+                  <select id="userType" name="userType" [(ngModel)]="newUser.userType" class="form-control">
+                      <option>SuperAdmin</option>
+                      <option>CourtyManager</option>
+                      <option>RegionalManager</option>
+                      <option>Salesman</option>
+                      <option>Accountant</option>
+                      <option>LogisticsManager</option>
+                  </select>
+              </div>
+              <div class="form-group col-md-4">
+                  <label for="Remarks">Remarks</label>
+                  <textarea [(ngModel)]="newUser.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"
+                      ></textarea>
+              </div>
+          </div>
+
+
+          <div class="row">
+              <div class="form-group col-md-12">
+                  <button *ngIf='!isEditMode' (click)="register()"  type="submit"
+                      class="btn btn-primary">Add User</button>
+                  <button *ngIf='isEditMode' (click)="register()" type="submit" class="btn btn-primary">Update User</button>
+                  <button (click)="cancel()" class="btn btn-primary">Cancel</button>
+              </div>
+          </div>
+      </form>
+
+  </div>
+
+
+
+
+
+  <!-- jQuery CDN -->
+
+  <!-- Bootstrap Js CDN -->
+
+
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('#sidebarCollapse').on('click', function () {
+              $('#sidebar').toggleClass('active');
+          });
+      });
+  </script>

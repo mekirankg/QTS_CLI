@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Common } from '../_helpers/common';
 import { Salesman } from '../_models/salesman';
 import { Customer } from '../_models/customer';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
 
@@ -13,6 +14,9 @@ import { Customer } from '../_models/customer';
   styleUrls: ['./createquotation.component.css']
 })
 export class CreatequotationComponent implements OnInit {
+
+
+  public hide: boolean = true;
   shouldShowContent: boolean = false;
   newQuotation: Quotation = new Quotation();
   dbOperator: any;
@@ -22,7 +26,9 @@ export class CreatequotationComponent implements OnInit {
   customerList: Customer[] = [];
   selectedsalesman: string = "";
   selectedCustomer: Customer = new Customer();
-  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
+  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
+
+    this.quotationCreateForm();
     this.dbOperator = db;
     let id = this.route.snapshot.paramMap.get('qid');
 
@@ -150,5 +156,42 @@ export class CreatequotationComponent implements OnInit {
   cancel() {
     this.router.navigate(['/listquotation']);
   }
+
+  //validation codes
+
+
+  quotationForm = new FormGroup(
+    {
+      customerName: new FormControl(),
+      SalesmanName: new FormControl(),
+      totalValue: new FormControl(),
+      materialDesc: new FormControl(),
+      status: new FormControl(),
+      remarks: new FormControl()
+    }
+  );
+  quotationCreateForm() {
+    this.quotationForm = this.fb.group(
+      {
+        customerName: [null, Validators.required],
+        totalValue: [null, Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
+        materialDesc: [null, Validators.compose([Validators.maxLength(400), Validators.required])],
+        SalesmanName: [null, Validators.required],
+        remarks: [null, Validators.maxLength(200)],
+        status: [null, Validators.required]
+
+
+      }
+    );
+
+  }
+  get totalValue() { return this.quotationForm.get('totalValue'); }
+  get materialDesc() { return this.quotationForm.get('materialDesc'); }
+  get remarks() { return this.quotationForm.get('remarks'); }
+  get status() { return this.quotationForm.get('status'); }
+  get customerName() { return this.quotationForm.get('customerName'); }
+  get SalesmanName() { return this.quotationForm.get('SalesmanName'); }
+
+
 
 }

@@ -2,63 +2,109 @@
 
     <!-- Page Content Holder -->
     <div id="content" class="createcontent">
-        <form name="form" (ngSubmit)="register()" #f="ngForm" novalidate>
+        <form name="form" #f="ngForm" [formGroup]="supplierForm" novalidate>
 
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-12">
                     <h2 *ngIf='!isEditMode'>Create Supplier</h2>
                     <h2 *ngIf='isEditMode'>Edit Supplier</h2>
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-4">
                     <label for="inputName">Supplier Name</label>
-                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newSupplier.supplierName">
+                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newSupplier.supplierName"
+                        formControlName="supplierName">
+                    <div *ngIf="supplierName.invalid && (supplierName.dirty || supplierName.touched)" class="alert-danger">
+                        <div *ngIf="supplierName.errors.required">
+                            Supplier Name is Required
+                        </div>
+                    </div>
+
                 </div>
                 <div class="form-group col-md-4">
                     <label for="keycontact">Supplier Contact Name</label>
-                    <input type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newSupplier.contactName"
-                        placeholder="Contact Name">
+                    <input type="text" class="form-control" name="keycontact" id="keycontact" [(ngModel)]="newSupplier.contactName" placeholder="Contact Name"
+                        formControlName="supplierConatactName">
+                    <div *ngIf="supplierConatactName.invalid && (supplierConatactName.dirty || supplierConatactName.touched)" class="alert-danger">
+                        <div *ngIf="supplierConatactName.errors.required">
+                            Contact Name is Required
+                        </div>
+                        <div *ngIf="supplierConatactName.errors.pattern">
+                            Please enter valid input(alphabets)
+                        </div>
+                    </div>
+
                 </div>
                 <div class="form-group col-md-4">
                     <label for="contactNumber">Supplier Contact Number</label>
-                    <input type="text" name="contactNumber" [(ngModel)]="newSupplier.contactNum" class="form-control" id="contactNumber" placeholder="Contact number">
+                    <input type="text" name="contactNumber" [(ngModel)]="newSupplier.contactNum" class="form-control" id="contactNumber" placeholder="Contact number"
+                        formControlName="supplierContactNumber" maxlength="10">
+                    <div *ngIf="supplierContactNumber.invalid && (supplierContactNumber.dirty || supplierContactNumber.touched)" class="alert-danger">
+                        <div *ngIf="supplierContactNumber.errors.required">
+                            Salesman Contact is Required
+                        </div>
+                        <div *ngIf="supplierContactNumber.errors.pattern">
+                            Please enter valid input
+                        </div>
+                        <div *ngIf="supplierContactNumber.errors.minlength">
+                            Please enter 10 digit number
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-4">
                     <label for="supplierreference">Supplier Reference</label>
                     <input type="text" name="supplierreference" class="form-control" [(ngModel)]="newSupplier.refNum" id="supplierreference"
-                        placeholder="Supplier Reference">
+                        placeholder="Supplier Reference" formControlName="supplierReference">
+                    <div *ngIf="supplierReference.invalid && (supplierReference.dirty || supplierReference.touched)" class="alert-danger">
+                        <div *ngIf="supplierReference.errors.required">
+                            Supplier Reference is Required
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="form-group col-md-4">
                     <label for="freightforwarder">Freight forwarder</label>
                     <input type="text" [(ngModel)]="newSupplier.freightforwarder" name="freightforwarder" class="form-control" id="freightforwarder"
-                        placeholder="Freight Forwarder">
-                </div>
-            </div>
-            <div class="form-row">
+                        placeholder="Freight Forwarder" formControlName="freightForwarder">
+                    <div *ngIf="freightForwarder.invalid && (freightForwarder.dirty || freightForwarder.touched)" class="alert-danger">
+                        <div *ngIf="freightForwarder.errors.required">
+                            Freight forwarder is Required
+                        </div>
+                    </div>
 
+                </div>
                 <div class="form-group col-md-4">
                     <label for="Remarks">Remarks</label>
-                    <textarea [(ngModel)]="newSupplier.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
+                    <textarea [(ngModel)]="newSupplier.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"
+                        formControlName="remarks" ></textarea>
+
+                    <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched)" class="alert-danger">
+                        <div *ngIf="remarks.errors.maxlength">
+                            Text maximum is 200
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-row">
+
+            <div class="row">
                 <div class="form-group col-md-12">
-                    <button *ngIf='!isEditMode' (click)="register()" type="submit" class="btn btn-primary">Add Supplier</button>
-                    <button *ngIf='isEditMode' (click)="register()" type="submit" class="btn btn-primary">Update Supplier</button>
-                    <button  (click)="cancel()"class="btn btn-primary">Cancel</button>
+                    <button *ngIf='!isEditMode' (click)="register()" [disabled]="supplierForm.pristine || supplierForm.invalid" type="submit"
+                        class="btn btn-primary">Add Supplier</button>
+                    <button *ngIf='isEditMode' (click)="register()" [disabled]="supplierForm.invalid" type="submit" class="btn btn-primary">Update Supplier</button>
+                    <button (click)="cancel()" class="btn btn-primary">Cancel</button>
                 </div>
             </div>
         </form>
 
     </div>
-
 
 
 

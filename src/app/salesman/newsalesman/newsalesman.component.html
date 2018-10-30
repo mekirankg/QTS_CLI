@@ -1,65 +1,97 @@
-
 <div class="wrapper ">
 
-  <!-- Page Content Holder -->
-  <div id="content" class="createcontent">
-      <form name="form" #f="ngForm" novalidate>
+    <!-- Page Content Holder -->
+    <div id="content" class="createcontent">
+        <form name="form" #f="ngForm" [formGroup]="salesmanForm" novalidate>
 
-          <div class="form-row">
-              <div class="form-group col-md-12">
-                <h2 *ngIf='!isEditMode'>Create Salesman</h2>
-                <h2 *ngIf='isEditMode'>Edit Salesman</h2>
-              </div>
-          </div>
-
-          <div class="form-row">
-              <div class="form-group col-md-4">
-                  <label for="inputName">Salesman Name</label>
-                  <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newSalesman.salesmanName">
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="keycontact">Salesman Contact </label>
-                  <input type="text" class="form-control" name="keycontact" id="keycontact" #keycontact="ngModel" [(ngModel)]="newSalesman.salesmanContact"
-                      placeholder="Salesman contact">
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="contactNumber">Salesman Email</label>
-                  <input type="text" name="contactNumber" [(ngModel)]="newSalesman.salesmanEmail" class="form-control" id="contactNumber"
-                      placeholder="Salesman Email">
-              </div>
-          </div>      
-          <div class="form-row">
-         
-              <div class="form-group col-md-4">
-                  <label for="Remarks">Remarks</label>
-                  <textarea [(ngModel)]="newSalesman.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"></textarea>
-              </div>
-          </div>
-
-          <div class="form-row">
+            <div class="row">
                 <div class="form-group col-md-12">
-                    <button *ngIf='!isEditMode' (click)="create()"type="submit" class="btn btn-primary">Add Salesman</button>
-                    <button *ngIf='isEditMode' (click)="create()" type="submit" class="btn btn-primary">Update </button>
-                    <button (click)="cancel()"class="btn btn-primary">Cancel</button>                
+                    <h2 *ngIf='!isEditMode'>Create Salesman</h2>
+                    <h2 *ngIf='isEditMode'>Edit Salesman</h2>
                 </div>
             </div>
-      </form>
-  </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="inputName">Salesman Name</label>
+                    <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" [(ngModel)]="newSalesman.salesmanName"
+                        formControlName="salesmanName">
+                    <div *ngIf="salesmanName.invalid && (salesmanName.dirty || salesmanName.touched)" class="alert-danger">
+                        <div *ngIf="salesmanName.errors.required">
+                            Name is Required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="keycontact">Salesman Contact </label>
+                    <input type="text" class="form-control" name="keycontact" id="keycontact" [(ngModel)]="newSalesman.salesmanContact" placeholder="Salesman contact"
+                        formControlName="salesmanContact" maxlength="10">
+                    <div *ngIf="salesmanContact.invalid && (salesmanContact.dirty || salesmanContact.touched)" class="alert-danger">
+                        <div *ngIf="salesmanContact.errors.required">
+                            Salesman Contact is Required
+                        </div>
+                        <div *ngIf="salesmanContact.errors.pattern">
+                            Please enter valid input
+                        </div>
+                        <div *ngIf="salesmanContact.errors.minlength">
+                            Please enter 10 digit number
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="contactNumber">Salesman Email</label>
+                    <input type="text" name="contactNumber" [(ngModel)]="newSalesman.salesmanEmail" class="form-control" id="contactNumber" placeholder="Salesman Email"
+                        formControlName="salesmanEmail">
+                    <div *ngIf="salesmanEmail.invalid && (salesmanEmail.dirty || salesmanEmail.touched)" class="alert-danger">
+                        <div *ngIf="salesmanEmail.errors.required">
+                            Salesman Email is required
+                        </div>
+                        <div *ngIf="salesmanEmail.errors.pattern">
+                            Please enter valid email
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="form-group col-md-4">
+                    <label for="Remarks">Remarks</label>
+                    <textarea [(ngModel)]="newSalesman.remarks" class="form-control" name="Remarks" rows="1" id="Remarks" placeholder="Remarks"
+                        formControlName="remarks" ></textarea>
+                    <div *ngIf="remarks.invalid && (remarks.dirty || remarks.touched)" class="alert-danger">
+                        <div *ngIf="remarks.errors.maxlength ">
+                            Text maximum is 200
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <button *ngIf='!isEditMode' (click)="create()" type="submit" [disabled]="salesmanForm.pristine || salesmanForm.invalid" class="btn btn-primary">Add Salesman</button>
+                    <button *ngIf='isEditMode' (click)="create()" type="submit" [disabled]="salesmanForm.invalid" class="btn btn-primary">Update </button>
+                    <button (click)="cancel()" class="btn btn-primary">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 
 
 
 
 
-  <!-- jQuery CDN -->
+    <!-- jQuery CDN -->
 
-  <!-- Bootstrap Js CDN -->
+    <!-- Bootstrap Js CDN -->
 
 
-  <script type="text/javascript">
-      $(document).ready(function () {
-          $('#sidebarCollapse').on('click', function () {
-              $('#sidebar').toggleClass('active');
-          });
-      });
-  </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>

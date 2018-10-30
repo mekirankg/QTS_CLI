@@ -4,4 +4,5 @@ export class Salesman {
     salesmanContact: string;
     salesmanEmail:string;
     remarks:string;
+    isDeleted :boolean;
 }

@@ -3,6 +3,7 @@ import { Supplier } from '../_models/supplier';
 import { Common } from '../_helpers/common';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-newsupplier',
@@ -11,9 +12,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class NewsupplierComponent implements OnInit {
   newSupplier: Supplier = new Supplier();
-  sIdEditMode:string="";
-  isEditMode:Boolean=false;
-  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
+  sIdEditMode: string = "";
+  isEditMode: Boolean = false;
+  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
+
+    this.createSupplierForm();
     let id = this.route.snapshot.paramMap.get('sid');
 
     if (id != undefined) {
@@ -30,8 +33,7 @@ export class NewsupplierComponent implements OnInit {
             this.newSupplier = obj;
           }
         });
-        if(this.newSupplier.sid==undefined)
-        {         
+        if (this.newSupplier.sid == undefined) {
           alert("Invalid quotation selected for edit...");
           this.router.navigate(['/listquotation']);
         }
@@ -41,7 +43,7 @@ export class NewsupplierComponent implements OnInit {
 
   ngOnInit() {
   }
-  cancel(){
+  cancel() {
     this.router.navigate(['/listsupplier'])
   }
   register() {
@@ -58,17 +60,51 @@ export class NewsupplierComponent implements OnInit {
       }
     }
     else {
-    let uniqueId = "/S" + Common.newGuid();
-    this.newSupplier.sid = uniqueId;
-    let newSupplierJson = JSON.stringify(this.newSupplier);
-    console.log(newSupplierJson);
-    try {
-      this.db.database.ref('supplier').child(uniqueId).set(newSupplierJson);
-      alert("Supplier added successfully!!.");
-      this.router.navigate(['/listsupplier']);
-    }
-    catch (ex) {
+      let uniqueId = "/S" + Common.newGuid();
+      this.newSupplier.sid = uniqueId;
+      this.newSupplier.isDeleted = false;
+      let newSupplierJson = JSON.stringify(this.newSupplier);
+      console.log(newSupplierJson);
+      try {
+        this.db.database.ref('supplier').child(uniqueId).set(newSupplierJson);
+        alert("Supplier added successfully!!.");
+        this.router.navigate(['/listsupplier']);
+      }
+      catch (ex) {
 
-    }}
+      }
+    }
   }
+
+  //validation
+  supplierForm = new FormGroup(
+    {
+      supplierName: new FormControl(),
+      supplierConatactName: new FormControl(),
+      supplierContactNumber: new FormControl(),
+      supplierReference: new FormControl(),
+      freightForwarder: new FormControl(),
+      remarks: new FormControl()
+    }
+  );
+  createSupplierForm() {
+    this.supplierForm = this.fb.group(
+      {
+        supplierName: [null, Validators.required],
+        supplierConatactName: [null, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z \-\']+')])],
+        supplierContactNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[0-9]*')])],
+        supplierReference: [null, Validators.required],
+        freightForwarder: [null, Validators.required],
+        remarks: [null, Validators.maxLength(200)]
+      }
+    );
+  }
+  get supplierName() { return this.supplierForm.get('supplierName'); }
+  get supplierConatactName() { return this.supplierForm.get('supplierConatactName'); }
+  get supplierContactNumber() { return this.supplierForm.get('supplierContactNumber'); }
+  get supplierReference() { return this.supplierForm.get('supplierReference'); }
+  get freightForwarder() { return this.supplierForm.get('freightForwarder'); }
+  get remarks() { return this.supplierForm.get('remarks'); }
+
+
 }

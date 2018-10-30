@@ -11,28 +11,43 @@
       <table class="table table-hover table-responsive table-bordered" *ngIf='suppliers && suppliers.length'>
         <thead class="thead-dark">
           <tr>
-            <th>Supplier Name</th>
-            <th>Contact Name</th>
-            <th>Contact Number</th>
-            <th>Ref Number</th>
-            <th>Fright Forwarder</th>
-            <th>Remarks</th>
+            <th height="50" bgcolor="#6599F">Supplier Name</th>
+            <th bgcolor="#6599F">Contact Name</th>
+            <th bgcolor="#6599F">Contact Number</th>
+            <th bgcolor="#6599F">Ref Number</th>
+            <th bgcolor="#6599F">Fright Forwarder</th>
+            <th bgcolor="#6599F">Remarks</th>
+            <th bgcolor="#6599F">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let supplier of suppliers'>
+          <ng-container *ngFor="let supplier of suppliers">
+            <tr *ngIf="supplier.isDeleted == false">
 
-            <td>
-              <button type="button" class="btn btn-link">
-                <a [routerLink]="['/supplierdetails', supplier.sid]">{{ supplier.supplierName }}</a>
-              </button>
-            </td>
-            <td>{{ supplier.contactName}}</td>
-            <td>{{ supplier.contactNum }}</td>
-            <td>{{ supplier.refNum }}</td>
-            <td>{{ supplier.freightforwarder }}</td>
-            <td>{{ supplier.remarks }}</td>
-          </tr>
+              <!-- *ngif="supplier.isDeleted == false" -->
+              <td>
+                <button type="button" class="btn btn-link">
+                  <a [routerLink]="['/supplierdetails', supplier.sid]">{{ supplier.supplierName }}</a>
+                </button>
+              </td>
+              <td>
+                {{ supplier.contactName}}</td>
+              <td>
+                {{ supplier.contactNum }}</td>
+              <td>
+                {{ supplier.refNum }}</td>
+              <td>
+                {{ supplier.freightforwarder }}</td>
+              <td class="dot" title="{{supplier.remarks}}">
+
+                {{ supplier.remarks }}</td>
+
+              <td>
+                <button class="btn btn-primary" (click)="delete(supplier.sid ,supplier)">Delete</button>
+              </td>
+
+            </tr>
+          </ng-container>
         </tbody>
 
       </table>

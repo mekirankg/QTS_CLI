@@ -5,4 +5,5 @@ export class Customer {
     customerContactNumber: string;
     customerContactEmail:string;
     customerRemarks:string;
+    isDeleted :boolean;
 }

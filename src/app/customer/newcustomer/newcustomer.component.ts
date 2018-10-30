@@ -3,6 +3,7 @@ import { Common } from '../../_helpers/common';
 import { Customer } from '../../_models/customer';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-newcustomer',
@@ -13,7 +14,9 @@ export class NewcustomerComponent implements OnInit {
   newCustomer: Customer = new Customer();
   sIdEditMode: string = "";
   isEditMode: Boolean = false;
-  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute) {
+  constructor(public db: AngularFireDatabase, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) {
+
+    this.customerCreateForm();
     let id = this.route.snapshot.paramMap.get('customerid');
     if (id != undefined) {
       this.sIdEditMode = id;
@@ -39,7 +42,7 @@ export class NewcustomerComponent implements OnInit {
 
   ngOnInit() {
   }
-  cancel(){
+  cancel() {
     this.router.navigate(['/listcustomer']);
   }
   create() {
@@ -59,6 +62,7 @@ export class NewcustomerComponent implements OnInit {
     else {
       let uniqueId = "/C" + Common.newGuid();
       this.newCustomer.customerId = uniqueId;
+      this.newCustomer.isDeleted = false;
       let newCustomerJson = JSON.stringify(this.newCustomer);
       console.log(newCustomerJson);
       try {
@@ -71,4 +75,28 @@ export class NewcustomerComponent implements OnInit {
       }
     }
   }
+  // VALIDATION CODES
+  customerForm = new FormGroup({
+    custName: new FormControl(),
+    contactPerson: new FormControl(),
+    contactNumber: new FormControl(),
+    email: new FormControl(),
+    remarks: new FormControl()
+  });
+
+  customerCreateForm() {
+    this.customerForm = this.fb.group({
+      custName: [null, Validators.required],
+      contactPerson: [null, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z \-\']+')])],
+      contactNumber: [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.pattern('[0-9]*')])],
+      email: [null, Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
+      remarks: [null, Validators.maxLength(200)]
+    });
+
+  }
+  get custName() { return this.customerForm.get('custName'); }
+  get contactPerson() { return this.customerForm.get('contactPerson'); }
+  get contactNumber() { return this.customerForm.get('contactNumber'); }
+  get email() { return this.customerForm.get('email'); }
+  get remarks() { return this.customerForm.get('remarks'); }
 }

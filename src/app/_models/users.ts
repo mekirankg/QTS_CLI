@@ -1,5 +1,5 @@
-export class User {
-    id: Number;
+export class Users {
+    uid: string;
     username: string;
     password: string;
     firstName: string;

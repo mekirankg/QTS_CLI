@@ -11,26 +11,33 @@
       <table class="table table-hover table-responsive table-bordered" *ngIf='customerList && customerList.length'>
         <thead class="thead-dark">
           <tr>
-            <th>Customer Name</th>
-            <th>Contact Person </th>
-            <th>Contact Number</th>
-            <th>Contact Email</th>
-            <th>Remarks</th>
+            <th height="50" bgcolor="#6599F">Customer Name</th>
+            <th bgcolor="#6599F">Contact Person </th>
+            <th bgcolor="#6599F">Contact Number</th>
+            <th bgcolor="#6599F">Contact Email</th>
+            <th bgcolor="#6599F">Remarks</th>
+            <th bgcolor="#6599F">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let customer of customerList'>
+          <ng-container *ngFor='let customer of customerList'>
+            <tr *ngIf="customer.isDeleted == false">
 
-            <td>
-              <button type="button" class="btn btn-link">
-                <a [routerLink]="['/customerdetails', customer.customerId]">{{ customer.customerName }}</a>
-              </button>
-            </td>
-            <td>{{ customer.customerContactName}}</td>
-            <td>{{ customer.customerContactNumber}}</td>
-            <td>{{ customer.customerContactEmail }}</td>
-            <td>{{ customer.customerRemarks }}</td>
-          </tr>
+              <td>
+                <button type="button" class="btn btn-link">
+                  <a [routerLink]="['/customerdetails', customer.customerId]">{{ customer.customerName }}</a>
+                </button>
+              </td>
+              <td>{{ customer.customerContactName}}</td>
+              <td>{{ customer.customerContactNumber}}</td>
+              <td>{{ customer.customerContactEmail }}</td>
+              <td class="dot" title="{{ customer.customerRemarks }}">{{ customer.customerRemarks }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="delete(customer.customerId ,customer)">Delete</button>
+
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
 
       </table>

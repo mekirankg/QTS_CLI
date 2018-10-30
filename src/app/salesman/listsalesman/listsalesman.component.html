@@ -11,24 +11,32 @@
       <table class="table table-hover table-responsive table-bordered" *ngIf='salesmanList && salesmanList.length'>
         <thead class="thead-dark">
           <tr>
-            <th>Salesman Name</th>
-            <th>Contact </th>
-            <th>Contact Email</th>
-            <th>Remarks</th>
+            <th height="50" bgcolor="#6599F">Salesman Name</th>
+            <th bgcolor="#6599F">Contact </th>
+            <th bgcolor="#6599F">Contact Email</th>
+            <th bgcolor="#6599F">Remarks</th>
+            <th bgcolor="#6599F">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor='let salesman of salesmanList'>
+          <ng-container *ngFor='let salesman of salesmanList'>
+            <tr *ngIf="salesman.isDeleted == false">
 
-            <td>
-              <button type="button" class="btn btn-link">
-                <a [routerLink]="['/salesmandetails', salesman.salesmanid]">{{ salesman.salesmanName }}</a>
-              </button>
-            </td>
-            <td>{{ salesman.salesmanContact}}</td>
-            <td>{{ salesman.salesmanEmail }}</td>
-            <td>{{ salesman.remarks }}</td>
-          </tr>
+              <td>
+                <button type="button" class="btn btn-link">
+                  <a [routerLink]="['/salesmandetails', salesman.salesmanid]">{{ salesman.salesmanName }}</a>
+                </button>
+              </td>
+              <td>{{ salesman.salesmanContact}}</td>
+              <td>{{ salesman.salesmanEmail }}</td>
+              <td class="dot" title="{{salesman.remarks}}">{{ salesman.remarks }}</td>
+              <td>
+                <button class="btn btn-primary" (click)="delete(salesman.salesmanid ,salesman)">Delete</button>
+              </td>
+
+
+            </tr>
+          </ng-container>
         </tbody>
 
       </table>

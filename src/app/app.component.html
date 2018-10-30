@@ -9,7 +9,10 @@
         <a class="navbar-brand headerText" href="#">{{ title }}</a>
       </div>
       
-  <div style="float:right">{{ version }}</div>
+  <div style="float:right">{{ version }}
+    <a [routerLink]="['/login']">Logout</a>
+  </div>
+
     </div>
   </nav>
 </div>

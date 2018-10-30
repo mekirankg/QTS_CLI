@@ -45,6 +45,11 @@ import { CustomerdetailsComponent } from './customer/customerdetails/customerdet
 import { PurchaseorderpaymentsComponent } from './payments/purchaseorderpayments/purchaseorderpayments.component';
 import { PurchaseordermakepaymentComponent } from './payments/purchaseordermakepayment/purchaseordermakepayment.component';
 
+// validation import class
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateuserComponent } from './users/createuser/createuser.component';
+import { ListuserComponent } from './users/listuser/listuser.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,46 +79,52 @@ import { PurchaseordermakepaymentComponent } from './payments/purchaseordermakep
     ListcustomerComponent,
     CustomerdetailsComponent,
     PurchaseorderpaymentsComponent,
-    PurchaseordermakepaymentComponent
+    PurchaseordermakepaymentComponent,
+    CreateuserComponent,
+    ListuserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     RouterModule.forRoot(
       [
-        { path:'createquotation',component:CreatequotationComponent /* , canActivate: [AuthGuard] */ },
-        { path:'createquotation/:qid',component:CreatequotationComponent },
-        { path:'listquotation',component:ListquotationComponent/*  , canActivate: [AuthGuard] */ },
-        { path:'welcome',component:WelcomeComponent },
-        {path:'createsupplier',component:NewsupplierComponent},
-        { path:'createsupplier/:sid',component:NewsupplierComponent },
-        { path:'listpo',component:PurchaseorderlistComponent },    
-        { path:'popaymentlist',component:PurchaseorderpaymentsComponent },    
-        { path:'newpo/:id',component:NewpurchaseorderComponent },
-        { path:'initialpolist',component:InitialpolistComponent },   
-        { path:'makepayment/:id',component:MakepaymentComponent },   
-        { path:'listpayments',component:ListpaymentComponent },  
-        {path:'podetails/:id',component:PurchaseorderdetailsComponent},        
-        {path:'pomakepayment/:id',component:PurchaseordermakepaymentComponent},
-        { path:'listsupplier',component:ListsupplierComponent },  
-        { path:'supplierdetails/:sid',component:SupplierdetailsComponent},
-        { path:'quotationdetails/:qid',component:QuotationdetailsComponent },
-        { path:'createsalesman',component:NewsalesmanComponent },
-        { path:'createsalesman/:salesmanid',component:NewsalesmanComponent },
-        { path:'listsalesman',component:ListsalesmanComponent }, 
-        { path:'salesmandetails/:salesmanid',component:SalesmandetailsComponent },
-        { path:'createcustomer',component:NewcustomerComponent },
-        { path:'createcustomer/:customerid',component:NewcustomerComponent },
-        { path:'customerdetails/:customerid',component:CustomerdetailsComponent },
-        { path:'listcustomer',component:ListcustomerComponent }, 
+        { path:'createquotation',component:CreatequotationComponent , canActivate: [AuthGuard]/* , canActivate: [AuthGuard] */ },
+        { path:'createquotation/:qid',component:CreatequotationComponent , canActivate: [AuthGuard]},
+        { path:'listquotation',component:ListquotationComponent, canActivate: [AuthGuard]/*  , canActivate: [AuthGuard] */ },
+        { path:'welcome',component:WelcomeComponent, canActivate: [AuthGuard] },
+        {path:'createsupplier',component:NewsupplierComponent, canActivate: [AuthGuard]},
+        { path:'createsupplier/:sid',component:NewsupplierComponent , canActivate: [AuthGuard]},
+        { path:'listpo',component:PurchaseorderlistComponent , canActivate: [AuthGuard]},    
+        { path:'popaymentlist',component:PurchaseorderpaymentsComponent, canActivate: [AuthGuard] },    
+        { path:'newpo/:id',component:NewpurchaseorderComponent, canActivate: [AuthGuard] },
+        { path:'initialpolist',component:InitialpolistComponent , canActivate: [AuthGuard]},   
+        { path:'makepayment/:id',component:MakepaymentComponent , canActivate: [AuthGuard]},   
+        { path:'listpayments',component:ListpaymentComponent , canActivate: [AuthGuard]},  
+        {path:'podetails/:id',component:PurchaseorderdetailsComponent, canActivate: [AuthGuard]},        
+        {path:'pomakepayment/:id',component:PurchaseordermakepaymentComponent, canActivate: [AuthGuard]},
+        { path:'listsupplier',component:ListsupplierComponent , canActivate: [AuthGuard]},  
+        { path:'supplierdetails/:sid',component:SupplierdetailsComponent, canActivate: [AuthGuard]},
+        { path:'quotationdetails/:qid',component:QuotationdetailsComponent , canActivate: [AuthGuard]},
+        { path:'createsalesman',component:NewsalesmanComponent , canActivate: [AuthGuard]},
+        { path:'createsalesman/:salesmanid',component:NewsalesmanComponent , canActivate: [AuthGuard]},
+        { path:'listsalesman',component:ListsalesmanComponent , canActivate: [AuthGuard]}, 
+        { path:'salesmandetails/:salesmanid',component:SalesmandetailsComponent, canActivate: [AuthGuard] },
+        { path:'createcustomer',component:NewcustomerComponent , canActivate: [AuthGuard]},
+        { path:'createcustomer/:customerid',component:NewcustomerComponent , canActivate: [AuthGuard]},
+        { path:'createuser/:userid',component:CreateuserComponent , canActivate: [AuthGuard]},
+        { path:'createuser',component:CreateuserComponent , canActivate: [AuthGuard]},
+        { path:'customerdetails/:customerid',component:CustomerdetailsComponent, canActivate: [AuthGuard] },
+        { path:'listcustomer',component:ListcustomerComponent , canActivate: [AuthGuard]}, 
+        { path:'listuser',component:ListuserComponent , canActivate: [AuthGuard]}, 
         {path:'login',component:LoginComponent},
         { path: 'homec', component: HomeComponent, canActivate: [AuthGuard] },
         { path: 'register', component: RegisterComponent },
-        { path:'',component:DashboardComponent,pathMatch:'full' },
-        { path:'**',component:WelcomeComponent ,pathMatch:'full'}
+        { path:'dashboard',component:DashboardComponent,pathMatch:'full', canActivate: [AuthGuard] },
+        { path:'**',component:LoginComponent ,pathMatch:'full'}
        
       ]
     )
